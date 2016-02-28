@@ -1,0 +1,21 @@
+/*===================================================
+
+				Global Styles
+
+====================================================*/
+.main-content-container {
+	border:1px solid blue;
+}
+/*===================================================
+
+				Grid Styles
+
+====================================================*/
+.title-container {
+	padding:15px 0px;
+	border:1px solid red;
+}
+
+.title-container span {
+	margin-left: 15px;
+}
