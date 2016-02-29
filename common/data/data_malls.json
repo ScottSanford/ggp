@@ -134,5 +134,39 @@
 			"medianAge": 30.0,
 			"averageHouseholdIncome": 63671
 		}
+	},
+	{
+		"name": "Visalia Mall",
+		"id": "visalia-mall", 
+		"description": "Only regional shopping center in trade area. Visalia Mall’s merchandise mix draws shoppers across all age and income groups. Over 75 retailers, including Aéropostale, American Eagle Outfitters, Gymboree, Hollister Co., Hot Topic, Journeys, Journeys Kidz, Build-A-Bear Workshop, The Children’s Place, Old Navy, Victoria’s Secret, Zumiez, Vans, francesca’s, Forever 21, G by Guess, Starbucks, crazy 8, Yogurtland and Express. Inviting, clean, family atmosphere with a children’s play area.",
+		"image": "https://content.mediafly.com/f85977959b224b0b893917be5adb2245.jpg?o=ULE%2fpjHddUwvY173Oe%2fGtGdYDqYbOuP4FU9UyoYajWYF8vd2YNeRqaMBqZtSXBBHDsGfEK5oZAzTxQCbJ08e7e%2bOkDzXl8Xs%2fbRzyKMlA1%2fEDLqEcxbHa4a%2fR1pnzaofWN84dOePAFppFd3W9I9KRnAbr2yvroG%2b58L%2f5woHODGaz2BpSMcCrdfYdBctNcDTuK%2bmxvdhSDAqP%2bHINSXKzZcc778J5cR2o7jXLM4%2b8L6LALYxX7OpNdllyVYRl2rNsHvbKi2yy30b9VnH8%2bgTapttYVKetapibCL%2bzjMWw%2fs%3d",
+		"address": {
+			"street": "2031 South Mooney Boulevard",
+			"city": "Visalia",
+			"state": "CA",
+			"zip": "93277"
+		},
+		"phone": "(559) 733-7957",
+		"website": "www.visaliamall.com",
+		"location": {
+			"crossStreets": "Mooney Boulevard and Walnut Avenue",
+			"interstateAccess": "Hwy 198",
+			"metroCenter": "Visalia, CA"
+		},
+		"overview": {
+			"type": "Single-level, enclosed, regional",
+			"anchorTenants": "JCPenney, Macy's",
+			"stores": 75,
+			"gla": 440000,
+			"parking": 2200,
+			"opened": "1964",
+			"renovated": "1995"
+		},
+		"tradeArea": {
+			"areaPopulation": 504584,
+			"projectedPopFive": 523426,
+			"medianAge": 30.5,
+			"averageHouseholdIncome": 60032
+		}
 	}
 ]

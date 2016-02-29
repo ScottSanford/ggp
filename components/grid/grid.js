@@ -7,13 +7,17 @@ angular.module('ggpApp')
 
 	mfly.getData(dataId).then(function(data){
 		var jsonData = JSON.parse(data);
-
+		// console.log(jsonData);
 		$scope.malls = jsonData;
 	});
 
 	$scope.goToMall = function(id) {
 		console.log(id);
 	}
+
+	mfly.getFolder(mallFolderId).then(function(data){
+		console.log(data);
+	})
 
 	
 });

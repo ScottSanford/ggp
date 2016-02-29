@@ -1,19 +1,38 @@
 <div class="row">
 	<div class="col-sm-4">
+
 		<div class="title-container">
-			<span>All Opportunities</span>
+			<span class="uppercase color-gray font-size-36">All Opportunities</span>
 		</div>
+
 		<div class="main-menu">
 			<ul class="nav nav-pills nav-stacked">
-			  <li role="presentation"><a href="#">Grid View</a></li>
-			  <li role="presentation"><a href="#">Map View</a></li>
-			  <li role="presentation"><a href="#">Filter by Type</a></li>
-			  <li role="presentation"><a href="#">View by Gross Leaseable Area</a></li>
+			  <li role="presentation" class="uppercase"><a href="#">Grid View</a></li>
+			  <li role="presentation" class="uppercase"><a href="#">Map View</a></li>
+			  <li role="presentation" class="uppercase"><a href="#">Filter by Type</a>
+			  	<ul class="nested-list color-orange">
+			  		<li>Mall Properties</li>
+			  		<li>Development Projects</li>
+			  		<li>Completed Renovations</li>
+			  		<li>Office Properties</li>
+			  		<li>Tourism Premire Shopping Places</li>
+			  	</ul>
+			  </li>
+			  <li role="presentation" class="uppercase"><a href="#">View by Gross Leaseable Area</a>
+			  	<ul class="nested-list color-orange">
+			  		<li>500,000 sq ft</li>
+			  		<li>500,000 - 1,000,000 sq ft</li>
+			  		<li>1,000,000 sq ft</li>
+			  	</ul>
+			  </li>
 			</ul>
 		</div>
+
+		<icon-menu></icon-menu>
+
 	</div>
 	<div class="col-sm-8 main-content-container">
-		<div ng-repeat="m in malls" class="grid-property">
+		<div ng-repeat="m in malls">
 			<div grid-property mall="m" mall-click="m.id"></div>
 		</div>
 	</div>

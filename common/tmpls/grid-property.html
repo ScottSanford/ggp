@@ -1,8 +1,21 @@
-<div class="property-container" ng-click="getMall(mall.id)">
-
-	<div class="uppercase">{{ mall.name }}</div>
-	<div>{{ mall.address.city }}, {{ mall.address.state }}</div>
+<div class="col-sm-4" ng-click="getMall(mall.id)">
 	
-	<img ng-src="{{ mall.image }}">
-	<span>GLA as of 12/12/15 {{ mall.overview.gla | number }}</span>
+	<div class="property-container">
+		
+		<div class="top-container">
+			<div class="uppercase color-orange padding-top-10">{{ mall.name }}</div>
+			<div class="uppercase font-size-12">{{ mall.address.city }}, {{ mall.address.state }}</div>
+		</div>
+
+		<div class="img-container">
+			<img ng-src="{{ mall.image }}">
+		</div>
+
+		<div class="padding-top-10">
+			<span class="pull-left">GLA as of 12/12/15</span>
+			<span class="pull-right">{{ mall.overview.gla | number }}</span>
+		</div>
+
+	</div>
+
 </div>

@@ -20,6 +20,23 @@ angular.module('myDirectives', [])
 	}
 })
 
+.directive('iconMenu', function($location){
+	return {
+
+		restrict: 'E', 
+		scope: {
+			mall: '='
+		}, 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/icon-menu.html', 
+		link: function(scope, element, attrs) {
+
+		}
+
+	}
+})
+
 
 
 

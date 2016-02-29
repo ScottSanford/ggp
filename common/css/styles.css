@@ -6,34 +6,121 @@
 .uppercase {
 	text-transform: uppercase;
 }
+
+.color-gray {
+	color:#808080;
+}
+
+.color-orange {
+	color:#f26522;
+}
+
+.font-size-12 {
+	font-size:12px;
+}
+
+.font-size-20 {
+	font-size:20px;
+}
+
+.font-size-36 {
+	font-size: 30px;
+}
+
+.padding-top-10 {
+	padding-top: 10px;
+}
+
+.col-sm-4 {
+	padding-left:0;
+	padding-right:0;
+}
+
+ul.nested-list {
+	list-style-type: none;
+	padding:0;
+	margin-left:15px;
+}
+
+*[role="presentation"] {
+	font-size:18px;
+	border-bottom: 2px solid #808080;
+	padding:15px 0;
+}
+
+*[role="presentation"]:last-of-type {
+	border:none;
+}
+
+*[role="presentation"] a, *[role="presentation"] a:hover {
+	color:#808080;
+	background-color: #fff;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+	background-color:#fff;
+}
 /*===================================================
 
 				Grid Styles
 
 ====================================================*/
 .title-container {
-	padding:15px 0px;
-	/*border:1px solid red;*/
+	padding:100px 0px;
 }
 
 .title-container span {
-	margin-left: 15px;
-}
-
-.grid-property {
-	display: inline-block;
-	width:150px;
-	height:150px;
-	margin:15px;
-}
-
-.grid-property img {
-	width: 100%;
-	height:auto;
+	margin-left: 20px;
 }
 
 .property-container {
-	border:1px solid black;
+	border:1px solid #CFCFCF;
+	margin:10px;
+	height:225px;
+}
+
+.top-container {
+	min-height: 60px
+}
+
+.icon-container {
+	position: fixed;
+	bottom:0px;
+}
+
+.logo {
+	width:100px;
+	margin:0 0 15px 65px;
+}
+
+.btn {
+	border:2px solid #808080;
+}
+
+.btn-group .btn-default {
+	border-bottom-color: #fff;
+	width:75px;
+	height:40px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	color:#f26522;
+}
+
+.img-container {
+	position: relative;
+	width:100%;
+	max-height: 125px;
+	overflow: hidden;
+}
+
+.img-container img {
+	width:100%;
+	height:auto;
+	margin:0 auto;
+}
+
+.property-container div {
+	text-align: center;
 }
 
 /*===================================================
@@ -41,6 +128,45 @@
 				Property Styles
 
 ====================================================*/
-.btn-experience {
-	color:none;
+.section-title{
+	border-bottom: 2px solid #808080;
+	padding-bottom:20px;
 }
+
+.mall-address {
+	padding-top:25px;
+}
+
+.mall-description {
+	padding-top:25px;
+	line-height: 1.7;
+}
+
+.property-main-img-container {
+	width:100%;
+	position: relative;
+	max-height: 225px;
+	overflow: hidden;
+}
+
+.property-main-img {
+	width:100%;
+}
+
+.key-facts {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

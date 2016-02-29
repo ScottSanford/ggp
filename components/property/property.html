@@ -1,26 +1,27 @@
 <div class="row">
 	<div class="col-sm-4">
 		<div class="title-container">
-			<span>{{ mall.name }}</span>
+			<span class="uppercase color-gray font-size-36">{{ mall.name }}</span>
 		</div>
 
-		<div class="property-overview">
-			<div>{{ mall.address.street }}</div>
-			<div>{{ mall.address.city }}, {{ mall.address.state }} {{ mall.address.zip }}</div>
-			<div>{{ mall.phone }}</div>
-			<div>{{ mall.website }}</div>
-		</div>
-
-		<div class="overview">
-			<div>Overview</div>
-			<div>{{ mall.description }}</div>
+		<div>
+			<div class="section-title font-size-20">Overview</div>
+			<div class="mall-address">
+				<div>{{ mall.address.street }}</div>
+				<div>{{ mall.address.city }}, {{ mall.address.state }} {{ mall.address.zip }}</div>
+				<div>{{ mall.phone }}</div>
+				<div>{{ mall.website }}</div>
+			</div>
+			<div class="mall-description">{{ mall.description }}</div>
 		</div>
 
 	</div>
 	<div class="col-sm-8 main-content-container">
-		<img ng-src="{{ mall.image }}">
+		<div class="col-sm-12 property-main-img-container">
+			<img class="property-main-img" ng-src="{{ mall.image }}">
+		</div>
 		<div class="key-facts">
-			Key Facts
+			<div class="section-title font-size-20">Key Facts</div>
 			<div class="row">
 				<div class="col-sm-4">
 					Type of Center
