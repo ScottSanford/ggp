@@ -5,17 +5,17 @@ angular.module("ggpApp", [
 
         .config(function ($routeProvider, $compileProvider) { 
 
-              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/entry|http:\/\/)/);  
+              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/entry|https:\/\/)/);  
               
               $routeProvider
                 .when('/', {
                     templateUrl: 'components/grid/grid.html',
                     controller: 'GridCtrl'
                 })                 
-                // .when('/property', {
-                //     templateUrl: 'components/property/property.html',
-                //     controller: 'PropertyCtrl'
-                // })                 
+                .when('/property', {
+                    templateUrl: 'components/property/property.html',
+                    controller: 'PropertyCtrl'
+                })                 
                 // .when('/favorites', {
                 //     templateUrl: 'components/favorites/favorites.html',
                 //     controller: 'FavoritesCtrl'
