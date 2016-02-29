@@ -7,7 +7,7 @@ angular.module('ggpApp')
 
 	mfly.getData(dataId).then(function(data){
 		var jsonData = JSON.parse(data);
-
+		console.log(jsonData);
 		jsonData.forEach(function(value,key){
 			if (propertyID === value.id) {
 				console.log(value);

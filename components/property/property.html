@@ -10,10 +10,17 @@
 			<div>{{ mall.phone }}</div>
 			<div>{{ mall.website }}</div>
 		</div>
+
+		<div class="overview">
+			<div>Overview</div>
+			<div>{{ mall.description }}</div>
+		</div>
+
 	</div>
 	<div class="col-sm-8 main-content-container">
 		<img ng-src="{{ mall.image }}">
 		<div class="key-facts">
+			Key Facts
 			<div class="row">
 				<div class="col-sm-4">
 					Type of Center
@@ -29,6 +36,9 @@
 					<div>{{ mall.overview.parking | number }} parking spaces</div>
 				</div>
 			</div>
+		</div>
+		<div class="gallery">
+			Gallery
 		</div>
 	</div>
 </div>
