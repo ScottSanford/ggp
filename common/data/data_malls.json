@@ -1,0 +1,68 @@
+[
+	{
+		"name": "Oakbrook Center",
+		"id": "oakbrook-center",
+		"image": "http://static1.squarespace.com/static/52cc630ae4b0b9da8cc598c2/t/53c00186e4b0974b49e1a008/1405092232358/",
+		"address": {
+			"street": "100 Oakbrook Center",
+			"city": "Oak Brook",
+			"state": "IL",
+			"zip": "60523-1838"
+		},
+		"phone": "(630) 413-9846",
+		"website": "www.oakbrookcenter.com",
+		"location": {
+			"crossStreets": "Route 83 and 22nd Street",
+			"interstateAccess": "I-88, I-290, I-294",
+			"metroCenter": "Chicago, IL"
+		},
+		"overview": {
+			"type": "Mixed-use, open-air, super-regional and three-office-tower complex",
+			"anchorTenants": "Lord & Taylor, Macy's, Neiman Marcus, Nordstrom, Sears",
+			"stores": 160,
+			"gla": 2018000,
+			"parking": 12000,
+			"opened": "1962",
+			"renovated": "1991"
+		},
+		"tradeArea": {
+			"areaPopulation": 1345166,
+			"projectedPopFive": 1361108,
+			"medianAge": 38.8,
+			"averageHouseholdIncome": 98033
+		}
+	},
+	{
+		"name": "Water Tower Place",
+		"id": "water-tower-place", 
+		"image": "http://chicagonista.com/wp-content/uploads/2013/07/Water-Tower-Place-Exterior-Photo-Credit-Water-Tower-.jpg",
+		"address": {
+			"street": "835 N. Michigan Avenue",
+			"city": "Chicago",
+			"state": "IL",
+			"zip": "60611-2218"
+		},
+		"phone": "(312) 440-3166",
+		"website": "www.shopwatertower.com",
+		"location": {
+			"crossStreets": "Michigan Avenue at Pearson and Chestnut",
+			"interstateAccess": "",
+			"metroCenter": "Chicago, IL"
+		},
+		"Overview": {
+			"type": "Eight levels, enclosed, super-regional draw",
+			"anchorTenants": "Macy's, American Girl Place and Broadway in Chicago's Broadway Playhouse",
+			"stores": 100,
+			"gla": 729000,
+			"parking": 700,
+			"opened": "1976",
+			"renovated": "2001,2008"
+		},
+		"Trade Area": {
+			"areaPopulation": 9545986,
+			"projectedPopFive": 9686565,
+			"medianAge": 36.4,
+			"averageHouseholdIncome": 83371
+		}
+	}
+]

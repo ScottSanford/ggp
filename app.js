@@ -1,10 +1,11 @@
 angular.module("ggpApp", [
-        'ngRoute'
+        'ngRoute', 
+        'myDirectives'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 
 
-              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/entry|https:\/\/)/);  
+              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/entry|http:\/\/)/);  
               
               $routeProvider
                 .when('/', {

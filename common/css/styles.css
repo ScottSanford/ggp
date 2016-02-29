@@ -3,8 +3,8 @@
 				Global Styles
 
 ====================================================*/
-.main-content-container {
-	border:1px solid blue;
+.uppercase {
+	text-transform: uppercase;
 }
 /*===================================================
 
@@ -13,9 +13,25 @@
 ====================================================*/
 .title-container {
 	padding:15px 0px;
-	border:1px solid red;
+	/*border:1px solid red;*/
 }
 
 .title-container span {
 	margin-left: 15px;
+}
+
+.grid-property {
+	display: inline-block;
+	width:150px;
+	height:150px;
+	margin:15px;
+}
+
+.grid-property img {
+	width: 100%;
+	height:auto;
+}
+
+.property-container {
+	border:1px solid black;
 }
