@@ -12,7 +12,6 @@ angular.module('myDirectives', [])
 		templateUrl: 'common/tmpls/grid-property.html', 
 		link: function(scope, element, attrs) {
 			scope.getMall = function(id){
-				console.log(id);
 				$location.url('/property?id=' + id);
 			}
 		}
@@ -31,7 +30,26 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/icon-menu.html', 
 		link: function(scope, element, attrs) {
+			scope.goToFavorites = function() {
+				$location.url('/favorites');
+			}
+		}
 
+	}
+})
+
+.directive('favoriteProperty', function($location){
+	return {
+
+		restrict: 'E', 
+		scope: {
+			favorite: '='
+		}, 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/favorite-property.html', 
+		link: function(scope, element, attrs) {
+			
 		}
 
 	}

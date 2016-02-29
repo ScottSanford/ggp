@@ -12,7 +12,7 @@
 }
 
 .color-orange {
-	color:#f26522;
+	color:#F26522;
 }
 
 .font-size-12 {
@@ -31,6 +31,14 @@
 	padding-top: 10px;
 }
 
+.padding-top-20 {
+	padding-top: 20px;
+}
+
+.padding-bottom-10 {
+	padding-bottom: 10px;
+}
+
 .col-sm-12 {
 	padding:0;
 }
@@ -43,6 +51,10 @@
 .col-sm-8 {
 	padding-left:15px;
 	padding-right:15px;
+}
+
+.width-90 {
+	width:90%;
 }
 
 ul.nested-list {
@@ -74,12 +86,17 @@ ul.nested-list {
 				Grid Styles
 
 ====================================================*/
-.title-container {
-	padding:100px 0px;
+.favorite-star {
+	color:#808080;
 }
 
-.title-container span {
-	margin-left: 20px;
+.favorited {
+	color:#F26522;
+}
+
+.title-container {
+	padding:100px 50px;
+	text-align: center;
 }
 
 .property-container {
@@ -184,14 +201,50 @@ ul.nested-list {
 }
 
 
+/*===================================================
 
+				Favorites Styles
 
+====================================================*/
+.favorite-container {
+	width:250px;
+	height:100vh;
+	border:1px solid #808080;
+	border-top-width: 0;
+	border-bottom-width: 0;
+}
 
+.favorite-container span {
+	display: block;
+    text-align: center;
+}
 
+.favorite-name span{
+	margin:0 auto;
+	text-align: center;
+}
 
+.keyfacts {
+	margin-left:10px;
+}
 
+.favorite-img-container {
+	position: relative;
+	width:100%;
+	max-height: 75px;
+	overflow: hidden;
+}
 
+.favorite-img-container img {
+	width:100%;
+	height:auto;
+	margin:0 auto;
+}
 
+.types .title, .anchorTenants .title {
+	border-bottom: 2px solid #808080;
+	width:90%;
+}
 
 
 

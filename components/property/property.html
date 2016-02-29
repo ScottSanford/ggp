@@ -5,6 +5,14 @@
 		</div>
 
 		<div>
+			<span class="fa fa-star-o fa-2x favorite-star"
+		          ng-if="status == true" 
+		          ng-click="addToFavorites()">
+		    </span>
+		    <span class="fa fa-star fa-2x favorited"
+		          ng-if="status == false"
+		          ng-click="addToFavorites()">
+		    </span>
 			<div class="overview font-size-20">Overview</div>
 			<div class="mall-address">
 				<div>{{ mall.address.street }}</div>
@@ -15,7 +23,7 @@
 			<div class="mall-description">{{ mall.description }}</div>
 		</div>
 
-	<icon-menu></icon-menu>
+		<icon-menu></icon-menu>
 
 	</div>
 

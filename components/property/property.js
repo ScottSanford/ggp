@@ -1,19 +1,33 @@
 angular.module('ggpApp')
 
-.controller('PropertyCtrl', function($scope, $routeParams, mfly){
+.controller('PropertyCtrl', function($scope, $routeParams, mfly, localStorageService){
 
 	var propertyID = $routeParams.id;
 	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
 	var mallFolderId = 'a4ce3ae64bb34998bd28479d8b7f8201product234543';
 
+    $scope.status = true;
+
 	mfly.getData(dataId).then(function(data){
 		
 		var jsonData = JSON.parse(data);
-
+		console.log(jsonData);
 		jsonData.forEach(function(value,key){
 			if (propertyID === value.id) {
 
 				$scope.mall = value;
+
+
+			    $scope.addToFavorites = function(){
+			    	if ($scope.status) {
+			    		var favsArr = [];
+			    		favsArr.push(value);
+			      		localStorageService.set('favorites', favsArr);
+			    	} else {
+						localStorageService.remove('favorites');
+			    	}
+			      	$scope.status = !$scope.status;
+			    }
 
 				mfly.getFolder(mallFolderId).then(function(data){
 
@@ -32,5 +46,6 @@ angular.module('ggpApp')
 
 
 	});
+
 
 });

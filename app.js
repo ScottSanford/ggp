@@ -1,6 +1,7 @@
 angular.module("ggpApp", [
         'ngRoute', 
-        'myDirectives'
+        'myDirectives', 
+        'LocalStorageModule'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 
@@ -16,10 +17,10 @@ angular.module("ggpApp", [
                     templateUrl: 'components/property/property.html',
                     controller: 'PropertyCtrl'
                 })                 
-                // .when('/favorites', {
-                //     templateUrl: 'components/favorites/favorites.html',
-                //     controller: 'FavoritesCtrl'
-                // })                  
+                .when('/favorites', {
+                    templateUrl: 'components/favorites/favorites.html',
+                    controller: 'FavoritesCtrl'
+                })                  
                 // .when('/tools', {
                 //     templateUrl: 'components/tools/tools.html',
                 //     controller: 'ToolsCtrl'
