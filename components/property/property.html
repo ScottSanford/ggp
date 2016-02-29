@@ -5,7 +5,7 @@
 		</div>
 
 		<div>
-			<div class="section-title font-size-20">Overview</div>
+			<div class="overview font-size-20">Overview</div>
 			<div class="mall-address">
 				<div>{{ mall.address.street }}</div>
 				<div>{{ mall.address.city }}, {{ mall.address.state }} {{ mall.address.zip }}</div>
@@ -15,31 +15,39 @@
 			<div class="mall-description">{{ mall.description }}</div>
 		</div>
 
+	<icon-menu></icon-menu>
+
 	</div>
+
+
 	<div class="col-sm-8 main-content-container">
 		<div class="col-sm-12 property-main-img-container">
 			<img class="property-main-img" ng-src="{{ mall.image }}">
 		</div>
 		<div class="key-facts">
-			<div class="section-title font-size-20">Key Facts</div>
-			<div class="row">
-				<div class="col-sm-4">
-					Type of Center
-					<div>{{ mall.overview.type }}</div>
-				</div>
-				<div class="col-sm-4">
-					Anchor Tenants
-					<div>{{ mall.overview.anchorTenants }}</div>
-				</div>
-				<div class="col-sm-4">
-					<div>{{ mall.overview.stores | number }} stores</div>
-					<div>{{ mall.overview.gla | number }} total gross leaseable area</div>
-					<div>{{ mall.overview.parking | number }} parking spaces</div>
-				</div>
+			<div class="key-facts-title font-size-20">Key Facts</div>
+			<div class="col-sm-4">
+				<div class="font-size-20">Type of Center</div>
+				<div>{{ mall.overview.type }}</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="font-size-20">Anchor Tenants</div>
+				<div>{{ mall.overview.anchorTenants }}</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="font-size-20">{{ mall.overview.stores | number }}</div>
+				<div>retail stores</div>
+				<div class="font-size-20 padding-top-10">{{ mall.overview.gla | number }}</div>
+				<div>total gross leaseable area</div>
+				<div class="font-size-20 padding-top-10">{{ mall.overview.parking | number }}</div>
+				<div>parking spaces</div>
 			</div>
 		</div>
-		<div class="gallery">
-			Gallery
+		<div class="">
+			<div class="gallery font-size-20">Gallery</div>
+			<div class="col-sm-3" ng-repeat="photo in photos">
+				<img class="gallery-thumb" ng-src="{{photo.thumbnailUrl}}">
+			</div>
 		</div>
 	</div>
 </div>

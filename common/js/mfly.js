@@ -9,7 +9,7 @@ angular.module('ggpApp')
             mflyCommands.getData(id)
                 .done(function(data){
                     deferred.resolve(data);
-                })
+                });
 
             return deferred.promise;
         }, 
@@ -20,9 +20,31 @@ angular.module('ggpApp')
             mflyCommands.getFolder(id)
                 .done(function(data){
                     deferred.resolve(data);
-                })
+                });
 
             return deferred.promise;        	
+        }, 
+
+        search: function(term) {
+            var deferred = $q.defer();
+
+            mflyCommands.search(term)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;    
+        },     
+
+        getItem: function(id) {
+            var deferred = $q.defer();
+
+            mflyCommands.getItem(id)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;    
         }
 	}
 
