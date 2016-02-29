@@ -1,1 +1,34 @@
-Property Page
+<div class="row">
+	<div class="col-sm-4">
+		<div class="title-container">
+			<span>{{ mall.name }}</span>
+		</div>
+
+		<div class="property-overview">
+			<div>{{ mall.address.street }}</div>
+			<div>{{ mall.address.city }}, {{ mall.address.state }} {{ mall.address.zip }}</div>
+			<div>{{ mall.phone }}</div>
+			<div>{{ mall.website }}</div>
+		</div>
+	</div>
+	<div class="col-sm-8 main-content-container">
+		<img ng-src="{{ mall.image }}">
+		<div class="key-facts">
+			<div class="row">
+				<div class="col-sm-4">
+					Type of Center
+					<div>{{ mall.overview.type }}</div>
+				</div>
+				<div class="col-sm-4">
+					Anchor Tenants
+					<div>{{ mall.overview.anchorTenants }}</div>
+				</div>
+				<div class="col-sm-4">
+					<div>{{ mall.overview.stores | number }} stores</div>
+					<div>{{ mall.overview.gla | number }} total gross leaseable area</div>
+					<div>{{ mall.overview.parking | number }} parking spaces</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
