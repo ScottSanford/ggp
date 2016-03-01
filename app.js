@@ -21,10 +21,10 @@ angular.module("ggpApp", [
                     templateUrl: 'components/favorites/favorites.html',
                     controller: 'FavoritesCtrl'
                 })                  
-                // .when('/tools', {
-                //     templateUrl: 'components/tools/tools.html',
-                //     controller: 'ToolsCtrl'
-                // })                  
+                .when('/tools', {
+                    templateUrl: 'components/tools/tools.html',
+                    controller: 'ToolsCtrl'
+                })                  
                 // .when('/graph', {
                 //     templateUrl: 'components/graph/graph.html',
                 //     controller: 'GraphCtrl'

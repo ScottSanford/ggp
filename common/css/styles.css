@@ -23,6 +23,10 @@
 	font-size:20px;
 }
 
+.font-size-24 {
+	font-size:24px;
+}
+
 .font-size-36 {
 	font-size: 30px;
 }
@@ -245,6 +249,39 @@ ul.nested-list {
 	border-bottom: 2px solid #808080;
 	width:90%;
 }
+
+/*===================================================
+
+				Tools Styles
+
+====================================================*/
+.tool-container {
+	border:5px solid #808080;
+	padding:75px 5px;
+	border-radius: 10px;
+}
+
+.tool-container span {
+	text-align: center;
+	display: block;
+}
+
+.tool-container div {
+	text-align: center;
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

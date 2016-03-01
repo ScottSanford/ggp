@@ -32,6 +32,9 @@ angular.module('myDirectives', [])
 		link: function(scope, element, attrs) {
 			scope.goToFavorites = function() {
 				$location.url('/favorites');
+			}			
+			scope.goToTools = function() {
+				$location.url('/tools');
 			}
 		}
 
