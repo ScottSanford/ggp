@@ -1,6 +1,6 @@
 angular.module('ggpApp')
 
-.controller('PropertyCtrl', function($scope, $routeParams, mfly, localStorageService){
+.controller('PropertyCtrl', function($scope, $routeParams, mfly, localStorageService, Lightbox){
 
 	var propertyID = $routeParams.id;
 	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
@@ -11,9 +11,20 @@ angular.module('ggpApp')
 	mfly.getData(dataId).then(function(data){
 		
 		var jsonData = JSON.parse(data);
-		console.log(jsonData);
+		
 		jsonData.forEach(function(value,key){
+			
 			if (propertyID === value.id) {
+
+				mfly.getFolder(value.id).then(function(data){
+					for (var i=0; i < data.length; i++) {
+						if (data[i].name === 'Gallery') {
+							mfly.getFolder(data[i].id).then(function(data){
+								$scope.photos = data;
+							})
+						}
+					}
+				})
 
 				$scope.mall = value;
 
@@ -32,23 +43,12 @@ angular.module('ggpApp')
 			      	$scope.status = !$scope.status;
 			    }
 
-				mfly.getFolder(mallFolderId).then(function(data){
-
-					data.forEach(function(mflyValue, mflyKey){
-
-						if (value.name === mflyValue.name) {
-							mfly.getFolder(mflyValue.id).then(function(data){
-								$scope.photos = data;
-							});
-						}
-
-					})
-				});
 			}
+
+
 		});
 
 
 	});
-
 
 });

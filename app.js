@@ -1,7 +1,10 @@
 angular.module("ggpApp", [
         'ngRoute', 
         'myDirectives', 
-        'LocalStorageModule'
+        'ui.bootstrap',
+        'LocalStorageModule', 
+        'bootstrapLightbox', 
+        'ngTouch'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 

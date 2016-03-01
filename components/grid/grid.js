@@ -19,5 +19,14 @@ angular.module('ggpApp')
 		console.log(data);
 	})
 
+	$scope.data = {
+    	repeatSelect: null,
+    	availableOptions: [
+      	{id: '1', name: '< 500,000 sq ft'},
+      	{id: '2', name: '500,000 - 1,000,000 sq ft'},
+      	{id: '3', name: '1,000,000'}
+    	]
+   };
+
 	
 });
