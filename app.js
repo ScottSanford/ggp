@@ -5,7 +5,8 @@ angular.module("ggpApp", [
         'LocalStorageModule', 
         'bootstrapLightbox', 
         'ngTouch', 
-        'esri.map'
+        'nvd3'
+        // 'esri.map'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 
