@@ -3,6 +3,15 @@
 				Global Styles
 
 ====================================================*/
+ol {
+	margin-bottom: 0px;
+}
+
+.container {
+	padding-left:10px;
+	padding-right:10px;
+}
+
 .uppercase {
 	text-transform: uppercase;
 }
@@ -28,11 +37,15 @@
 }
 
 .font-size-36 {
-	font-size: 30px;
+	font-size: 36px;
 }
 
 .padding-top-10 {
 	padding-top: 10px;
+}
+
+.padding-top-15 {
+	padding-top: 15px;
 }
 
 .padding-top-20 {
@@ -41,20 +54,6 @@
 
 .padding-bottom-10 {
 	padding-bottom: 10px;
-}
-
-.col-sm-12 {
-	padding:0;
-}
-
-.col-sm-4 {
-	padding-left:0;
-	padding-right:0;
-}
-
-.col-sm-8 {
-	padding-left:15px;
-	padding-right:15px;
 }
 
 .width-90 {
@@ -69,21 +68,30 @@ ul.nested-list {
 
 *[role="presentation"] {
 	font-size:18px;
-	border-bottom: 2px solid #808080;
-	padding:15px 0;
 }
 
 *[role="presentation"]:last-of-type {
-	border:none;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #808080;
 }
 
-*[role="presentation"] a, *[role="presentation"] a:hover {
+.nav > li > a {
 	color:#808080;
-	background-color: #fff;
 }
 
 .nav > li > a:hover, .nav > li > a:focus {
 	background-color:#fff;
+	color:#F26522;
+}
+
+.panel-group {
+	margin-top:20px;
+	width:90%;
+}
+
+.breadcrumb {
+	background-color: #fff;
+	margin-bottom:0px;
 }
 /*===================================================
 
@@ -99,14 +107,14 @@ ul.nested-list {
 }
 
 .title-container {
-	padding:100px 50px;
+	padding:50px 0px;
 	text-align: center;
 }
 
 .property-container {
-	border:1px solid #CFCFCF;
-	margin:10px;
-	height:225px;
+	border:2px solid #808080;
+	padding-bottom: 20px;
+	border-radius: 4px;
 }
 
 .top-container {
@@ -116,11 +124,18 @@ ul.nested-list {
 .icon-container {
 	position: fixed;
 	bottom:0px;
+	background-color:#fff;
+	width: 100%;
+	height:auto;	
 }
 
 .logo {
+	position: fixed;
+	bottom:10px;
+	left:10px;
+	z-index: 100;
 	width:60px;
-	margin:0 0 10px 82px;
+	height: auto;
 }
 
 .btn {
@@ -153,14 +168,24 @@ ul.nested-list {
 	text-align: center;
 }
 
+.filter-container {
+	border-bottom: 2px solid #808080;
+	color:#fff;
+	padding:10px 0;
+}
+
 /*===================================================
 
 				Property Styles
 
 ====================================================*/
+.property-left-container {
+
+}
+
 .overview, .key-facts-title, .gallery{
 	border-bottom: 2px solid #808080;
-	padding-bottom:20px;
+	padding-bottom:10px;
 }
 
 .section-title div {
@@ -176,14 +201,28 @@ ul.nested-list {
 	line-height: 1.7;
 }
 
+.btn-property {
+	width:50%;
+	color:#000;
+	background-color: #fff;
+	border-color: #808080;
+}
+
+.btn-property:hover, .btn-property:active {
+	color:#fff;
+	background-color:#F26522;
+}
+
 .property-main-img-container {
 	width:100%;
 	overflow: hidden;
+	padding-left:0px;
 }
 
 .property-main-img {
 	width:100%;
-	height: 225px;
+	height: 150px;
+	margin-bottom: 15px;
 }
 
 .key-facts {
@@ -191,7 +230,7 @@ ul.nested-list {
 }
 
 .key-facts .col-sm-4 {
-	padding:25px 15px 0 0;
+	padding:10px 15px 0 0;
 }
 
 .gallery-container {
@@ -200,8 +239,8 @@ ul.nested-list {
 
 .gallery-thumb {
 	width:100%;
-	height:125px;
-	border:1px solid #ccc;
+	height:100px;
+	border:2px solid #808080;
 }
 
 
@@ -271,7 +310,59 @@ ul.nested-list {
 	display: block;
 }
 
+/*===================================================
 
+				Mall Styles
+
+====================================================*/
+.carousel-container {
+	border:5px solid #808080;
+	border-radius: 10px;
+}
+
+.carousel {
+/*	position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);*/
+}
+
+/*===================================================
+
+				Media Queries
+
+====================================================*/
+
+/* iPad Portrait */
+@media only screen and (max-width: 959px) {
+
+	.featured-container-portrait {
+		position: relative;
+		top:250px;
+	}
+
+	.bottom-container {
+		position: absolute;
+		left:-100px;
+	}
+
+}
+
+
+/** iPhone 6 Landscape **/
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) { 
+
+	body {
+		width:1024px;
+		height:768px;
+		/*border:1px solid red;*/
+	}
+
+}
 
 
 

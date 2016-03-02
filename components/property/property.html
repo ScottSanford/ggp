@@ -1,7 +1,15 @@
 <div class="row">
-	<div class="col-sm-4">
+
+
+	<div class="col-sm-4 property-left-container">
+	
+		<ol class="breadcrumb">
+		  <li><a href="#/"><i class="fa fa-home color-orange"></i></a></li>
+		  <li>{{ mall.name }}</li>
+		</ol>
+	
 		<div class="title-container">
-			<span class="uppercase color-gray font-size-36">{{ mall.name }}</span>
+			<span class="uppercase color-gray font-size-24">{{ mall.name }}</span>
 		</div>
 
 		<div>
@@ -21,11 +29,16 @@
 				<div>{{ mall.website }}</div>
 			</div>
 			<div class="mall-description">{{ mall.description }}</div>
+
+			<div class="padding-top-15">
+				<button class="btn btn-property" ng-click="goToMall()">Mall View</button>
+			</div>
+			<div class="padding-top-15">
+				<button class="btn btn-property" ng-click="goToSpace()">Space View</button>
+			</div>
+
 		</div>
-
-		<icon-menu></icon-menu>
-
-	</div>
+</div> <!-- end of row -->
 
 
 	<div class="col-sm-8 main-content-container">

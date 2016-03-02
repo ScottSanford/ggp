@@ -58,6 +58,23 @@ angular.module('myDirectives', [])
 	}
 })
 
+.directive('breadCrumbs', function($location){
+	return {
+
+		restrict: 'E', 
+		scope: {
+			favorite: '='
+		}, 
+		replace: true, 
+		transclude: true,
+		templateUrl: 'common/tmpls/breadcrumbs.html', 
+		link: function(scope, element, attrs) {
+			
+		}
+
+	}
+})
+
 
 
 

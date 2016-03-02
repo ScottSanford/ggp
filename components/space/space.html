@@ -1,0 +1,37 @@
+<div class="row">
+	<div class="col-sm-4 property-left-container">
+		<div class="title-container">
+			<span class="uppercase color-gray font-size-36">{{ mall.name }}</span>
+		</div>
+		<div class="view">Space View</div>
+
+		<div class="space-info-container">
+			<div class="font-size-20">Unit 603</div>
+			<div>Floor 6</div>
+			<div>South</div>
+		</div>
+	
+	</div>
+
+
+	<div class="col-sm-8 main-content-container">
+
+		<div class="gallery-thumb-container">
+			<div class="col-sm-2 gallery-container" ng-repeat="view in views">
+				<img class="gallery-thumb" ng-src="{{view.thumbnailUrl}}">
+			</div>
+		</div>
+
+		<div class="carousel-container">	
+			<uib-carousel class="carousel" active="active" no-wrap="noWrapSlides">
+	      		<uib-slide ng-repeat="slide in slides">
+	        		<img ng-src="{{slide.thumbnailUrl}}" style="margin:auto;">
+	        		<div class="carousel-caption">
+	        	  		<h4>{{slide.name}}</h4>
+			        </div>
+	      		</uib-slide>
+	    	</uib-carousel>
+	    </div>
+
+	</div>
+</div>

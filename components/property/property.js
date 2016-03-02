@@ -1,6 +1,6 @@
 angular.module('ggpApp')
 
-.controller('PropertyCtrl', function($scope, $routeParams, mfly, localStorageService, Lightbox){
+.controller('PropertyCtrl', function($scope, $location, $routeParams, mfly, localStorageService, Lightbox){
 
 	var propertyID = $routeParams.id;
 	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
@@ -50,5 +50,13 @@ angular.module('ggpApp')
 
 
 	});
+
+	$scope.goToMall = function() {
+		$location.url('/mall?id=' + propertyID);
+	}	
+
+	$scope.goToSpace = function() {
+		$location.url('/space?id=' + propertyID);
+	}
 
 });

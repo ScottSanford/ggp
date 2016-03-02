@@ -20,6 +20,14 @@ angular.module("ggpApp", [
                     templateUrl: 'components/property/property.html',
                     controller: 'PropertyCtrl'
                 })                 
+                .when('/mall', {
+                    templateUrl: 'components/mall/mall.html',
+                    controller: 'MallCtrl'
+                })                  
+                .when('/space', {
+                    templateUrl: 'components/space/space.html',
+                    controller: 'SpaceCtrl'
+                })                
                 .when('/favorites', {
                     templateUrl: 'components/favorites/favorites.html',
                     controller: 'FavoritesCtrl'
@@ -36,14 +44,6 @@ angular.module("ggpApp", [
                 //     templateUrl: 'components/map/map.html',
                 //     controller: 'MapCtrl'
                 // })                  
-                // .when('/mall', {
-                //     templateUrl: 'components/mall/mall.html',
-                //     controller: 'MallCtrl'
-                // })                  
-                // .when('/space', {
-                //     templateUrl: 'components/space/space.html',
-                //     controller: 'SpaceCtrl'
-                // })                
                 .otherwise({
                     redirectTo: '/'
                 });
