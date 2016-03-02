@@ -36,8 +36,8 @@ ol {
 	font-size:24px;
 }
 
-.font-size-36 {
-	font-size: 36px;
+.font-size-30 {
+	font-size: 30px;
 }
 
 .padding-top-10 {
@@ -60,10 +60,19 @@ ol {
 	width:90%;
 }
 
+.breadcrumb {
+	background-color: #fff;
+	margin-bottom:0px;
+}
+
 ul.nested-list {
 	list-style-type: none;
 	padding:0;
 	margin-left:15px;
+}
+
+.first-nav {
+	padding:10px 15px;
 }
 
 *[role="presentation"] {
@@ -89,10 +98,6 @@ ul.nested-list {
 	width:90%;
 }
 
-.breadcrumb {
-	background-color: #fff;
-	margin-bottom:0px;
-}
 /*===================================================
 
 				Grid Styles
@@ -113,8 +118,9 @@ ul.nested-list {
 
 .property-container {
 	border:2px solid #808080;
-	padding-bottom: 20px;
+	margin:10px 0;
 	border-radius: 4px;
+	min-height: 250px;
 }
 
 .top-container {
@@ -328,6 +334,16 @@ ul.nested-list {
   transform: translateY(-50%);*/
 }
 
+/*===================================================
+
+				Map Styles
+
+====================================================*/
+.btn-dropdown {
+	color:#fff;
+	background-color: #F26522;
+	border-color:#808080;
+}
 /*===================================================
 
 				Media Queries

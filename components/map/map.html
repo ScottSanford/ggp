@@ -1,0 +1,49 @@
+
+<div class="row">
+
+	<div class="col-sm-4">
+		<ol class="breadcrumb">
+		  <li><a href="#/"><i class="fa fa-home color-orange"></i></a></li>
+		  <li>Map View</li>
+		</ol>
+
+		<!-- Dropdown menu of Properties -->
+		<div class="btn-group" uib-dropdown>
+	      <button id="split-button" type="button" class="btn btn-dropdown">Choose a Property</button>
+	      <button type="button" class="btn btn-dropdown" uib-dropdown-toggle>
+	        <span class="caret"></span>
+	        <span class="sr-only">Split button!</span>
+	      </button>
+	      <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
+	        <li role="menuitem" ng-repeat="property in properties"><a ng-click="showPropertyOnMap(property.name)">{{property.name}}</a></li>
+	      </ul>
+	    </div>
+	    <!-- End of Dropdown Menu -->
+
+	    <div class="title-container">
+			<span class="uppercase color-gray font-size-24">{{ chosenProperty }}</span>
+		</div>
+
+		<div class="mapinfo-container" ng-show="mapFacts">
+			<div class="font-size-20">9,545,986</div>
+			<div>trade area population</div>
+			<div class="font-size-20 padding-top-10">9,686,565</div>
+			<div>5 year projected population</div>
+			<div class="font-size-20 padding-top-10">3,166,097</div>
+			<div>trade area households</div>
+			<div class="font-size-20 padding-top-10">35.8</div>
+			<div>median age</div>
+			<div>$83,371</div>
+			<div>average household income</div>
+		</div>
+
+	</div>	
+
+	<div class="col-sm-8">
+
+		<h3>Map will go here :)</h3>
+
+	</div>
+
+
+</div> <!-- End of Row -->
