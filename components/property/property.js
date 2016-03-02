@@ -20,7 +20,14 @@ angular.module('ggpApp')
 					for (var i=0; i < data.length; i++) {
 						if (data[i].name === 'Gallery') {
 							mfly.getFolder(data[i].id).then(function(data){
-								$scope.photos = data;
+								var photoArray = [];
+								for (var i=0; i< data.length; i++){
+									var obj = {};
+									obj['url'] = data[i].thumbnailUrl;
+									photoArray.push(obj);
+								}
+								console.log(photoArray);
+								$scope.photos = photoArray;
 							})
 						}
 					}
@@ -58,5 +65,10 @@ angular.module('ggpApp')
 	$scope.goToSpace = function() {
 		$location.url('/space?id=' + propertyID);
 	}
+
+	$scope.openLightboxModal = function (index) {
+	    Lightbox.openModal($scope.photos, index);
+	};
+
 
 });

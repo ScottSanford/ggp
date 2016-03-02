@@ -1,7 +1,7 @@
 <div class="row">
 
 
-	<div class="col-sm-4 property-left-container">
+	<div class="col-md-4 property-left-container">
 	
 		<ol class="breadcrumb">
 		  <li><a href="#/"><i class="fa fa-home color-orange"></i></a></li>
@@ -41,7 +41,7 @@
 </div> <!-- end of col-sm-4 -->
 
 
-	<div class="col-sm-8 main-content-container">
+	<div class="col-md-8 main-content-container">
 		<div class="col-sm-12 property-main-img-container">
 			<img class="property-main-img" ng-src="{{ mall.image }}">
 		</div>
@@ -67,8 +67,8 @@
 		<div>
 			<div class="gallery font-size-20">Gallery</div>
 			<div class="col-sm-3 gallery-container" ng-repeat="photo in photos">
-				<a ng-click="openLightbox($index)">
-					<img class="gallery-thumb" ng-src="{{photo.thumbnailUrl}}">
+				<a ng-click="openLightboxModal($index)">
+					<img class="gallery-thumb" ng-src="{{photo.url}}">
 				</a>
 			</div>
 		</div>

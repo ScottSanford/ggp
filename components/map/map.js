@@ -1,8 +1,6 @@
 angular.module('ggpApp')
 
-.controller('MapCtrl', function($scope, mfly){
-
-	console.log('Map control is ready to rock and roll! 8-)');
+.controller('MapCtrl', function($scope, mfly, esriLoader){
 
 	mfly.search('@MallProperties').then(function(data){
 
@@ -16,5 +14,12 @@ angular.module('ggpApp')
 		$scope.mapFacts = true;
 		$scope.chosenProperty = name;
 	}
+
+	// Ersi Map
+    esriLoader.require(['esri/Map'], function(Map) {
+        $scope.esriMap = new Map({
+            basemap: 'streets'
+        });
+    });
 
 });
