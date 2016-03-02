@@ -41,10 +41,10 @@ angular.module("ggpApp", [
                     templateUrl: 'components/map/map.html',
                     controller: 'MapCtrl'
                 })                  
-                // .when('/graph', {
-                //     templateUrl: 'components/graph/graph.html',
-                //     controller: 'GraphCtrl'
-                // })                  
+                .when('/graph', {
+                    templateUrl: 'components/graph/graph.html',
+                    controller: 'GraphCtrl'
+                })                  
                 .otherwise({
                     redirectTo: '/'
                 });

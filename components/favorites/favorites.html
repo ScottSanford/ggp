@@ -1,3 +1,8 @@
+<ol class="breadcrumb">
+  <li><a href="#/"><i class="fa fa-home color-orange"></i></a></li>
+  <li>Favorites</li>
+</ol>
+
 <div ng-repeat="f in favorites">
-	<favorite-property favorite="f"></favorite-property>
+	<favorite-property favorite="f" propid="{{f.id}}"></favorite-property>
 </div>

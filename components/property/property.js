@@ -39,11 +39,11 @@ angular.module('ggpApp')
 			    $scope.addToFavorites = function(){
 			    	if ($scope.status) {
 			    		var lsArr = localStorageService.get('favorites');
-			    		console.log(lsArr);
+			   
 			    		var favsArr = [];
 			    		//collect from ls first then add to existing
 			    		favsArr.push(value);
-			      		localStorageService.set('favorites', lsArr);
+			      		localStorageService.set('favorites', favsArr);
 			    	} else {
 						localStorageService.remove('favorites');
 			    	}

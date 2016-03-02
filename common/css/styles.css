@@ -56,6 +56,14 @@ ol {
 	padding-bottom: 10px;
 }
 
+.margin-top-10 {
+	margin-top:10px;
+}
+
+.margin-left-10 {
+	margin-left:10px;
+}
+
 .width-90 {
 	width:90%;
 }
@@ -262,8 +270,7 @@ ul.nested-list {
 .favorite-container {
 	width:250px;
 	height:100vh;
-	border:1px solid #808080;
-	border-top-width: 0;
+	border:2px solid #808080;
 	border-bottom-width: 0;
 }
 

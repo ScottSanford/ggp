@@ -52,7 +52,11 @@ angular.module('myDirectives', [])
 		transclude: true,
 		templateUrl: 'common/tmpls/favorite-property.html', 
 		link: function(scope, element, attrs) {
-			
+
+			scope.viewProperty = function() {
+				$location.url('/property?id=' + attrs.propid);
+			}
+
 		}
 
 	}
