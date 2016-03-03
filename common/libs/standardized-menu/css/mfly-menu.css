@@ -1,0 +1,30 @@
+#hamburger-menu {
+	color:#000;
+	opacity: .2;
+}
+
+#menu {
+	z-index: 100000000;
+}
+
+#menu li {
+	font-family: Helvetica-Light;
+	font-size: 18px;
+	padding: 19px 5px;
+	margin-left: 10px;
+}
+
+.title {
+	text-align: center;
+	font-size: 30px;
+}
+
+.text {
+	font-size:3em;
+	text-align: center;
+	margin-top:100px;
+}
+
+i {
+	color:#F26522;
+}

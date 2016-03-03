@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="common/libs/bootstrap/dist/css/bootstrap.css">    
     <link rel="stylesheet" href="common/libs/angular-rangeslider/angular.rangeSlider.css">
     <link rel="stylesheet" href="common/libs/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="common/libs/standardized-menu/css/jquery.mmenu.css">
+    <link rel="stylesheet" href="common/libs/standardized-menu/css/mfly-menu.css">
     <link rel="stylesheet" href="common/libs/angular-bootstrap/ui-bootstrap-csp.css">
     <link rel="stylesheet" href="common/libs/nvd3/build/nv.d3.css">
     <link rel="stylesheet" href="common/libs/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css">
@@ -18,10 +20,40 @@
   </head>
   <body>
 
-<div class="container">
-  <div ng-view></div>
-</div>
-  
+    <div class="header">
+          <a href="#menu"><span class="fa fa-bars fa-2x" id="hamburger-menu"></span></a>
+    </div>
+
+    <nav id="menu">
+       <ul>
+          <li class="annotations">
+            <i class="fa fa-pencil-square-o"></i> Annotations
+          </li>
+          <li class="second-screen">
+            <i class="fa fa-slideshare"></i> Second Screen
+          </li>
+          <li class="collections">
+            <i class="fa fa-plus"></i> Collections
+          </li>
+          <li class="email">
+            <i class="fa fa-share"></i> Email
+          </li>
+          <li class="previous">
+            <i class="fa fa-arrow-left"></i> Previous
+          </li>
+          <li class="next">
+            <i class="fa fa-arrow-right"></i> Next
+          </li>
+          <li class="close-btn">
+            <i class="fa fa-close"></i> Close
+          </li>
+       </ul>
+    </nav>
+
+    <div class="container">
+      <div ng-view></div>
+    </div>
+    
 
   <!-- load Esri JSAPI -->
   <!-- <script src="//js.arcgis.com/4.0beta3/"></script> -->
@@ -41,6 +73,8 @@
   <script src="common/libs/angular-local-storage/dist/angular-local-storage.js"></script>
   <script src="common/libs/angular-touch/angular-touch.js"></script>
   <script src="common/libs/angular-rangeslider/angular.rangeSlider.js"></script>
+  <script src="common/libs/standardized-menu/js/jquery.mmenu.min.js"></script>
+  <script src="common/libs/standardized-menu/js/hamburger-menu.js"></script>
   <script src="app.js"></script>
   <script src="common/libs/mfly-commands/src/mflyCommands.js"></script>
 
@@ -60,6 +94,15 @@
   <script src="components/graph/graph.js"></script>
   <script src="components/tools/tools.js"></script>
   <script src="components/comingsoon/comingsoon.js"></script>
+
+  <script>
+        $(document).ready(function(){
+            // Uses document because document will be topmost level in bubbling
+            $(document).on('touchmove',function(e){
+                e.preventDefault();
+            });
+        });
+  </script>
 
 
   </body>

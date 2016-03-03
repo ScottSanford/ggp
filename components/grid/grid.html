@@ -2,30 +2,40 @@
 	<div class="col-md-4">
 
 		<div class="title-container">
-			<span class="uppercase color-gray font-size-30">All Opportunities</span>
+			<span class="uppercase color-orange font-size-30">All Opportunities</span>
 		</div>
 
 		<div class="main-menu">
-			<ul class="nav nav-pills nav-stacked">
-			  <li role="presentation" class="uppercase"><a href="#/map"><i class="fa fa-map-marker"></i> Map View</a></li>
-			  <li role="presentation" class="uppercase"><a href="#/graph"><i class="fa fa-line-chart"></i> Compare</a></li>
-			  <li role="presentation" class="uppercase"><a href="#/favorites"><i class="fa fa-star"></i> Favorites</a></li>
-			  <li role="presentation" class="uppercase"><a href="#/tools"><i class="fa fa-wrench"></i> Tools</a></li>
+			<ul class="row">
+
+			  <li role="presentation" class="col-sm-3 col-md-12 uppercase"><a href="#/map"><i class="fa fa-map-marker"></i> Map View</a></li>
+			  <li role="presentation" class="col-sm-3 col-md-12 uppercase"><a href="#/graph"><i class="fa fa-line-chart"></i> Compare</a></li>
+			  <li role="presentation" class="col-sm-3 col-md-12 uppercase"><a href="#/favorites"><i class="fa fa-star"></i> Favorites</a></li>
+			  <li role="presentation" class="col-sm-3 col-md-12 uppercase"><a href="#/tools"><i class="fa fa-wrench"></i> Tools</a></li>			  
+
 			</ul>
+
 		</div>
 
-		<div class="font-size-20 padding-top-10">Filters</div> 
-
-		    <div class="font-size-20">Gross Leaseable Area</div>
-		   	<div range-slider 
-		   		min="slider.range.min" 
-		   		max="slider.range.max" 
-		   		model-min="slider.minStart" 
-		   		model-max="slider.maxEnd"
-		   		step="100000"
-		   		show-values="true"
-		   		filter="number">
+		<ul class="row filter-container">
+			<li role="presentation" class="col-sm-6 col-md-12 uppercase"><i class="fa fa-filter"></i> Filter</li>
+			<div class="col-sm-6 col-md-12">
+			    <div class="gla">Gross Leaseable Area (sq ft)</div>
+			   	<div range-slider 
+			   		class="padding-left-10" 
+			   		min="slider.range.min" 
+			   		max="slider.range.max" 
+			   		model-min="slider.minStart" 
+			   		model-max="slider.maxEnd"
+			   		step="100000"
+			   		show-values="true"
+			   		filter="number">
+			   	</div>
 		   	</div>
+		</ul>
+
+
+			
 
 	</div>
 	<div class="col-md-8 property-grid-container">

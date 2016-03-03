@@ -28,6 +28,10 @@ ol {
 	font-size:12px;
 }
 
+.font-size-16 {
+	font-size:16px;
+}
+
 .font-size-20 {
 	font-size:20px;
 }
@@ -38,6 +42,10 @@ ol {
 
 .font-size-30 {
 	font-size: 30px;
+}
+
+.padding-left-10 {
+	padding-left:10px;
 }
 
 .padding-top-10 {
@@ -91,12 +99,12 @@ ul.nested-list {
 	font-size:18px;
 }
 
-*[role="presentation"]:last-of-type {
-	padding-bottom: 10px;
-	border-bottom: 2px solid #808080;
+.main-menu li {
+	list-style-type: none;
+	padding:15px 0;
 }
 
-.nav > li > a {
+.main-menu li a {
 	color:#808080;
 }
 
@@ -115,14 +123,6 @@ ul.nested-list {
 				Grid Styles
 
 ====================================================*/
-.favorite-star {
-	color:#808080;
-}
-
-.favorited {
-	color:#F26522;
-}
-
 .title-container {
 	padding:50px 0px;
 	text-align: center;
@@ -187,13 +187,19 @@ ul.nested-list {
 }
 
 .filter-container {
-	border-bottom: 2px solid #808080;
-	color:#fff;
-	padding:10px 0;
+	border-top: 2px solid #808080;
+	color:#808080;
+	text-transform: uppercase;
+	list-style-type: none;
+	padding:10px 25px;
+}
+
+.gla {
+	padding-left:15px;
+	margin-top:30px;
 }
 
 .property-grid-container {
-	/*border:1px solid red;*/
 	position: relative;
 }
 
@@ -207,6 +213,14 @@ ul.nested-list {
 				Property Styles
 
 ====================================================*/
+.favorite-star {
+	color:#808080;
+}
+
+.favorited {
+	color:#F26522;
+}
+
 .overview, .key-facts-title, .gallery{
 	border-bottom: 2px solid #808080;
 	padding-bottom:10px;
@@ -400,35 +414,48 @@ ul.nested-list {
 				Media Queries
 
 ====================================================*/
-
-/* iPad Portrait */
-@media only screen and (max-width: 959px) {
-
-	.featured-container-portrait {
-		position: relative;
-		top:250px;
-	}
-
-	.bottom-container {
-		position: absolute;
-		left:-100px;
-	}
-
-}
-
-
-/** iPhone 6 Landscape **/
+/** iPad Landscape*/
 @media only screen 
-and (min-device-width : 768px) 
-and (max-device-width : 1024px) 
+and (min-width : 768px) 
+and (max-width : 1024px) 
 and (orientation : landscape) { 
 
 	.property-grid-container {
-		border:1px solid red;
+		/*border:1px solid red;*/
 		position: relative;
 	}
 
 }
+
+@media only screen 
+and (min-width : 768px) 
+and (max-width : 1024px) 
+and (orientation : portrait) { 
+
+	.title-container {
+		padding:25px 0;
+	}
+
+	*[role="presentation"]:last-of-type {
+		border-bottom: none;
+	}
+
+	.main-menu li {
+		text-align: center;
+	}
+
+	.filter-container li {
+		text-align: center;
+	}
+
+	.gla {
+		text-align: center;
+		margin-top:0;
+	}
+
+}
+
+
 
 
 
