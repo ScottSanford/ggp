@@ -340,6 +340,23 @@ ul.nested-list {
 	border:2px solid #f26522;
 }
 
+.view {
+	border-bottom: 2px solid #808080;
+	border-top: 2px solid #808080;
+	padding:15px 0;
+	/*background-color:#FFF9DF;*/
+	text-align: center;
+	font-size:20px;
+}
+
+.mall-container {
+	padding:10px 10px;
+}
+
+.mall-type {
+	font-size:20px;
+}
+
 
 /*===================================================
 

@@ -1,6 +1,6 @@
 angular.module('ggpApp')
 
-.controller('MallCtrl', function($scope, $routeParams, mfly){
+.controller('MallCtrl', function($scope, $location, $routeParams, mfly){
 
 	var propertyID = $routeParams.id;
 	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
@@ -31,6 +31,11 @@ angular.module('ggpApp')
 		});
 
 	});
+
+	$scope.goToProperty = function(id) {
+		console.log(id);
+		$location.url('/property?id=' + id);
+	}
 
 
 

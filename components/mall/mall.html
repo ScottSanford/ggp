@@ -1,32 +1,35 @@
 <ol class="breadcrumb">
   <li><a href="#/"><i class="fa fa-home color-orange"></i></a></li>
-  <li><a href="#/property">Property</a></li>
+  <li><a ng-click="goToProperty(mall.id)">Property</a></li>
   <li>{{ mall.name }}</li>
 </ol>
 
 <div class="row">
 	<div class="col-sm-4 property-left-container">
 		<div class="title-container">
-			<span class="uppercase color-gray font-size-36">{{ mall.name }}</span>
+			<span class="uppercase color-gray font-size-24">{{ mall.name }}</span>
 		</div>
+		
 		<div class="view">Mall View</div>
 
-		<div class="">{{ mall.overview.type }}</div>
-		<div class="font-size-20">Anchor Tenants</div>
-		<div>{{ mall.overview.anchorTenants }}</div>
-		<div class="font-size-20">{{ mall.overview.stores | number }}</div>
-		<div>retail stores</div>
-		<div class="font-size-20 padding-top-10">{{ mall.overview.gla | number }}</div>
-		<div>total gross leaseable area</div>
-		<div class="font-size-20 padding-top-10">{{ mall.overview.parking | number }}</div>
-		<div>parking spaces</div>		
-		<div class="font-size-20 padding-top-10">{{ mall.overview.renovated }}</div>
-		<div>renovation/expanded</div>
+		<div class="mall-container">
+			<div class="mall-type">{{ mall.overview.type }}</div>
+			<div class="font-size-20 padding-top-20">Anchor Tenants</div>
+			<div>{{ mall.overview.anchorTenants }}</div>
+			<div class="font-size-20 padding-top-10">{{ mall.overview.stores | number }}</div>
+			<div>retail stores</div>
+			<div class="font-size-20 padding-top-10">{{ mall.overview.gla | number }}</div>
+			<div>total gross leaseable area</div>
+			<div class="font-size-20 padding-top-10">{{ mall.overview.parking | number }}</div>
+			<div>parking spaces</div>		
+			<div class="font-size-20 padding-top-10">{{ mall.overview.renovated }}</div>
+			<div>renovation/expanded</div>
+		</div>
 	
 	</div>
 
 
-	<div class="col-sm-8 main-content-container">
+	<div class="col-sm-8 padding-top-100">
 
 		<div class="gallery-thumb-container">
 			<div class="col-sm-2 gallery-container" ng-repeat="view in views">
