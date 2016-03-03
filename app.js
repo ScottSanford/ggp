@@ -46,6 +46,10 @@ angular.module("ggpApp", [
                     templateUrl: 'components/graph/graph.html',
                     controller: 'GraphCtrl'
                 })                  
+                .when('/comingsoon', {
+                    templateUrl: 'components/comingsoon/comingsoon.html',
+                    controller: 'ComingSoonCtrl'
+                })                  
                 .otherwise({
                     redirectTo: '/'
                 });

@@ -17,7 +17,7 @@ angular.module('ggpApp')
 
 	// Ersi Map
     esriLoader.require(['esri/Map'], function(Map) {
-        $scope.esriMap = new Map({
+        $scope.map = new Map({
             basemap: 'streets'
         });
     });
