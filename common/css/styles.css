@@ -261,6 +261,20 @@ ul.nested-list {
 	border:2px solid #808080;
 }
 
+.modal-body {
+	padding:10px;
+}
+
+.btn-group .btn-default {
+	width:150px;
+	color:#808080;
+	border:0;
+	font-size:16px;
+}
+
+.btn-group .btn-default:nth-of-type(2) {
+	display: none;
+}
 
 /*===================================================
 
