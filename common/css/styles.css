@@ -124,7 +124,7 @@ ul.nested-list {
 
 ====================================================*/
 .title-container {
-	padding:50px 0px;
+	padding:40px 0px;
 	text-align: center;
 }
 
@@ -264,7 +264,7 @@ ul.nested-list {
 }
 
 .key-facts {
-	padding-top:170px;
+	padding-top:20px;
 }
 
 .key-facts .col-sm-4 {
@@ -427,6 +427,7 @@ and (orientation : landscape) {
 
 }
 
+/* iPad Portrait */
 @media only screen 
 and (min-width : 768px) 
 and (max-width : 1024px) 
@@ -452,6 +453,21 @@ and (orientation : portrait) {
 		text-align: center;
 		margin-top:0;
 	}
+
+	/*Property View*/
+	.header-img-container {
+		display: none;
+	}
+
+	.property-buttons {
+		text-align: center;
+	}
+
+	.key-facts {
+		margin-top:275px;
+	}
+
+
 
 }
 

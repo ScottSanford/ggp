@@ -1,16 +1,15 @@
 <div class="row">
 
-
-	<div class="col-md-4 property-left-container">
+	<div class="col-md-4">
 	
 		<ol class="breadcrumb">
 		  <li><a href="#/"><i class="fa fa-home color-orange"></i></a></li>
 		  <li>{{ mall.name }}</li>
 		</ol>
 	
-		<div class="title-container">
-			<span class="uppercase color-gray font-size-24">{{ mall.name }}</span>
-		</div>
+			<div class="title-container">
+				<span class="uppercase color-gray font-size-24">{{ mall.name }}</span>
+			</div>
 
 		<div>
 			<span class="fa fa-star-o fa-2x favorite-star"
@@ -22,27 +21,27 @@
 		          ng-click="addToFavorites()">
 		    </span>
 			<div class="overview font-size-20">Overview</div>
-			<div class="mall-address">
+			<div class="col-sm-6 col-md-12 mall-address">
 				<div>{{ mall.address.street }}</div>
 				<div>{{ mall.address.city }}, {{ mall.address.state }} {{ mall.address.zip }}</div>
 				<div>{{ mall.phone }}</div>
 				<div>{{ mall.website }}</div>
 			</div>
-			<div class="mall-description">{{ mall.description }}</div>
+			<div class="col-sm-6 col-md-12 mall-description">{{ mall.description }}</div>
 
-			<div class="padding-top-15">
+			<div class="col-sm-6 col-md-12 padding-top-15 property-buttons">
 				<button class="btn btn-property" ng-click="goToMall()">Mall View</button>
 			</div>
-			<div class="padding-top-15">
+			<div class="col-sm-6 col-md-12 padding-top-15 property-buttons">
 				<button class="btn btn-property" ng-click="goToSpace()">Space View</button>
 			</div>
 
 		</div>
-</div> <!-- end of col-sm-4 -->
+	</div> <!-- end of col-sm-4 -->
 
 
 	<div class="col-md-8 main-content-container">
-		<div class="col-sm-12 header-img-container">
+		<div class="header-img-container">
 			<img class="header-img" ng-src="{{ photos[0].url }}">
 		</div>
 		<div class="key-facts">
