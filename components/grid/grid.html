@@ -16,18 +16,21 @@
 
 		<div class="font-size-20 padding-top-10">Filters</div> 
 
-		        GLA 
-			  	<ul class="nested-list color-orange">
-			  		<li>500,000 sq ft</li>
-			  		<li>500,000 - 1,000,000 sq ft</li>
-			  		<li>1,000,000 sq ft</li>
-			  	</ul>
-
+		    <div class="font-size-20">Gross Leaseable Area</div>
+		   	<div range-slider 
+		   		min="slider.range.min" 
+		   		max="slider.range.max" 
+		   		model-min="slider.minStart" 
+		   		model-max="slider.maxEnd"
+		   		step="100000"
+		   		show-values="true"
+		   		filter="number">
+		   	</div>
 
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-8 property-grid-container">
 
-		<div ng-repeat="m in malls">
+		<div class="overflow-ios" ng-repeat="m in malls | filter: byRange(slider.minStart, slider.maxEnd)">
 			<div grid-property mall="m" mall-click="m.id"></div>
 		</div>
 	</div>

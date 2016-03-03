@@ -5,7 +5,8 @@ angular.module("ggpApp", [
         'LocalStorageModule', 
         'bootstrapLightbox', 
         'ngTouch', 
-        'nvd3'
+        'nvd3', 
+        'ui-rangeSlider'
         // 'esri.map'
         ])
 

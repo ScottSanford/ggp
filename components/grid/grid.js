@@ -15,18 +15,25 @@ angular.module('ggpApp')
 		console.log(id);
 	}
 
-	mfly.getFolder(mallFolderId).then(function(data){
-		console.log(data);
-	})
+	$scope.slider = {
+		range: {
+			min: 0, 
+			max: 3000000
+		}, 
+		minStart: 0, 
+		maxEnd: 3000000
+	};
 
-	$scope.data = {
-    	repeatSelect: null,
-    	availableOptions: [
-      	{id: '1', name: '< 500,000 sq ft'},
-      	{id: '2', name: '500,000 - 1,000,000 sq ft'},
-      	{id: '3', name: '1,000,000'}
-    	]
-   };
+
+	$scope.byRange = function (minValue, maxValue) {
+	  	minValue === undefined ? 0 : minValue;
+  		maxValue === undefined ? 100000000 : maxValue;
+
+	  	return function predicateFunc(item) {
+	    	return minValue <= item.overview.gla && item.overview.gla <= maxValue;
+	  	};
+	};
+
 
 	
 });
