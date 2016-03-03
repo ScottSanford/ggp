@@ -26,7 +26,6 @@ angular.module('ggpApp')
 									obj['url'] = data[i].thumbnailUrl;
 									photoArray.push(obj);
 								}
-								console.log(photoArray);
 								$scope.photos = photoArray;
 							})
 						}
