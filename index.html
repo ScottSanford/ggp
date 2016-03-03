@@ -59,6 +59,7 @@
   <!-- <script src="//js.arcgis.com/4.0beta3/"></script> -->
   
   <script src="common/libs/jquery/dist/jquery.js"></script>
+  <script src="common/libs/standardized-menu/js/fastclick.js"></script>
   <script src="common/libs/angular/angular.js"></script>
   <script src="common/libs/angular-route/angular-route.js"></script>
   <script src="common/libs/d3/d3.js"></script>
@@ -100,6 +101,36 @@
             // Uses document because document will be topmost level in bubbling
             $(document).on('touchmove',function(e){
                 e.preventDefault();
+            });
+
+            // init FastClick.js
+            $(function() {
+                FastClick.attach(document.body);
+            });
+
+            var scrolling = false;
+
+            // Uses body because jquery on events are called off of the element they are
+            // added to, so bubbling would not work if we used document instead.
+            $('body').on('touchstart','.property-grid-container',function(e) {
+                console.log('i have been touched');
+                // Only execute the below code once at a time
+                if (!scrolling) {
+                    scrolling = true;   
+                    if (e.currentTarget.scrollTop === 0) {
+                      e.currentTarget.scrollTop = 1;
+                    } else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
+                      e.currentTarget.scrollTop -= 1;
+                    }
+                    scrolling = false;
+                }
+            });
+
+            // Prevents preventDefault from being called on document if it sees a scrollable div
+            $('body').on('touchmove','.property-grid-container',function(e) {
+              if($(this)[0].scrollHeight > $(this).innerHeight()) {
+                    e.stopPropagation();
+                }
             });
         });
   </script>

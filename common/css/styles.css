@@ -106,9 +106,10 @@ ul.nested-list {
 
 .main-menu li a {
 	color:#808080;
+	text-decoration: none;
 }
 
-.nav > li > a:hover, .nav > li > a:focus {
+.main-menu > li > a:hover, .main-menu > li > a:focus {
 	background-color:#fff;
 	color:#F26522;
 }
@@ -201,11 +202,6 @@ ul.nested-list {
 
 .property-grid-container {
 	position: relative;
-}
-
-.overflow-ios {
-	/*overflow-y:scroll;*/
-	-webkit-overflow-scrolling: touch;
 }
 
 /*===================================================
@@ -414,17 +410,16 @@ ul.nested-list {
 				Media Queries
 
 ====================================================*/
-/** iPad Landscape*/
+/** iPad Landscape Change to min-device-width */
 @media only screen 
 and (min-width : 768px) 
 and (max-width : 1024px) 
 and (orientation : landscape) { 
 
 	.property-grid-container {
-		position: relative;
-		overflow: scroll;
 		height:740px;
-		-webkit-overflow-scrolling: touch;
+		overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
 	}
 
 }
@@ -457,10 +452,9 @@ and (orientation : portrait) {
 	}
 
 	.property-grid-container {
-		position: relative;
-		overflow: scroll;
 		height:715px;
-		-webkit-overflow-scrolling: touch;
+		overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
 	}
 
 	/*Property View*/
