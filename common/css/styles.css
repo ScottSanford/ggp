@@ -421,8 +421,10 @@ and (max-width : 1024px)
 and (orientation : landscape) { 
 
 	.property-grid-container {
-		/*border:1px solid red;*/
 		position: relative;
+		overflow: scroll;
+		height:740px;
+		-webkit-overflow-scrolling: touch;
 	}
 
 }
@@ -452,6 +454,13 @@ and (orientation : portrait) {
 	.gla {
 		text-align: center;
 		margin-top:0;
+	}
+
+	.property-grid-container {
+		position: relative;
+		overflow: scroll;
+		height:715px;
+		-webkit-overflow-scrolling: touch;
 	}
 
 	/*Property View*/
