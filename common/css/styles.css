@@ -197,10 +197,6 @@ ul.nested-list {
 				Property Styles
 
 ====================================================*/
-.property-left-container {
-
-}
-
 .overview, .key-facts-title, .gallery{
 	border-bottom: 2px solid #808080;
 	padding-bottom:10px;
@@ -333,7 +329,7 @@ ul.nested-list {
 
 /*===================================================
 
-				Mall Styles
+				Mall/Space Styles
 
 ====================================================*/
 .carousel-container {
@@ -349,13 +345,15 @@ ul.nested-list {
 	font-size:20px;
 }
 
-.mall-container {
+.mall-container, .space-container {
 	padding:10px 10px;
 }
 
 .mall-type {
 	font-size:20px;
 }
+
+.space-info
 
 
 /*===================================================
