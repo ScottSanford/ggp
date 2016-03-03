@@ -467,6 +467,12 @@ and (orientation : portrait) {
 		margin-top:275px;
 	}
 
+	/*Tool View*/
+	.tool-container {
+		padding:30px 5px;
+		margin:10px;
+	}
+
 
 
 }
