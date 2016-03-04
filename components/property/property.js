@@ -6,15 +6,6 @@ angular.module('ggpApp')
 	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
 	var mallFolderId = 'a4ce3ae64bb34998bd28479d8b7f8201product234543';
 
-
-	var lsStatus = localStorageService.get('status');
-	console.log(lsStatus, $scope.status);
-	if (lsStatus) {
-		$scope.status = false;
-	} else {
-   	    $scope.status = true;
-	}
-
 	mfly.getData(dataId).then(function(data){
 		
 		var jsonData = JSON.parse(data);
@@ -57,16 +48,48 @@ angular.module('ggpApp')
 
 
 	});
+	
+	var lsFavorites = localStorageService.get('favorites');
+	var lsStatus = localStorageService.get('status');
+	if (lsFavorites) {
+		lsFavorites.forEach(function(val, key){
+			if (val.id === $routeParams.id) {
+				
+				$scope.status = lsStatus !== undefined ? false : true; // orange star
 
-	$scope.addToFavorites = function(value){
+			} else {
+				$scope.status = true; // white star
+			}
+		});
+	} 
+
+	if (lsFavorites === null || lsFavorites.length === 0) {
+		$scope.status = true;
+	} 
+
+	$scope.addToFavorites = function(mall){
 		
 		var favoriteList = localStorageService.get('favorites') || [];
 
-		favoriteList.push(value);
+		favoriteList.push(mall);
 		localStorageService.set('favorites', favoriteList);
+		localStorageService.set('status', "false");
 		$scope.status = !$scope.status;
-		console.log(favoriteList);
 
+	}
+
+	$scope.removeFromFavorites = function(mall) {
+		var favoriteList = localStorageService.get('favorites');
+		var newList = favoriteList.filter(function(item){
+			if (item.name !== mall.name) {
+				return item;
+			}
+		});
+		localStorageService.set('favorites', newList);
+		console.log(localStorageService.get('favorites'));
+		localStorageService.set('status', "true");
+
+		$scope.status = !$scope.status;
 	}
 
 	$scope.goToMall = function() {
