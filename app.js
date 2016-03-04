@@ -7,7 +7,6 @@ angular.module("ggpApp", [
         'ngTouch', 
         'nvd3', 
         'ui-rangeSlider'
-        // 'esri.map'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 
