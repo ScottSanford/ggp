@@ -32,6 +32,10 @@ ol {
 	font-size:16px;
 }
 
+.font-size-18 {
+	font-size:18px;
+}
+
 .font-size-20 {
 	font-size:20px;
 }
@@ -72,12 +76,12 @@ ol {
 	margin-top:10px;
 }
 
-.margin-left-10 {
-	margin-left:10px;
+.margin-top-50 {
+	margin-top:50px;
 }
 
-.width-90 {
-	width:90%;
+.margin-left-10 {
+	margin-left:10px;
 }
 
 .breadcrumb {
@@ -236,7 +240,7 @@ ul.nested-list {
 }
 
 .btn-property {
-	width:50%;
+	width:100%;
 	color:#000;
 	background-color: #fff;
 	border-color: #808080;
@@ -302,10 +306,9 @@ ul.nested-list {
 
 ====================================================*/
 .favorite-container {
-	width:250px;
-	height:100vh;
+	min-height:475px;
 	border:2px solid #808080;
-	border-bottom-width: 0;
+	position: relative;
 }
 
 .favorite-container span {
@@ -316,10 +319,6 @@ ul.nested-list {
 .favorite-name span{
 	margin:0 auto;
 	text-align: center;
-}
-
-.keyfacts {
-	margin-left:10px;
 }
 
 .favorite-img-container {
@@ -335,11 +334,24 @@ ul.nested-list {
 	margin:0 auto;
 }
 
-.types .title, .anchorTenants .title {
-	border-bottom: 2px solid #808080;
-	width:90%;
+.favorite-facts-container {
+	padding:10px;
+	text-align: center;
 }
 
+.types .title, .anchorTenants .title {
+	border-bottom: 2px solid #808080;
+}
+
+.view-property {
+	width:60%;
+	color:#000;
+	background-color: #fff;
+	border-color: #808080;
+	position: absolute;
+	bottom:25px;
+	left:45px;
+}
 /*===================================================
 
 				Tools Styles
@@ -386,9 +398,6 @@ ul.nested-list {
 .mall-type {
 	font-size:20px;
 }
-
-.space-info
-
 
 /*===================================================
 
@@ -464,6 +473,10 @@ and (orientation : portrait) {
 
 	.property-buttons {
 		text-align: center;
+	}
+
+	.btn-property {
+		width:75%;
 	}
 
 	.key-facts {

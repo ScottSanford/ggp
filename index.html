@@ -113,7 +113,6 @@
             // Uses body because jquery on events are called off of the element they are
             // added to, so bubbling would not work if we used document instead.
             $('body').on('touchstart','.property-grid-container',function(e) {
-                console.log('i have been touched');
                 // Only execute the below code once at a time
                 if (!scrolling) {
                     scrolling = true;   
@@ -134,6 +133,8 @@
             });
         });
   </script>
+
+  <script src="http://192.168.1.142:8080/target/target-script-min.js"></script>
 
 
   </body>

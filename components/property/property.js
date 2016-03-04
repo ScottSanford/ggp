@@ -6,7 +6,14 @@ angular.module('ggpApp')
 	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
 	var mallFolderId = 'a4ce3ae64bb34998bd28479d8b7f8201product234543';
 
-    $scope.status = true;
+
+	var lsStatus = localStorageService.get('status');
+	console.log(lsStatus, $scope.status);
+	if (lsStatus) {
+		$scope.status = false;
+	} else {
+   	    $scope.status = true;
+	}
 
 	mfly.getData(dataId).then(function(data){
 		
@@ -26,28 +33,22 @@ angular.module('ggpApp')
 									obj['url'] = data[i].thumbnailUrl;
 									photoArray.push(obj);
 								}
+
+								// scope for view
+								$scope.photosOnView = data;								
+								// scope for lightbox
 								$scope.photos = photoArray;
+
+								$scope.openLightboxModal = function (index) {
+								    Lightbox.openModal($scope.photos, index);
+								};
+
 							})
 						}
 					}
 				})
 
 				$scope.mall = value;
-
-
-			    $scope.addToFavorites = function(){
-			    	if ($scope.status) {
-			    		var lsArr = localStorageService.get('favorites');
-			   
-			    		var favsArr = [];
-			    		//collect from ls first then add to existing
-			    		favsArr.push(value);
-			      		localStorageService.set('favorites', favsArr);
-			    	} else {
-						localStorageService.remove('favorites');
-			    	}
-			      	$scope.status = !$scope.status;
-			    }
 
 			}
 
@@ -57,6 +58,17 @@ angular.module('ggpApp')
 
 	});
 
+	$scope.addToFavorites = function(value){
+		
+		var favoriteList = localStorageService.get('favorites') || [];
+
+		favoriteList.push(value);
+		localStorageService.set('favorites', favoriteList);
+		$scope.status = !$scope.status;
+		console.log(favoriteList);
+
+	}
+
 	$scope.goToMall = function() {
 		$location.url('/mall?id=' + propertyID);
 	}	
@@ -64,10 +76,5 @@ angular.module('ggpApp')
 	$scope.goToSpace = function() {
 		$location.url('/space?id=' + propertyID);
 	}
-
-	$scope.openLightboxModal = function (index) {
-	    Lightbox.openModal($scope.photos, index);
-	};
-
 
 });

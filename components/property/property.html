@@ -14,11 +14,11 @@
 		<div>
 			<span class="fa fa-star-o fa-2x favorite-star"
 		          ng-if="status == true" 
-		          ng-click="addToFavorites()">
+		          ng-click="addToFavorites(mall)">
 		    </span>
 		    <span class="fa fa-star fa-2x favorited"
 		          ng-if="status == false"
-		          ng-click="addToFavorites()">
+		          ng-click="addToFavorites(mall)">
 		    </span>
 			<div class="overview font-size-20">Overview</div>
 			<div class="col-sm-6 col-md-12 mall-address">
@@ -29,10 +29,10 @@
 			</div>
 			<div class="col-sm-6 col-md-12 mall-description">{{ mall.description }}</div>
 
-			<div class="col-sm-6 col-md-12 padding-top-15 property-buttons">
+			<div class="col-sm-6 col-md-6 padding-top-15 property-buttons">
 				<button class="btn btn-property" ng-click="goToMall()">Mall View</button>
 			</div>
-			<div class="col-sm-6 col-md-12 padding-top-15 property-buttons">
+			<div class="col-sm-6 col-md-6 padding-top-15 property-buttons">
 				<button class="btn btn-property" ng-click="goToSpace()">Space View</button>
 			</div>
 
@@ -42,7 +42,7 @@
 
 	<div class="col-md-8 main-content-container">
 		<div class="header-img-container">
-			<img class="header-img" ng-src="{{ photos[0].url }}">
+			<img class="header-img" ng-src="{{ photosOnView[0].thumbnailUrl }}">
 		</div>
 		<div class="key-facts">
 			<div class="key-facts-title font-size-20">Key Facts</div>
@@ -65,9 +65,9 @@
 		</div>
 		<div>
 			<div class="gallery font-size-20">Gallery</div>
-			<div class="col-sm-3 gallery-container" ng-repeat="photo in photos">
+			<div class="col-sm-3 gallery-container" ng-repeat="photo in photosOnView">
 				<a ng-click="openLightboxModal($index)">
-					<img class="gallery-thumb" ng-src="{{photo.url}}">
+					<img class="gallery-thumb" ng-src="{{photo.thumbnailUrl}}">
 				</a>
 			</div>
 		</div>

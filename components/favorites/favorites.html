@@ -3,6 +3,12 @@
   <li>Favorites</li>
 </ol>
 
-<div ng-repeat="f in favorites">
-	<favorite-property favorite="f" propid="{{f.id}}"></favorite-property>
+<div class="title-container">
+	<span class="uppercase color-gray font-size-30">Favorites</span>
+</div>
+
+<div class="row">
+	<div ng-repeat="f in favorites" class="col-sm-4 col-md-3">
+		<favorite-property favorite="f" propid="{{f.id}}"></favorite-property>
+	</div>
 </div>

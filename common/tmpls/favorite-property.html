@@ -2,7 +2,7 @@
 	
 	<span class="fa fa-star fa-2x favorited padding-top-10"></span>
 	
-	<div class="favorite-name uppercase font-size-20 padding-bottom-10">
+	<div class="favorite-name uppercase font-size-18 padding-bottom-10">
 		<span>{{ favorite.name }}</span>
 	</div>
 	
@@ -10,30 +10,20 @@
 		<img ng-src="{{ favorite.image }}">
 	</div>
 
-	<div class="keyfacts">
+	<div class="favorite-facts-container">
 
 		<div class="types padding-top-10">
 			<div class="title font-size-20">Type of Center</div>
-			<div class="width-90">{{ favorite.overview.type }}</div>
+			<div>{{ favorite.overview.type }}</div>
 		</div>
 		<div class="anchorTenants padding-top-20">
 			<div class="title font-size-20">Anchor Tenants</div>
-			<div class="width-90">{{ favorite.overview.anchorTenants }}</div>
+			<div>{{ favorite.overview.anchorTenants }}</div>
 		</div>
 
-		<div class="font-size-20 padding-top-10">{{ favorite.overview.stores | number }}</div>
-		<div>retail stores</div>
-		<div class="font-size-20 padding-top-10">{{ favorite.overview.gla | number }}</div>
-		<div>total gross leaseable area</div>
-		<div class="font-size-20 padding-top-10">{{ favorite.overview.parking | number }}</div>
-		<div>parking spaces</div>	
-		<div class="font-size-20 padding-top-10">{{ favorite.overview.opened | number }}</div>
-		<div>year opened</div>	
-		<div class="font-size-20 padding-top-10">{{ favorite.overview.renovated }}</div>
-		<div>expanded/renovated</div>
+		<button class="btn view-property margin-top-50" ng-click="viewProperty()">View Property</button>
 
 	</div>
 
-	<button class="btn btn-property margin-left-10 margin-top-10" ng-click="viewProperty()">View Property</button>
 
 </div>

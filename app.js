@@ -12,7 +12,7 @@ angular.module("ggpApp", [
 
         .config(function ($routeProvider, $compileProvider) { 
 
-              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:\/\/data\/entry|https:\/\/)/);  
+              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/)/);  
               
               $routeProvider
                 .when('/', {
