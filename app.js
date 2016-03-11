@@ -1,6 +1,7 @@
 angular.module("ggpApp", [
         'ngRoute', 
         'myDirectives', 
+        'myFilters',
         'ui.bootstrap',
         'LocalStorageModule', 
         'bootstrapLightbox', 
@@ -11,7 +12,7 @@ angular.module("ggpApp", [
 
         .config(function ($routeProvider, $compileProvider) { 
 
-              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/)/);  
+              $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/)/);
               
               $routeProvider
                 .when('/', {

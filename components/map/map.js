@@ -6,6 +6,7 @@ angular.module('ggpApp')
 
 		mfly.getFolder(data[0].id).then(function(data){
 			$scope.properties = data;
+			console.log(data);
 		});
 
 	});
@@ -15,40 +16,32 @@ angular.module('ggpApp')
 		$scope.mapFacts = true;
 	}
 
-	// Google Map
-	initMap();
+	// ESRI Map
+	// adding httpS to the src links
+	var esriMap = [
+		{
+			title: 'Baybook Mall', 
+			src: 'https://ggp.maps.arcgis.com/apps/Embed/index.html?webmap=af251e9d1e96451ab44ed01d6210e604&amp;extent=-96.0303,29.0305,-94.2574,30.052&amp;zoom=true&amp;scale=true&amp;legend=true&amp;disable_scroll=false&amp;theme=light'
+		}, 		
+		{
+			title: 'Glendale Galleria', 
+			src: 'https://ggp.maps.arcgis.com/apps/Embed/index.html?webmap=97ad2f76361942799b223e584b8cfc59&amp;extent=-118.678,33.9428,-117.7915,34.4284&amp;zoom=true&amp;scale=true&amp;legend=true&amp;disable_scroll=false&amp;theme=light'
+		}, 		
+		{
+			title: 'Oakbrook Center', 
+			src: 'https://ggp.maps.arcgis.com/apps/Embed/index.html?webmap=af251e9d1e96451ab44ed01d6210e604&amp;extent=-96.0303,29.0305,-94.2574,30.052&amp;zoom=true&amp;scale=true&amp;legend=true&amp;disable_scroll=false&amp;theme=light'
+		}, 		
+		{
+			title: 'Stonebriar Centre', 
+			src: 'https://ggp.maps.arcgis.com/apps/Embed/index.html?webmap=21b5bbbd275c47a7bccab8fc985395d0&amp;extent=-97.2194,32.9454,-96.3329,33.4367&amp;zoom=true&amp;scale=true&amp;legend=true&amp;disable_scroll=false&amp;theme=light'
+		}, 		
+		{
+			title: 'Stonestown Galleria', 
+			src: 'https://ggp.maps.arcgis.com/apps/Embed/index.html?webmap=a3634606a4034b1a87d72177db066166&amp;extent=-122.8794,37.4331,-121.993,37.8978&amp;zoom=true&amp;scale=true&amp;legend=true&amp;disable_scroll=false&amp;theme=light'
+		}
+	];
 
-	var map;
-	function initMap() {
-	      
-	    var pos = {
-        	lat: 41.883801,
-        	lng: -87.637434
-      	};
-
-	    var styles = [{"elementType":"geometry","stylers":[{"hue":"#ff4400"},{"saturation":-68},{"lightness":-4},{"gamma":0.72}]},{"featureType":"road","elementType":"labels.icon"},{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"hue":"#0077ff"},{"gamma":3.1}]},{"featureType":"water","stylers":[{"hue":"#00ccff"},{"gamma":0.44},{"saturation":-33}]},{"featureType":"poi.park","stylers":[{"hue":"#44ff00"},{"saturation":-23}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"hue":"#007fff"},{"gamma":0.77},{"saturation":65},{"lightness":99}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"gamma":0.11},{"weight":5.6},{"saturation":99},{"hue":"#0091ff"},{"lightness":-86}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"lightness":-48},{"hue":"#ff5e00"},{"gamma":1.2},{"saturation":-23}]},{"featureType":"transit","elementType":"labels.text.stroke","stylers":[{"saturation":-64},{"hue":"#ff9100"},{"lightness":16},{"gamma":0.47},{"weight":2.7}]}];
-
- 		var styledMap = new google.maps.StyledMapType(styles,{
- 		  	name: "Styled Map"
- 		});
-
-		var map = new google.maps.Map(document.getElementById('map'), {
-		    center: pos,
-		    zoom: 14, 
-		    mapTypeControlOptions: {
-            	mapTypeId: [google.maps.MapTypeId.ROADMAP,'map_style']
-            }
-		});
-
-		marker = new google.maps.Marker({
-	        position: pos, 
-		    map: map
-	  	});
-
-	    map.mapTypes.set('map_style', styledMap);
-        map.setMapTypeId('map_style');
-
-	}
+	$scope.maps = esriMap;
 
 
 });
