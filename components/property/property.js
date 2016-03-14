@@ -8,6 +8,7 @@ angular.module('ggpApp')
 	for (var i =0; i <propertyData.length; i++) {
 		if ($routeParams.id === propertyData[i].property_id) {
 			$scope.mall = propertyData[i];
+			console.log(propertyData);
 		}
 	}
 
@@ -19,6 +20,12 @@ angular.module('ggpApp')
 				});
 			}
 		}
+	});
+
+	mflyCommands.search('@Banner').done(function(data){
+		$scope.images = data[0].thumbnailUrl;
+		console.log($scope.images);
+
 	});
 
 	$scope.showPhotos = function(id) {

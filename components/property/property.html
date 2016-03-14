@@ -35,17 +35,17 @@
 
 	<div class="col-md-8 main-content-container">
 		<div class="header-img-container">
-			<img class="header-img" ng-src="{{ photosOnView[0].thumbnailUrl }}">
+			<img class="header-img" ng-src="{{ images }}">
 		</div>
 		<div class="key-facts">
 			<div class="key-facts-title font-size-20">Key Facts</div>
 			<div class="col-sm-4">
 				<div class="font-size-20">Type of Center</div>
-				<div>{{ mall.overview.type }}</div>
+				<div>{{ mall.overview.metro_center}}</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="font-size-20">Anchor Tenants</div>
-				<div>{{ mall.overview.anchorTenants }}</div>
+				<div>{{ mall.overview.anchor_tenants }}</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="font-size-20">{{ mall.overview.stores | number }}</div>
