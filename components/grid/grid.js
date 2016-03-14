@@ -1,14 +1,14 @@
 angular.module('ggpApp')
 
-.controller('GridCtrl', function($scope, mfly){
+.controller('GridCtrl', function($scope, propertyData){
 
-	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
-	var mallFolderId = 'a4ce3ae64bb34998bd28479d8b7f8201product234543';
+	$scope.malls = propertyData;
 
-	mfly.getData(dataId).then(function(data){
-		var jsonData = JSON.parse(data);
-		$scope.malls = jsonData;
-	});
+	mflyCommands.search('@Banner').done(function(data){
+		$scope.images = data[0].thumbnailUrl;
+		console.log($scope.images);
+
+	})
 
 	$scope.slider = {
 		range: {

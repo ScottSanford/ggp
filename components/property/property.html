@@ -8,7 +8,7 @@
 		</ol>
 	
 			<div class="title-container">
-				<span class="uppercase color-gray font-size-24">{{ mall.name }}</span>
+				<span class="uppercase color-gray font-size-24">{{ mall.property_name }}</span>
 			</div>
 
 		<div>
@@ -28,13 +28,6 @@
 				<div>{{ mall.website }}</div>
 			</div>
 			<div class="col-sm-6 col-md-12 mall-description">{{ mall.description }}</div>
-
-			<div class="col-sm-6 col-md-6 padding-top-15 property-buttons">
-				<button class="btn btn-property" ng-click="goToMall()">Mall View</button>
-			</div>
-			<div class="col-sm-6 col-md-6 padding-top-15 property-buttons">
-				<button class="btn btn-property" ng-click="goToSpace()">Space View</button>
-			</div>
 
 		</div>
 	</div> <!-- end of col-sm-4 -->
@@ -64,7 +57,15 @@
 			</div>
 		</div>
 		<div>
-			<div class="gallery font-size-20">Gallery</div>
+			<div class="gallery-title">
+				<div class="pull-left font-size-20">Gallery</div>	
+				<div class="folder-name"
+					 ng-repeat="name in names" 
+					 ng-show="!$first"
+				 	 ng-click="showPhotos(name.id)">{{ name.name }}
+				</div>
+			</div>
+			<div class="col-sm-12 gallery"></div>
 			<div class="col-sm-3 gallery-container" ng-repeat="photo in photosOnView">
 				<a ng-click="openLightboxModal($index)">
 					<img class="gallery-thumb" ng-src="{{photo.thumbnailUrl}}">

@@ -16,7 +16,9 @@
 	        <span class="sr-only">Split button!</span>
 	      </button>
 	      <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
-	        <li role="menuitem" ng-repeat="property in properties" ng-show="!$first"><a ng-click="showPropertyOnMap(property.name)">{{property.name}}</a></li>
+	        <li role="menuitem" ng-repeat="property in properties" ng-show="!$first">
+	        	<a ng-click="showPropertyOnMap(property.name)">{{property.name}}</a>
+	        </li>
 	      </ul>
 	    </div>
 	    <!-- End of Dropdown Menu -->
@@ -53,8 +55,9 @@
 	<div class="col-md-8">
 
 		<!-- <div id="map"></div> -->
-			<div class="embed-container" ng-repeat="map in maps">
+			<div class="embed-container">
 				<iframe 
+					ng-repeat="map in maps"
 					id="map"
 					scrolling="no" 
 					title="{{ map.title }}" 

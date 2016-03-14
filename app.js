@@ -17,20 +17,22 @@ angular.module("ggpApp", [
               $routeProvider
                 .when('/', {
                     templateUrl: 'components/grid/grid.html',
-                    controller: 'GridCtrl'
+                    controller: 'GridCtrl', 
+                    resolve: {
+                        propertyData: function(initData) {
+                            return initData('a4ce3ae64bb34998bd28479d8b7f8201product236173');
+                        }
+                    }
                 })                 
                 .when('/property', {
                     templateUrl: 'components/property/property.html',
-                    controller: 'PropertyCtrl'
-                })                 
-                .when('/mall', {
-                    templateUrl: 'components/mall/mall.html',
-                    controller: 'MallCtrl'
-                })                  
-                .when('/space', {
-                    templateUrl: 'components/space/space.html',
-                    controller: 'SpaceCtrl'
-                })                
+                    controller: 'PropertyCtrl', 
+                    resolve: {
+                        propertyData: function(initData) {
+                            return initData('a4ce3ae64bb34998bd28479d8b7f8201product236173');
+                        }
+                    }
+                })                                
                 .when('/favorites', {
                     templateUrl: 'components/favorites/favorites.html',
                     controller: 'FavoritesCtrl'

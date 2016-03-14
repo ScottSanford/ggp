@@ -1,53 +1,47 @@
 angular.module('ggpApp')
 
-.controller('PropertyCtrl', function($scope, $location, $routeParams, mfly, localStorageService, Lightbox){
+.controller('PropertyCtrl', function(
+	$scope, $location, $routeParams, 
+	mfly, propertyData, CSVConverterSvc,
+	localStorageService, Lightbox){
 
-	var propertyID = $routeParams.id;
-	var dataId = 'a4ce3ae64bb34998bd28479d8b7f8201product234567';
-	var mallFolderId = 'a4ce3ae64bb34998bd28479d8b7f8201product234543';
+	for (var i =0; i <propertyData.length; i++) {
+		if ($routeParams.id === propertyData[i].property_id) {
+			$scope.mall = propertyData[i];
+		}
+	}
 
-	mfly.getData(dataId).then(function(data){
-		
-		var jsonData = JSON.parse(data);
-		
-		jsonData.forEach(function(value,key){
-			
-			if (propertyID === value.id) {
-
-				mfly.getFolder(value.id).then(function(data){
-					for (var i=0; i < data.length; i++) {
-						if (data[i].name === 'Gallery') {
-							mfly.getFolder(data[i].id).then(function(data){
-								var photoArray = [];
-								for (var i=0; i< data.length; i++){
-									var obj = {};
-									obj['url'] = data[i].thumbnailUrl;
-									photoArray.push(obj);
-								}
-
-								// scope for view
-								$scope.photosOnView = data;								
-								// scope for lightbox
-								$scope.photos = photoArray;
-
-								$scope.openLightboxModal = function (index) {
-								    Lightbox.openModal($scope.photos, index);
-								};
-
-							})
-						}
-					}
-				})
-
-				$scope.mall = value;
-
+	mfly.getFolder("a4ce3ae64bb34998bd28479d8b7f8201product235988").then(function(data){
+		for (var i = 0; i < data.length; i++) {
+			if (data[i].propertyId === $routeParams.id) {
+				mfly.getFolder(data[i].id).then(function(data){
+					$scope.names = data;
+				});
 			}
+		}
+	});
+
+	$scope.showPhotos = function(id) {
+		mfly.getFolder(id).then(function(data){
+			var photoArray = [];
+			
+			for (var i=0; i < data.length; i++) {
+				var obj = {};
+				obj['url'] = data[i].thumbnailUrl;
+				photoArray.push(obj);
+			}
+
+			$scope.photos = photoArray
+			$scope.photosOnView = data;
+
+
+			$scope.openLightboxModal = function (index) {
+			    Lightbox.openModal($scope.photos, index);
+			};
 
 
 		});
-
-
-	});
+	}
 	
 	var lsFavorites = localStorageService.get('favorites');
 	var lsStatus = localStorageService.get('status');
@@ -90,14 +84,6 @@ angular.module('ggpApp')
 		localStorageService.set('status', "true");
 
 		$scope.status = !$scope.status;
-	}
-
-	$scope.goToMall = function() {
-		$location.url('/mall?id=' + propertyID);
-	}	
-
-	$scope.goToSpace = function() {
-		$location.url('/space?id=' + propertyID);
 	}
 
 });

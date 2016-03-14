@@ -80,6 +80,10 @@ ol {
 	margin-top:10px;
 }
 
+.margin-top-20 {
+	margin-top:20px;
+}
+
 .margin-top-50 {
 	margin-top:50px;
 }
@@ -276,8 +280,19 @@ ul.nested-list {
 	padding:10px 15px 0 0;
 }
 
-.gallery {
-	margin-top:100px;
+.folder-name {
+	border:1px solid #808080;
+	border-radius: 4px;
+	display: inline;
+	padding:5px 10px;
+	margin-left:15px;
+	position: relative;
+	top:5px;
+	text-align: center;
+}
+
+.gallery-title {
+	margin-top:200px;
 }
 
 .gallery-container {
