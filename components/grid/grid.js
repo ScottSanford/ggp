@@ -1,14 +1,21 @@
 angular.module('ggpApp')
 
-.controller('GridCtrl', function($scope, propertyData){
+.controller('GridCtrl', function($scope, mfly, propertyData){
 
 	$scope.malls = propertyData;
 
-	mflyCommands.search('@Banner').done(function(data){
-		$scope.images = data[0].thumbnailUrl;
-		console.log($scope.images);
+	mfly.getFolder('a4ce3ae64bb34998bd28479d8b7f8201product235988').then(function(data){
+		for (var i=0; i< data.length; i++) {
 
-	})
+			var airshipID = data[i].propertyId; 
+			console.log(airshipID);
+
+		}
+	});
+
+	mflyCommands.search('@Banner').done(function(data){
+		$scope.thumbnail = data[0].thumbnailUrl;
+	});
 
 	$scope.slider = {
 		range: {

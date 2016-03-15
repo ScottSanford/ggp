@@ -8,47 +8,68 @@ angular.module('ggpApp')
 	for (var i =0; i <propertyData.length; i++) {
 		if ($routeParams.id === propertyData[i].property_id) {
 			$scope.mall = propertyData[i];
-			console.log(propertyData);
 		}
 	}
 
+	// go through properties array
 	mfly.getFolder("a4ce3ae64bb34998bd28479d8b7f8201product235988").then(function(data){
 		for (var i = 0; i < data.length; i++) {
 			if (data[i].propertyId === $routeParams.id) {
 				mfly.getFolder(data[i].id).then(function(data){
+
 					$scope.names = data;
+
+					// show first Folder Thumbnails on View on Initialize 
+					mfly.getFolder(data[1].id).then(function(data){
+						var photoArray = [];
+							
+							for (var i=0; i < data.length; i++) {
+								var obj = {};
+								obj['url'] = data[i].thumbnailUrl;
+								photoArray.push(obj);
+							}
+
+							console.log(photoArray);
+
+							$scope.photos = photoArray;
+					});
+
+					$scope.showPhotos = function(id) {
+						mfly.getFolder(id).then(function(data){
+							var photoArray = [];
+							
+							for (var i=0; i < data.length; i++) {
+								var obj = {};
+								obj['url'] = data[i].thumbnailUrl;
+								photoArray.push(obj);
+							}
+
+							console.log(photoArray);
+
+							$scope.photos = photoArray;
+
+							$scope.openLightboxModal = function (index) {
+							    Lightbox.openModal($scope.photos, index);
+							};
+
+
+						});
+					}
+					
 				});
 			}
 		}
 	});
 
+	// Banner
 	mflyCommands.search('@Banner').done(function(data){
-		$scope.images = data[0].thumbnailUrl;
-		console.log($scope.images);
-
+		$scope.banner = data[0].thumbnailUrl;
 	});
 
-	$scope.showPhotos = function(id) {
-		mfly.getFolder(id).then(function(data){
-			var photoArray = [];
-			
-			for (var i=0; i < data.length; i++) {
-				var obj = {};
-				obj['url'] = data[i].thumbnailUrl;
-				photoArray.push(obj);
-			}
 
-			$scope.photos = photoArray
-			$scope.photosOnView = data;
-
-
-			$scope.openLightboxModal = function (index) {
-			    Lightbox.openModal($scope.photos, index);
-			};
-
-
-		});
-	}
+	// Add to Favorites \/\/\/
+	//                   \/\/
+	//                    \/
 	
 	var lsFavorites = localStorageService.get('favorites');
 	var lsStatus = localStorageService.get('status');

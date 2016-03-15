@@ -35,7 +35,7 @@
 
 	<div class="col-md-8 main-content-container">
 		<div class="header-img-container">
-			<img class="header-img" ng-src="{{ images }}">
+			<img class="header-img" ng-src="{{ banner }}">
 		</div>
 		<div class="key-facts">
 			<div class="key-facts-title font-size-20">Key Facts</div>
@@ -66,9 +66,9 @@
 				</div>
 			</div>
 			<div class="col-sm-12 gallery"></div>
-			<div class="col-sm-3 gallery-container" ng-repeat="photo in photosOnView">
+			<div class="col-sm-3 gallery-container" ng-repeat="photo in photos">
 				<a ng-click="openLightboxModal($index)">
-					<img class="gallery-thumb" ng-src="{{photo.thumbnailUrl}}">
+					<img class="gallery-thumb" ng-src="{{photo.url}}">
 				</a>
 			</div>
 		</div>
