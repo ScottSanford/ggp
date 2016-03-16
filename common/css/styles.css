@@ -364,7 +364,7 @@ ul.nested-list {
 	padding:10px;
 	text-align: center;
 }
-
+2
 .types .title, .anchorTenants .title {
 	border-bottom: 2px solid #808080;
 }
@@ -378,6 +378,23 @@ ul.nested-list {
 	bottom:25px;
 	left:45px;
 }
+
+/*===================================================
+
+		        Meeting Builder Styles
+
+====================================================*/
+
+.cal-slide-content {
+	background-color: #eee;
+	color:#000;
+	box-shadow: none;
+}
+
+.cal-slide-content a.event-item {
+    color: #000;
+}
+
 /*===================================================
 
 				Tools Styles

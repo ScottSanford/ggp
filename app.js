@@ -8,7 +8,8 @@ angular.module("ggpApp", [
         'bootstrapLightbox', 
         'ngTouch', 
         'nvd3', 
-        'ui-rangeSlider'
+        'ui-rangeSlider',
+        'ngDialog'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 
