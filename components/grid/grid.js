@@ -2,7 +2,23 @@ angular.module('ggpApp')
 
 .controller('GridCtrl', function($scope, mfly, propertyData){
 
-	$scope.malls = propertyData;
+	mfly.search('@Banner').then(function(data){
+		
+		data.forEach(function(currentObj, index){
+			var airshipID = currentObj.statusLabel;
+			
+			propertyData.forEach(function(c, i) {
+				var csvID = c.property_id;
+				if (airshipID === csvID) {
+					var thumb = currentObj.thumbnailUrl;
+					c['thumb'] = thumb;
+				}
+			});
+		});
+
+		$scope.malls = propertyData;
+		
+	});
 
 	$scope.slider = {
 		range: {
