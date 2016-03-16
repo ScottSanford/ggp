@@ -395,6 +395,11 @@ ul.nested-list {
     color: #000;
 }
 
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+	width:800px;
+	background: #eee;
+}
+
 /*===================================================
 
 				Tools Styles
