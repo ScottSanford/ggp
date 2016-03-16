@@ -43,7 +43,15 @@ angular.module("ggpApp", [
                 })                  
                 .when('/map', {
                     templateUrl: 'components/map/map.html',
-                    controller: 'MapCtrl'
+                    controller: 'MapCtrl', 
+                    resolve: {
+                        mapData: function(initMapData) {
+                            return initMapData('a4ce3ae64bb34998bd28479d8b7f8201product235900');
+                        }, 
+                        propertyData: function(initData) {
+                            return initData('a4ce3ae64bb34998bd28479d8b7f8201product236173');
+                        }
+                    }
                 })                  
                 .when('/graph', {
                     templateUrl: 'components/graph/graph.html',

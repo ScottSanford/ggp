@@ -7,7 +7,7 @@ angular.module('ggpApp')
 
         mflyCommands.getData(id)
             .done(function(data){
-                var jsonData = CSVConverterSvc.csvToJSON(data);
+                var jsonData = CSVConverterSvc.jsonProperty(data);
                 deferred.resolve(jsonData);
             });
 

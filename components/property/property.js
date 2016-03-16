@@ -15,26 +15,34 @@ angular.module('ggpApp')
 	mfly.getFolder("a4ce3ae64bb34998bd28479d8b7f8201product235988").then(function(data){
 		for (var i = 0; i < data.length; i++) {
 			if (data[i].propertyId === $routeParams.id) {
+
 				mfly.getFolder(data[i].id).then(function(data){
 
-					$scope.names = data;
+
+					$scope.banner = data[0].thumbnailUrl;
+
+					// Gallery Folder Names
+					$scope.folderNames = data;
 
 					// show first Folder Thumbnails on View on Initialize 
 					mfly.getFolder(data[1].id).then(function(data){
-						var photoArray = [];
+							var photoArray = [];
 							
 							for (var i=0; i < data.length; i++) {
+
+								// make new object for Lightbox
 								var obj = {};
 								obj['url'] = data[i].thumbnailUrl;
 								photoArray.push(obj);
 							}
 
-							console.log(photoArray);
-
+							// show photo thumbnails on view
 							$scope.photos = photoArray;
+
 					});
 
 					$scope.showPhotos = function(id) {
+						$scope.isActive = !$scope.isActive;
 						mfly.getFolder(id).then(function(data){
 							var photoArray = [];
 							
@@ -43,8 +51,6 @@ angular.module('ggpApp')
 								obj['url'] = data[i].thumbnailUrl;
 								photoArray.push(obj);
 							}
-
-							console.log(photoArray);
 
 							$scope.photos = photoArray;
 
@@ -59,11 +65,6 @@ angular.module('ggpApp')
 				});
 			}
 		}
-	});
-
-	// Banner
-	mflyCommands.search('@Banner').done(function(data){
-		$scope.banner = data[0].thumbnailUrl;
 	});
 
 

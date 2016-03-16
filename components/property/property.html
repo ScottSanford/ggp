@@ -4,7 +4,7 @@
 	
 		<ol class="breadcrumb">
 		  <li><a href="#/"><i class="fa fa-home color-orange"></i></a></li>
-		  <li>{{ mall.name }}</li>
+		  <li>{{ mall.property_name }}</li>
 		</ol>
 	
 			<div class="title-container">
@@ -60,9 +60,10 @@
 			<div class="gallery-title">
 				<div class="pull-left font-size-20">Gallery</div>	
 				<div class="folder-name"
-					 ng-repeat="name in names" 
+					 ng-class="{'active-folder-name': isActive}"
+					 ng-repeat="folderName in folderNames" 
 					 ng-show="!$first"
-				 	 ng-click="showPhotos(name.id)">{{ name.name }}
+				 	 ng-click="showPhotos(folderName.id)">{{ folderName.name }}
 				</div>
 			</div>
 			<div class="col-sm-12 gallery"></div>

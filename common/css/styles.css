@@ -291,6 +291,11 @@ ul.nested-list {
 	text-align: center;
 }
 
+.active-folder-name {
+	background-color: #F26522;
+	color: #fff;
+}
+
 .gallery-title {
 	margin-top:200px;
 }
@@ -298,6 +303,7 @@ ul.nested-list {
 .gallery-container {
 	padding: 5px;
 }
+
 
 .gallery-thumb {
 	width:100%;

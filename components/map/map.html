@@ -17,11 +17,29 @@
 	      </button>
 	      <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
 	        <li role="menuitem" ng-repeat="property in properties" ng-show="!$first">
-	        	<a ng-click="showPropertyOnMap(property.name)">{{property.name}}</a>
+	        	<a ng-click="showPropertyOnMap(property.property_name, property.property_id)">{{property.property_name}}</a>
 	        </li>
 	      </ul>
 	    </div>
 	    <!-- End of Dropdown Menu -->
+
+	    <div class="btn-group margin-top-20" uib-dropdown ng-show="mapTypeList">
+	    	
+	    	<div class="color-gray font-size-16 padding-bottom-10">Choose map type:</div>
+
+	    	<button id="split-button2" type="button" class="btn btn-dropdown">Map Type</button>
+	    	<button type="button" class="btn btn-dropdown" uib-dropdown-toggle>
+	        	<span class="caret"></span>
+	        	<span class="sr-only">Split button!</span>
+	      	</button>
+
+		    <ul uib-dropdown-menu role="menu" aria-labelledby="split-button2">
+		    	<li role="menuitem" ng-repeat="mapType in mapTypes">
+		    		<a ng-click="openMapType(mapType.mapType , mapType.propId)">{{ mapType.type }}</a>
+		    	</li>
+		    </ul>
+
+	    </div>
 
 	    <div class="title-container">
 			<span class="uppercase color-gray font-size-24">{{ chosenProperty }}</span>
@@ -54,14 +72,11 @@
 
 	<div class="col-md-8">
 
-		<!-- <div id="map"></div> -->
 			<div class="embed-container">
 				<iframe 
-					ng-repeat="map in maps"
 					id="map"
 					scrolling="no" 
-					title="{{ map.title }}" 
-					src="{{ map.src | trustUrl }}">
+					ng-src="{{ mapSrc | trustUrl }}">
 				</iframe>
 			</div>
 
