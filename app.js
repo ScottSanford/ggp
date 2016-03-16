@@ -3,6 +3,7 @@ angular.module("ggpApp", [
         'myDirectives', 
         'myFilters',
         'ui.bootstrap',
+        'mwl.calendar',
         'LocalStorageModule', 
         'bootstrapLightbox', 
         'ngTouch', 
@@ -36,6 +37,15 @@ angular.module("ggpApp", [
                 .when('/favorites', {
                     templateUrl: 'components/favorites/favorites.html',
                     controller: 'FavoritesCtrl'
+                })                 
+                .when('/meetings', {
+                    templateUrl: 'components/meetings/meetings.html',
+                    controller: 'MeetingsCtrl', 
+                    resolve: {
+                        propertyData: function(initData) {
+                            return initData('a4ce3ae64bb34998bd28479d8b7f8201product236173');
+                        }
+                    }
                 })                  
                 .when('/tools', {
                     templateUrl: 'components/tools/tools.html',

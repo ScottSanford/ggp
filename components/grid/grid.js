@@ -15,9 +15,9 @@ angular.module('ggpApp')
 				}
 			});
 		});
-
+		console.log(propertyData);
 		$scope.malls = propertyData;
-		
+
 	});
 
 	$scope.slider = {
