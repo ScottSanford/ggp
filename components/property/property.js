@@ -18,7 +18,7 @@ angular.module('ggpApp')
 
 				mfly.getFolder(data[i].id).then(function(data){
 
-
+					$scope.selected = 1;
 					$scope.banner = data[0].thumbnailUrl;
 
 					// Gallery Folder Names
@@ -41,8 +41,8 @@ angular.module('ggpApp')
 
 					});
 
-					$scope.showPhotos = function(id) {
-						$scope.isActive = !$scope.isActive;
+					$scope.showPhotos = function(id, index) {
+						$scope.selected = index;
 						mfly.getFolder(id).then(function(data){
 							var photoArray = [];
 							

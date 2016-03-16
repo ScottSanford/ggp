@@ -80,11 +80,6 @@ angular.module('ggpApp')
 				}
 			}
 
-			// mapData calculation
-			// var url = 'http://ggp.maps.arcgis.com/apps/Embed/index.html?webmap=' + 
-			// 	webmap + '&amp;extent=' + 
-			// 	extent + '&amp;zoom=true&amp;scale=true&amp;legend=true&amp;disable_scroll=false&amp;theme=light';
-
 			$scope.chosenProperty = name;
 			$scope.mapFacts = true;
 		}

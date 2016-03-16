@@ -57,15 +57,23 @@
 			</div>
 		</div>
 		<div>
+
+			<!-- Gallery Names -->
+
 			<div class="gallery-title">
 				<div class="pull-left font-size-20">Gallery</div>	
 				<div class="folder-name"
-					 ng-class="{'active-folder-name': isActive}"
+					 ng-class="{'active-folder-name': $index == selected}"
 					 ng-repeat="folderName in folderNames" 
 					 ng-show="!$first"
-				 	 ng-click="showPhotos(folderName.id)">{{ folderName.name }}
+				 	 ng-click="showPhotos(folderName.id, $index)">{{ folderName.name }}
 				</div>
 			</div>
+
+
+			<!-- Gallery Images -->
+
+
 			<div class="col-sm-12 gallery"></div>
 			<div class="col-sm-3 gallery-container" ng-repeat="photo in photos">
 				<a ng-click="openLightboxModal($index)">
