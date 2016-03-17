@@ -16,11 +16,27 @@ angular.module('ggpApp')
 			});
 		});
 
-		console.log("Properties --> ", propertyData);
 
 		$scope.malls = propertyData;
 
 	});
+
+	// Delete when Final Project
+	$scope.bayside = function() {
+		return function predicateFunc(item) {
+			if (item.property_name !== 'Bayside Marketplace') {
+				return item;
+			}			
+		}
+	};	
+	$scope.marketplace = function() {
+		return function predicateFunc(item) {
+			if (item.property_name !== 'Market Place ') {
+				return item;
+			}			
+		}
+	};
+	// Delete when Final Project
 
 	$scope.slider = {
 		range: {

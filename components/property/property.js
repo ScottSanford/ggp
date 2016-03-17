@@ -67,6 +67,12 @@ angular.module('ggpApp')
 		}
 	});
 
+	$scope.removeQuotes = function() {
+		return function predicateFunc(item) {
+	    	// return item.replace(/"/g,"");
+	  	};
+	};
+
 
 	// Add to Favorites \/\/\/
 	//                   \/\/

@@ -31,7 +31,7 @@
             options="propertyList" 
             selected-model="selectedProperties" 
             ng-model="meeting.selectedProperties"
-            extra-settings="example9settings">
+            extra-settings="dropDownSettings">
           </div>
         </div>
       </div>
@@ -43,10 +43,11 @@
           <p class="input-group">
             <input type="text" class="form-control" 
               uib-datepicker-popup="shortDate" 
-              ng-model="meeting.dateStartsAt" 
+              ng-model="meeting.startsAt" 
               is-open="showStartDatePicker" 
               close-text="Close" 
-              alt-input-formats="altInputFormats" />
+              alt-input-formats="altInputFormats" 
+              readonly/>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="openStartDate()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
@@ -67,10 +68,11 @@
           <p class="input-group">
             <input type="text" class="form-control" 
               uib-datepicker-popup="shortDate" 
-              ng-model="meeting.dateEndsAt" 
+              ng-model="meeting.endsAt" 
               is-open="showEndDatePicker" 
               close-text="Close" 
-              alt-input-formats="altInputFormats" />
+              alt-input-formats="altInputFormats" 
+              readonly/>
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="openEndDate()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>

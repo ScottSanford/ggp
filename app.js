@@ -14,7 +14,6 @@ angular.module("ggpApp", [
         ])
 
         .config(function ($routeProvider, $compileProvider) { 
-
               $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/)/);
               
               $routeProvider

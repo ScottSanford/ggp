@@ -27,8 +27,8 @@
 				<div>{{ mall.phone }}</div>
 				<div>{{ mall.website }}</div>
 			</div>
-			<div class="col-sm-6 col-md-12 mall-description">{{ mall.description }}</div>
-			<div class="navigation font-size-20 nav-margin">Navigation</div>
+			<div class="col-sm-6 col-md-12 mall-description">{{ mall.description | trim }}</div>
+			<div class="navigation font-size-20 nav-margin">Resources</div>
 			<div class="col-sm-12">
 				<button class="btn btn-default margin-top-10" ng-click="goToMap()"><i class="fa fa-map-marker"></i> Map</button>
 			</div>
@@ -47,11 +47,11 @@
 			<div class="key-facts-title font-size-20">Key Facts</div>
 			<div class="col-sm-4">
 				<div class="font-size-20">Type of Center</div>
-				<div>{{ mall.overview.metro_center}}</div>
+				<div>{{ mall.overview.metro_center | trim}}</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="font-size-20">Anchor Tenants</div>
-				<div>{{ mall.overview.anchor_tenants }}</div>
+				<div>{{ mall.overview.anchor_tenants | trim }}</div>
 			</div>
 			<div class="col-sm-4">
 				<div class="font-size-20">{{ mall.overview.stores | number }}</div>

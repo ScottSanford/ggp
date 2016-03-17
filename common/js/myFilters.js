@@ -3,4 +3,14 @@ angular.module('myFilters', [])
     return function(url) {
       return $sce.trustAsResourceUrl(url);
     };
+
+})
+
+    .filter('trim', function () {
+    return function(value) {
+        if(!angular.isString(value)) {
+            return value;
+        }  
+        return value.replace(/"/g,"", ''); // you could use .trim, but it's not going to work in IE<9
+    };
 });

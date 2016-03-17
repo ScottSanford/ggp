@@ -1,34 +1,36 @@
 angular.module('ggpApp')
 
-.controller('MeetingsCtrl', function($scope, $location, $rootScope, mfly, propertyData, moment, ngDialog){
+.controller('MeetingsCtrl', function($scope, $location, $route, $rootScope, mfly, propertyData, moment, ngDialog, localStorageService){
 
 
     //These variables MUST be set as a minimum for the calendar to work
     $scope.calendarView = 'month';
     $scope.viewDate = new Date();
 
+    // LocalStorage
+
     var eventList = [
-	  {
+    {
         title: 'Gap Meeting',
         type: 'important',
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
         endsAt: moment().startOf('day').add(16, 'hours').toDate(),
         properties: [
-        	{
-        	 id: 1, 
-        	 label: 'Oakbrook Center', 
-        	 propId: "4386"
-        	},
-        	{
-        	 id: 2, 
-        	 label: 'Baybrook', 
-        	 propId: "2009"
-        	},
-        	{
-        	 id: 3, 
-        	 label: 'Glendale Galleria', 
-        	 propId: "3802"
-        	}
+         {
+          id: 1, 
+          label: 'Oakbrook Center', 
+          propId: "4386"
+         },
+         {
+          id: 2, 
+          label: 'Baybrook', 
+          propId: "2009"
+         },
+         {
+          id: 3, 
+          label: 'Glendale Galleria', 
+          propId: "3802"
+         }
         ],
         recursOn: 'year',
         draggable: true,
@@ -38,7 +40,17 @@ angular.module('ggpApp')
       }
     ];
 
-    $scope.events = eventList;
+    var ls = localStorageService.get('calendar');
+
+    if (ls) {
+
+      $scope.events = ls;
+
+    } else {
+
+      $scope.events = eventList;
+
+    }
 
     $scope.isCellOpen = false;
 
@@ -48,6 +60,7 @@ angular.module('ggpApp')
 			className: 'ngdialog-theme-default', 
 			scope: $scope,
 			controller: function($scope) {
+
 			    $scope.toggle = function($event, field, event) {
 			      $event.preventDefault();
 			      $event.stopPropagation();
@@ -59,8 +72,16 @@ angular.module('ggpApp')
 			    	meeting['draggable']   = false;
 			    	meeting['resizeable']  = true;
 			    	meeting['properties']  = $scope.selectedProperties;
-			    	console.log("Meeting :: ", meeting);
-			    	$scope.events.push(meeting);
+			    	
+
+            var lsCalendar = localStorageService.get('calendar') || [];
+            
+            // push meeting to array 
+            lsCalendar.push(meeting);
+            // push array to local storage
+            localStorageService.set('calendar', lsCalendar);
+            // set array to $scope
+			    	$route.reload();
 			    	$scope.closeThisDialog();
 
 			    }
@@ -80,7 +101,7 @@ angular.module('ggpApp')
 
 	$scope.propertyList = reformattedProperties;
 
-	$scope.example9settings = {
+	$scope.dropDownSettings = {
 		enableSearch: true, 
 		scrollableHeight: '300px',
     	scrollable: true, 
@@ -115,10 +136,12 @@ angular.module('ggpApp')
     };
 
     $scope.openStartDate = function() {
- 		$scope.showStartDatePicker = true;
+ 		   $scope.showStartDatePicker = !$scope.showStartDatePicker;
     };    
 
     $scope.openEndDate = function() {
- 		$scope.showEndDatePicker = true;
+ 		   $scope.showEndDatePicker = !$scope.showEndDatePicker;
     };
+
+
 });
