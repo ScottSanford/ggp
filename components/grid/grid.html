@@ -20,8 +20,9 @@
 
 		<ul class="row filter-container">
 			<li role="presentation" class="col-sm-6 col-md-12 uppercase"><i class="fa fa-filter"></i> Filter</li>
+			<!-- BEGIN: GLA Slider -->
 			<div class="col-sm-6 col-md-12">
-			    <div class="gla">Gross Leaseable Area (sq ft)</div>
+			    <div class=" margin-top-30">Gross Leaseable Area (sq ft)</div>
 			   	<div range-slider 
 			   		class="padding-left-10" 
 			   		min="slider.range.min" 
@@ -29,6 +30,34 @@
 			   		model-min="slider.minStart" 
 			   		model-max="slider.maxEnd"
 			   		step="100000"
+			   		show-values="true"
+			   		filter="number">
+			   	</div>
+		   	</div>			
+		   	<!-- BEGIN: Median Income -->
+		   	<div class="col-sm-6 col-md-12">
+			    <div class="">Median Income</div>
+			   	<div range-slider 
+			   		class="padding-left-10" 
+			   		min="median.range.min" 
+			   		max="median.range.max" 
+			   		model-min="median.minStart" 
+			   		model-max="median.maxEnd"
+			   		step="1000"
+			   		show-values="true"
+			   		filter="currency">
+			   	</div>
+		   	</div>		   	
+		   	<!-- BEGIN: Number of Stores -->
+		   	<div class="col-sm-6 col-md-12">
+			    <div class=""># of Stores</div>
+			   	<div range-slider 
+			   		class="padding-left-10" 
+			   		min="stores.range.min" 
+			   		max="stores.range.max" 
+			   		model-min="stores.minStart" 
+			   		model-max="stores.maxEnd"
+			   		step="5"
 			   		show-values="true"
 			   		filter="number">
 			   	</div>
@@ -41,7 +70,7 @@
 	</div>
 	<div class="col-md-8 property-grid-container">
 
-		<div class="overflow-ios" ng-repeat="m in malls | filter: byRange(slider.minStart, slider.maxEnd)">
+		<div class="overflow-ios" ng-repeat="m in malls | filter: filterGLA(slider.minStart, slider.maxEnd) | filter: filterMedian(median.minStart, median.maxEnd) | filter: filterStores(stores.minStart, stores.maxEnd)">
 			<div grid-property mall="m" mall-click="m.id"></div>
 		</div>
 	</div>
