@@ -12,7 +12,7 @@ angular.module('ggpApp')
         title: 'Gap Meeting',
         type: 'important',
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        endsAt: moment().startOf('day').add(16, 'hours').toDate(),
         properties: [
         	{
         	 id: 1, 
@@ -74,7 +74,7 @@ angular.module('ggpApp')
 	   var rObj = {};
 	   rObj['label']   = obj.property_name;
 	   rObj['id']      = index + 1;
-	   rObj['propeId'] = obj.property_id;
+	   rObj['propId'] = obj.property_id;
 	   return rObj;
 	});
 
@@ -93,7 +93,7 @@ angular.module('ggpApp')
       		className: 'ngdialog-theme-default', 
       		scope: $scope,
       		controller: function($scope) {
-      			
+      			console.log("Meeting Details :: ", event);
       			$scope.meeting = event;
 
       			$scope.properties = event.properties;

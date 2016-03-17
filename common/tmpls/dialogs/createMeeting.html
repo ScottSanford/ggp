@@ -53,12 +53,10 @@
           </p>
         </div>
         <div class="col-sm-3">
-             <uib-timepicker
-            ng-model="meeting.timeStartAt"
-            hour-step="1"
-            minute-step="1"
-            show-meridian="true">
-          </uib-timepicker>
+           <uib-timepicker ng-model="meeting.startsAt" 
+                           hour-step="1" 
+                           minute-step="1">
+            </uib-timepicker>
         </div>
       </div>
 
@@ -79,12 +77,10 @@
           </p>
         </div>
         <div class="col-sm-3">
-          <uib-timepicker
-            ng-model="meeting.timeEndAt"
-            hour-step="1"
-            minute-step="1"
-            show-meridian="true">
-          </uib-timepicker>
+            <uib-timepicker ng-model="meeting.endsAt" 
+                           hour-step="1" 
+                           minute-step="1">
+            </uib-timepicker>
         </div>
       </div>
 

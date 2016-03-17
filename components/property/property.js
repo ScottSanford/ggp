@@ -115,4 +115,31 @@ angular.module('ggpApp')
 		$scope.status = !$scope.status;
 	}
 
+	// Navigation       \/\/\/
+	//                   \/\/
+	//                    \/	
+
+	$scope.goToMap = function() {
+		$location.url('map');
+	};	
+
+	$scope.goToMeetingBuilder = function() {
+		$location.url('meetings');
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

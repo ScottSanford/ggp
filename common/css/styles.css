@@ -16,8 +16,16 @@ ol {
 	text-transform: uppercase;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 .color-gray {
 	color:#808080;
+}
+
+.btn-link {
+	color:#F26522;
 }
 
 .color-orange {
@@ -150,11 +158,15 @@ ul.nested-list {
 	border:2px solid #808080;
 	margin:10px 0;
 	border-radius: 4px;
-	min-height: 250px;
+	min-height: 225px;
+}
+
+.property-container div {
+	text-align: center;
 }
 
 .top-container {
-	min-height: 60px
+	min-height: 55px
 }
 
 .icon-container {
@@ -174,10 +186,6 @@ ul.nested-list {
 	height: auto;
 }
 
-.btn {
-	border:2px solid #808080;
-}
-
 .btn-group .btn-default {
 	border-bottom-color: #fff;
 	width:75px;
@@ -194,12 +202,8 @@ ul.nested-list {
 
 .img-container img {
 	width:100%;
-	height:auto;
+	min-height:125px;
 	margin:0 auto;
-}
-
-.property-container div {
-	text-align: center;
 }
 
 .filter-container {
@@ -232,9 +236,13 @@ ul.nested-list {
 	color:#F26522;
 }
 
-.overview, .key-facts-title, .gallery{
+.overview, .key-facts-title, .gallery, .navigation{
 	border-bottom: 2px solid #808080;
 	padding-bottom:10px;
+}
+
+.nav-margin {
+	margin-top:330px;
 }
 
 .section-title div {
@@ -405,7 +413,12 @@ ul.nested-list {
 .selected-properties {
 	list-style-type: none;
 	padding: 0;
+	font-style: italic;
+}
+
+.selected-properties li:hover {
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 /*===================================================
