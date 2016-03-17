@@ -76,6 +76,10 @@ ol {
 	padding-bottom:20px;
 }
 
+.margin-all-15 {
+	margin:15px;
+}
+
 .margin-top-10 {
 	margin-top:10px;
 }
@@ -178,8 +182,6 @@ ul.nested-list {
 	border-bottom-color: #fff;
 	width:75px;
 	height:40px;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
 	color:#f26522;
 }
 

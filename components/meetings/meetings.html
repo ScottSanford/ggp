@@ -15,14 +15,7 @@
        		class="btn btn-default" 
        		ng-click="createMeeting()">
        		Create Meeting
-       	</button>       
-       		
-       	<button 
-       		type="button" 
-       		class="btn btn-default" 
-       		ng-click="addMeeting()">
-       		Add Meeting
-       	</button>
+       	</button>      
 
         <button
           type="button"
@@ -72,7 +65,7 @@
     edit-event-html="'<i class=\'glyphicon glyphicon-pencil\'></i>'"
     delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
     on-edit-event-click="eventEdited(calendarEvent)"
-    on-delete-event-click="eventDeleted(calendarEvent)"
+    on-delete-event-click="eventDeleted(calendarEvent, $index)"
     cell-is-open="isCellOpen"
     day-view-start="06:00"
     day-view-end="22:00"

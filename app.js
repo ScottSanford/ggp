@@ -9,7 +9,8 @@ angular.module("ggpApp", [
         'ngTouch', 
         'nvd3', 
         'ui-rangeSlider',
-        'ngDialog'
+        'ngDialog', 
+        'angularjs-dropdown-multiselect'
         ])
 
         .config(function ($routeProvider, $compileProvider) { 

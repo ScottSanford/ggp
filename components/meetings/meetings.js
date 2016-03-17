@@ -13,6 +13,23 @@ angular.module('ggpApp')
         type: 'important',
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),
         endsAt: moment().startOf('day').add(19, 'hours').toDate(),
+        properties: [
+        	{
+        	 id: 1, 
+        	 label: 'Oakbrook Mall', 
+        	 propId: "1234"
+        	},
+        	{
+        	 id: 2, 
+        	 label: 'Maimi Mall', 
+        	 propId: "1234"
+        	},
+        	{
+        	 id: 3, 
+        	 label: 'Chicago Mall', 
+        	 propId: "1234"
+        	}
+        ],
         recursOn: 'year',
         draggable: true,
         resizable: true, 
@@ -21,16 +38,6 @@ angular.module('ggpApp')
     ];
 
     $scope.events = eventList;
-
-    $scope.addMeeting = function() {
-    	var meeting = {
-    		title: 'New event', 
-    		type: 'important', 
-    		draggable: true, 
-    		resizable: true
-    	}
-    	$scope.events.push(meeting);
-    }
 
     $scope.isCellOpen = false;
 
@@ -50,7 +57,8 @@ angular.module('ggpApp')
 			    	meeting['recursOn']    = 'year';
 			    	meeting['draggable']   = false;
 			    	meeting['resizeable']  = true;
-
+			    	meeting['properties']  = $scope.selectedProperties;
+			    	console.log("Meeting :: ", meeting);
 			    	$scope.events.push(meeting);
 			    	$scope.closeThisDialog();
 
@@ -59,16 +67,45 @@ angular.module('ggpApp')
 		});
     };
 
+	$scope.selectedProperties = [];
+
+	var reformattedProperties = propertyData.map(function(obj, index){ 
+	   var rObj = {};
+	   rObj['label']   = obj.property_name;
+	   rObj['id']      = index + 1;
+	   rObj['propeId'] = obj.property_id;
+	   return rObj;
+	});
+
+	$scope.propertyList = reformattedProperties;
+
+	$scope.example9settings = {
+		enableSearch: true, 
+		scrollableHeight: '300px',
+    	scrollable: true, 
+    	externalIdProp: ''
+	};    
+
     $scope.eventClicked = function(event) {
-      console.log('Clicked', event);
+    	console.log("Clicked :: ", event);
     };
 
     $scope.eventEdited = function(event) {
-      ngDialog.open({ template: 'common/tmpls/dialogs/popupTmpl.html', className: 'ngdialog-theme-default' });
+      	ngDialog.open({ 
+      		template: 'common/tmpls/dialogs/editMeeting.html', 
+      		className: 'ngdialog-theme-default', 
+      		scope: $scope,
+      		controller: function($scope) {
+      			console.log(event);
+      			$scope.meeting = event;
+
+      			$scope.properties = event.properties;
+      		}
+      	});
     };
 
-    $scope.eventDeleted = function(event) {
-      console.log("Deleted", event);;
+    $scope.eventDeleted = function(event, index) {
+      $scope.events.splice(index, 1);
     };
 
     $scope.eventTimesChanged = function(event) {

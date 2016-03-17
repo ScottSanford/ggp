@@ -1,4 +1,4 @@
-  <form class="form-horizontal">
+  <form class="form-horizontal margin-all-15">
 
       <!-- BEGIN: Title  -->
       <div class="form-group">
@@ -26,7 +26,14 @@
       <!-- BEGIN: Select Properties -->
       <div class="form-group">
         <label for="properties" class="col-sm-3">Select Properties</label>
-        <div class="col-sm-8">This will be a dropdown!</div>
+        <div class="col-sm-8">
+          <div ng-dropdown-multiselect="" 
+            options="propertyList" 
+            selected-model="selectedProperties" 
+            ng-model="meeting.selectedProperties"
+            extra-settings="example9settings">
+          </div>
+        </div>
       </div>
 
       <!-- BEGIN: Start Date -->
