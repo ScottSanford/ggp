@@ -10,15 +10,15 @@
 
       <!-- BEGIN: Type -->
       <div class="form-group">
-        <label for="type" class="col-sm-3">Type</label>
+        <label for="type" class="col-sm-3">Meeting Color</label>
         <div class="col-sm-8">
           <select ng-model="meeting.type" class="form-control">
-              <option value="important">Important</option>
-              <option value="warning">Warning</option>
-              <option value="info">Info</option>
-              <option value="inverse">Inverse</option>
-              <option value="success">Success</option>
-              <option value="special">Special</option>
+              <option value="important">Red</option>
+              <option value="warning">Yellow</option>
+              <option value="info">Blue</option>
+              <option value="inverse">Black</option>
+              <option value="success">Green</option>
+              <option value="special">Purple</option>
           </select>
         </div>
       </div>
@@ -40,31 +40,23 @@
       <div class="form-group">
         <label for="notes" class="col-sm-3">Start Time</label>
         <div class="col-sm-5">
-         <p class="input-group">
-          <input
-              type="text"
-              class="form-control"
-              readonly
-              uib-datepicker-popup="dd MMMM yyyy"
-              ng-model="meeting.startsAt"
-              is-open="meeting.startOpen"
+          <p class="input-group">
+            <input type="text" class="form-control" 
+              uib-datepicker-popup="shortDate" 
+              ng-model="meeting.dateStartsAt" 
+              is-open="showStartDatePicker" 
               close-text="Close" 
-          >
+              alt-input-formats="altInputFormats" />
             <span class="input-group-btn">
-              <button
-                type="button"
-                class="btn btn-default"
-                ng-click="toggle($meeting, 'startOpen', meeting)">
-                <i class="glyphicon glyphicon-calendar"></i>
-              </button>
+              <button type="button" class="btn btn-default" ng-click="openStartDate()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </p>
         </div>
         <div class="col-sm-3">
              <uib-timepicker
-            ng-model="meeting.startsAt"
+            ng-model="meeting.timeStartAt"
             hour-step="1"
-            minute-step="15"
+            minute-step="1"
             show-meridian="true">
           </uib-timepicker>
         </div>
@@ -75,30 +67,22 @@
         <label for="notes" class="col-sm-3">End Time</label>
         <div class="col-sm-5">
           <p class="input-group">
-            <input
-                type="text"
-                class="form-control"
-                readonly
-                uib-datepicker-popup="dd MMMM yyyy"
-                ng-model="meeting.endsAt"
-                is-open="meeting.endOpen"
-                close-text="Close"
-              >
-              <span class="input-group-btn">
-                <button
-                  type="button"
-                  class="btn btn-default"
-                  ng-click="toggle(event, 'endOpen', meeting)">
-                  <i class="glyphicon glyphicon-calendar"></i>
-                </button>
-              </span>
+            <input type="text" class="form-control" 
+              uib-datepicker-popup="shortDate" 
+              ng-model="meeting.dateEndsAt" 
+              is-open="showEndDatePicker" 
+              close-text="Close" 
+              alt-input-formats="altInputFormats" />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openEndDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
           </p>
         </div>
         <div class="col-sm-3">
           <uib-timepicker
-            ng-model="meeting.endsAt"
+            ng-model="meeting.timeEndAt"
             hour-step="1"
-            minute-step="15"
+            minute-step="1"
             show-meridian="true">
           </uib-timepicker>
         </div>

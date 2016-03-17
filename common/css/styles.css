@@ -402,6 +402,12 @@ ul.nested-list {
 	background: #eee;
 }
 
+.selected-properties {
+	list-style-type: none;
+	padding: 0;
+	text-decoration: underline;
+}
+
 /*===================================================
 
 				Tools Styles

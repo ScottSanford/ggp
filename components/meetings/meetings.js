@@ -1,6 +1,6 @@
 angular.module('ggpApp')
 
-.controller('MeetingsCtrl', function($scope, $rootScope, mfly, propertyData, moment, ngDialog){
+.controller('MeetingsCtrl', function($scope, $location, $rootScope, mfly, propertyData, moment, ngDialog){
 
 
     //These variables MUST be set as a minimum for the calendar to work
@@ -16,24 +16,25 @@ angular.module('ggpApp')
         properties: [
         	{
         	 id: 1, 
-        	 label: 'Oakbrook Mall', 
-        	 propId: "1234"
+        	 label: 'Oakbrook Center', 
+        	 propId: "4386"
         	},
         	{
         	 id: 2, 
-        	 label: 'Maimi Mall', 
-        	 propId: "1234"
+        	 label: 'Baybrook', 
+        	 propId: "2009"
         	},
         	{
         	 id: 3, 
-        	 label: 'Chicago Mall', 
-        	 propId: "1234"
+        	 label: 'Glendale Galleria', 
+        	 propId: "3802"
         	}
         ],
         recursOn: 'year',
         draggable: true,
         resizable: true, 
-        incrementsBadgeTotal: false
+        incrementsBadgeTotal: false, 
+        notes: 'Here are some notes about the meeting! This Meeting Builder is badass! ;)'
       }
     ];
 
@@ -86,25 +87,26 @@ angular.module('ggpApp')
     	externalIdProp: ''
 	};    
 
-    $scope.eventClicked = function(event) {
-    	console.log("Clicked :: ", event);
-    };
-
-    $scope.eventEdited = function(event) {
+    $scope.meetingDetails = function(event) {
       	ngDialog.open({ 
       		template: 'common/tmpls/dialogs/editMeeting.html', 
       		className: 'ngdialog-theme-default', 
       		scope: $scope,
       		controller: function($scope) {
-      			console.log(event);
+      			
       			$scope.meeting = event;
 
       			$scope.properties = event.properties;
+
+      			$scope.goToProperty = function(id) {
+      				$scope.closeThisDialog();
+      				$location.url('/property?id=' + id);
+      			}
       		}
       	});
     };
 
-    $scope.eventDeleted = function(event, index) {
+    $scope.deleteMeeting = function(event, index) {
       $scope.events.splice(index, 1);
     };
 
@@ -112,5 +114,11 @@ angular.module('ggpApp')
       console.log('Dropped or resized', event);
     };
 
+    $scope.openStartDate = function() {
+ 		$scope.showStartDatePicker = true;
+    };    
 
+    $scope.openEndDate = function() {
+ 		$scope.showEndDatePicker = true;
+    };
 });

@@ -1,9 +1,19 @@
-<div>Title: {{ meeting.title }}</div>
-<div>Properties</div>
-<div ng-repeat="prop in properties">
-	{{ prop.label }}
+<h3>{{ meeting.title }}</h3>
+
+<div class="row margin-top-20">
+	<div class="col-sm-3 font-size-20">When</div>
+	<div class="col-sm-9">{{ meeting.startsAt }} - {{ meeting.endsAt }}</div>
+</div>
+<div class="row margin-top-20">
+	<div class="col-sm-3 font-size-20">Properties</div>
+	<div class="col-sm-9"> 
+		<ul class="font-size-16 selected-properties">
+			<li ng-repeat="prop in properties" ng-click="goToProperty(prop.propId)">{{ prop.label }}</li>
+		</ul>
+	</div>
 </div>
 
-<div>Start Time: {{ meeting.startsAt }}</div>
-<div>Start Time: {{ meeting.endsAt }}</div>
-<div>Notes: {{ meeting.notes }}</div>
+<div class="row margin-top-20">
+	<div class="col-sm-3 font-size-20">Notes</div>
+	<div class="col-sm-9">{{ meeting.notes }}</div>
+</div>
