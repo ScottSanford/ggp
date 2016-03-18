@@ -17,7 +17,7 @@
 	      </button>
 	      <ul uib-dropdown-menu role="menu" aria-labelledby="split-button">
 	        <li role="menuitem" ng-repeat="property in properties" ng-show="!$first">
-	        	<a ng-click="showPropertyOnMap(property.property_name, property.property_id)">{{property.property_name}}</a>
+	        	<a ng-click="showPropertyOnMap(property)">{{property.property_name}}</a>
 	        </li>
 	      </ul>
 	    </div>
@@ -42,28 +42,24 @@
 	    </div>
 
 	    <div class="title-container">
-			<span class="uppercase color-gray font-size-24">{{ chosenProperty }}</span>
+			<span class="uppercase color-gray font-size-24">{{ chosenProperty.property_name }}</span>
 		</div>
 
 		<div class="mapinfo-container" ng-show="mapFacts">
 			<div class="col-sm-6 col-md-12">
-				<div class="font-size-20">9,545,986</div>
+				<div class="font-size-20">{{ chosenProperty.tradeArea.area_population | number}}</div>
 				<div>trade area population</div>
 			</div>
 			<div class="col-sm-6 col-md-12">
-				<div class="font-size-20 padding-top-10">9,686,565</div>
+				<div class="font-size-20 padding-top-10">{{chosenProperty.tradeArea.projected_pop | number}}</div>
 				<div>5 year projected population</div>
 			</div>
 			<div class="col-sm-4 col-md-12">
-				<div class="font-size-20 padding-top-10">3,166,097</div>
-				<div>trade area households</div>
-			</div>
-			<div class="col-sm-4 col-md-12">
-				<div class="font-size-20 padding-top-10">35.8</div>
+				<div class="font-size-20 padding-top-10">{{chosenProperty.tradeArea.median_age | number}}</div>
 				<div>median age</div>
 			</div>
 			<div class="col-sm-4 col-md-12">
-				<div class="font-size-20 padding-top-10">$83,371</div>
+				<div class="font-size-20 padding-top-10">{{chosenProperty.tradeArea.avg_income | currency }}</div>
 				<div>average household income</div>
 			</div>
 		</div>
@@ -72,7 +68,7 @@
 
 	<div class="col-md-8">
 
-			<div class="embed-container">
+			<div class="embed-container" ng-show="showMap">
 				<iframe 
 					id="map"
 					scrolling="no" 
