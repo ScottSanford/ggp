@@ -29,43 +29,42 @@ angular.module('ggpApp')
 							var photoArray = [];
 							
 							for (var i=0; i < data.length; i++) {
-
-								// make new object for Lightbox
 								var obj = {};
 								obj['url'] = data[i].thumbnailUrl;
 								photoArray.push(obj);
-							}
+							};
+						
 
-							// show photo thumbnails on view
 							$scope.photos = photoArray;
 
 					});
-
-					$scope.showPhotos = function(id, index) {
-						$scope.selected = index;
-						mfly.getFolder(id).then(function(data){
-							var photoArray = [];
-							
-							for (var i=0; i < data.length; i++) {
-								var obj = {};
-								obj['url'] = data[i].thumbnailUrl;
-								photoArray.push(obj);
-							}
-
-							$scope.photos = photoArray;
-
-							$scope.openLightboxModal = function (index) {
-							    Lightbox.openModal($scope.photos, index);
-							};
-
-
-						});
-					}
+					
 					
 				});
 			}
 		}
 	});
+
+	$scope.showPhotos = function(id, index) {
+		$scope.selected = index;
+		mfly.getFolder(id).then(function(data){
+			var photoArray = [];
+			
+			for (var i=0; i < data.length; i++) {
+				var obj = {};
+				obj['url'] = data[i].thumbnailUrl;
+				photoArray.push(obj);
+			}
+
+			$scope.photos = photoArray;
+
+			$scope.openLightboxModal = function (index) {
+			    Lightbox.openModal($scope.photos, index);
+			};
+
+
+		});
+	};
 
 	$scope.removeQuotes = function() {
 		return function predicateFunc(item) {
