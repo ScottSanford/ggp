@@ -34,8 +34,35 @@ angular.module('ggpApp')
         recursOn: 'year',
         draggable: true,
         resizable: true, 
-        incrementsBadgeTotal: false, 
+        incrementsBadgeTotal: true, 
         notes: 'Here are some notes about the meeting! This Meeting Builder is badass! ;)'
+      },
+      {
+        title: 'Starbucks Meeting',
+        type: 'success',
+        startsAt: moment().startOf('day').add(8, 'hours').toDate(),      
+        properties: [
+         {
+          id: 1, 
+          label: 'Oakbrook Center', 
+          propId: "4386"
+         },
+         {
+          id: 2, 
+          label: 'Baybrook', 
+          propId: "2009"
+         },
+         {
+          id: 3, 
+          label: 'Glendale Galleria', 
+          propId: "3802"
+         }
+        ],
+        recursOn: 'year',
+        draggable: true,
+        resizable: true, 
+        incrementsBadgeTotal: true, 
+        notes: 'Here are some notes about the meeting!'
       }
     ];
 

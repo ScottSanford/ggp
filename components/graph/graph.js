@@ -78,7 +78,6 @@ angular.module('ggpApp')
                 },
                 x: function(d){ return d[0]; },
                 y: function(d){ return d[1]/100; },
-                average: function(d) { return d.mean/100; },
 
                 color: d3.scale.category10().range(),
                 duration: 300,
@@ -91,7 +90,7 @@ angular.module('ggpApp')
                 },
 
                 yAxis: {
-                    axisLabel: 'Per Sq Ft',
+                    axisLabel: 'Total Sales Volume',
                     axisLabelDistance: 20
                 }
             }
