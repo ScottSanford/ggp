@@ -10,7 +10,8 @@ angular.module("ggpApp", [
         'nvd3', 
         'ui-rangeSlider',
         'ngDialog', 
-        'angularjs-dropdown-multiselect'
+        'angularjs-dropdown-multiselect', 
+        'ngPinchZoom'
         ])
 
         .config(function ($routeProvider, $compileProvider, LightboxProvider) { 

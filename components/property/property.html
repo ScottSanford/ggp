@@ -86,7 +86,7 @@
 			<div class="col-sm-12 gallery"></div>
 			<div class="col-sm-3 gallery-container" ng-repeat="photo in photos | limitTo: 8">
 				<a ng-click="openLightboxModal($index)">
-					<img class="gallery-thumb" ng-src="{{photo.url}}">
+					<img class="gallery-thumb" ng-src="{{photo.url}}" ng-pinch-zoom>
 				</a>
 			</div>
 		</div>

@@ -1,14 +1,24 @@
-<div class=modal-body ng-swipe-left=Lightbox.nextImage() ng-swipe-right=Lightbox.prevImage()>
-  
-  <div class=lightbox-nav>
-    
-    <button class=close aria-hidden=true ng-click=$dismiss()>×</button>
-    <div class=btn-group ng-if="Lightbox.images.length > 1">
-      <a class="btn btn-xs btn-default" ng-click=Lightbox.prevImage()>‹ Previous</a> 
-      <a ng-href={{Lightbox.imageUrl}} target=_blank class="btn btn-xs btn-default" title="Open in new tab" ng-click="goToAnnotations()">Annotations</a> 
-      <a class="btn btn-xs btn-default" ng-click=Lightbox.nextImage()>Next ›</a>
-    </div>
+<div class="modal-body"
+	ng-swipe-left="Lightbox.nextImage()"
+	ng-swipe-right="Lightbox.prevImage()">
 
-  </div>
+	<div class="lightbox-nav">
+	    
+	    <button class="close" aria-hidden="true" ng-click="$dismiss()"><i class="fa fa-times"></i></button>
+	    <div class="btn-group">
+	      <a class="btn btn-xs btn-default" ng-click="Lightbox.prevImage()"><i class="fa fa-angle-left padding-top-4"></i></a>  
+		  <a class="btn btn-xs btn-default" ng-click="goToAnnotations(Lightbox.image.id)"><i class="fa fa-pencil-square-o padding-top-4"></i></a>
+	      <a class="btn btn-xs btn-default" ng-click="Lightbox.nextImage()"><i class="fa fa-angle-right padding-top-4"></i></a>
+	    </div>
+
+	</div>
+
+	<!-- image -->
+	<div class="lightbox-image-container">
+	    <img lightbox-src="{{Lightbox.imageUrl}}">
+	</div>
+  
+<!--   	<div class="lightbox-nav">
+  	</div> -->
   
 </div>

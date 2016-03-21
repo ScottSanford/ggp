@@ -45,6 +45,17 @@ angular.module('ggpApp')
                 });
 
             return deferred.promise;    
+        }, 
+
+        openItem: function(id) {
+            var deferred = $q.defer();
+
+            mflyCommands.openItem(id)
+                .done(function(data){
+                    deferred.resolve(data);
+                });
+
+            return deferred.promise;             
         }
 	}
 

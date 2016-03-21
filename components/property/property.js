@@ -8,7 +8,6 @@ angular.module('ggpApp')
 	$scope.mapNav     = false;
 	$scope.compareNav = false;
 	
-	console.log("propertyData :: " ,propertyData);
 	for (var i =0; i <propertyData.length; i++) {
 		if ($routeParams.id === propertyData[i].property_id) {
 			$scope.mall = propertyData[i];
@@ -52,6 +51,7 @@ angular.module('ggpApp')
 							for (var i=0; i < data.length; i++) {
 								var obj = {};
 								obj['url'] = data[i].thumbnailUrl;
+								obj['id'] = data[i].id;
 								photoArray.push(obj);
 							};
 						
@@ -90,8 +90,8 @@ angular.module('ggpApp')
 		});
 	};
 
-	$rootScope.goToAnnotations = function() {
-		console.log('anno clicked');
+	$rootScope.goToAnnotations = function(id) {
+		mfly.openItem(id);
 	};
 
 	$scope.removeQuotes = function() {

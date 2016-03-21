@@ -44,10 +44,10 @@
             <input type="text" class="form-control" 
               uib-datepicker-popup="shortDate" 
               ng-model="meeting.date" 
-              is-open="showStartDatePicker" 
+              is-open="$parent.showStartDatePicker" 
               close-text="Close" 
               alt-input-formats="altInputFormats" 
-              readonly/>
+              />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="openStartDate()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>

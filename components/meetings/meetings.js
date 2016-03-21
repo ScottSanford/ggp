@@ -179,7 +179,7 @@ angular.module('ggpApp')
     $rootScope.showStartDatePicker = false;
 
     $scope.openStartDate = function() {
-
+    
  		   $scope.showStartDatePicker = !$scope.showStartDatePicker;
        
     };    

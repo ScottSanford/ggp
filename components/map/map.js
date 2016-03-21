@@ -12,7 +12,6 @@ angular.module('ggpApp')
 		}
 	});
 
-	console.log(filteredArray);
 	$scope.properties = filteredArray;
 
 	$scope.showPropertyOnMap = function(obj) {
