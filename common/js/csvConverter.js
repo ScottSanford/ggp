@@ -110,6 +110,37 @@ angular.module('ggpApp')
                 }
                 // console.log("AFter filter :: ", result);
                 return result;
+        }, 
+
+        jsonGraph: function(content) {
+                var lines=content.split('\n');
+                var result = [];
+                var start = 0;
+                var separator = ',';
+                var columnCount = lines[0].split(separator).length;
+
+                var headers = [];
+          
+                headers=lines[0].split(separator);
+                start = 1;
+                  
+
+                for (var i=start; i<lines.length; i++) {
+                    var obj = {};
+                    var currentline=lines[i].split(new RegExp(separator+'(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)'));
+                    if ( currentline.length === columnCount ) {
+                        
+                        obj = {
+                            id: currentline[0], 
+                            key: currentline[1], 
+                            year: currentline[12], 
+                            total: currentline[26]
+                        };
+                        result.push(obj);
+                    }
+                }
+                // console.log("AFter filter :: ", result);
+                return result;
         }
 
     }

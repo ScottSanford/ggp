@@ -80,7 +80,18 @@ angular.module('myDirectives', [])
 })
 
 
-
+.directive('myFrame', function () {
+    return {
+        restrict: 'E',
+        require: '?ngModel',
+        replace: true,
+        transclude: true,
+        template: '<iframe id="map" scrolling="no"><p>Your browser does not support iframes.</p></iframe>',
+        link: function (scope, element, attrs) {
+            element.attr('src', attrs.iframeSrc);
+        }
+    };
+});
 
 
 

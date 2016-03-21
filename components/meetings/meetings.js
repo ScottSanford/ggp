@@ -13,8 +13,7 @@ angular.module('ggpApp')
     {
         title: 'Gap Meeting',
         type: 'important',
-        startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-        endsAt: moment().startOf('day').add(16, 'hours').toDate(),
+        startsAt: moment().startOf('day').add(7, 'hours').toDate(),      
         properties: [
          {
           id: 1, 
@@ -68,21 +67,25 @@ angular.module('ggpApp')
 			    };
 
 			    $scope.addMeetingToCalendar = function(meeting) {
-			    	meeting['recursOn']    = 'year';
+			    	
+            meeting['recursOn']    = 'year';
 			    	meeting['draggable']   = false;
 			    	meeting['resizeable']  = true;
 			    	meeting['properties']  = $scope.selectedProperties;
-			    	
 
+            var start = meeting.startTime;
+            var end   = meeting.endTime;
+            
+            console.log(start);
             var lsCalendar = localStorageService.get('calendar') || [];
             
-            // push meeting to array 
-            lsCalendar.push(meeting);
-            // push array to local storage
-            localStorageService.set('calendar', lsCalendar);
-            // set array to $scope
-			    	$route.reload();
-			    	$scope.closeThisDialog();
+        //     // push meeting to array 
+        //     lsCalendar.push(meeting);
+        //     // push array to local storage
+        //     localStorageService.set('calendar', lsCalendar);
+        //     // set array to $scope
+			    	// $route.reload();
+			    	// $scope.closeThisDialog();
 
 			    }
 			}
@@ -102,10 +105,11 @@ angular.module('ggpApp')
 	$scope.propertyList = reformattedProperties;
 
 	$scope.dropDownSettings = {
-		enableSearch: true, 
-		scrollableHeight: '300px',
+		  enableSearch: true, 
+		  scrollableHeight: '300px',
     	scrollable: true, 
-    	externalIdProp: ''
+    	externalIdProp: '', 
+      smartButtonMaxItems: 3,
 	};    
 
     $scope.meetingDetails = function(event) {
@@ -127,8 +131,19 @@ angular.module('ggpApp')
       	});
     };
 
-    $scope.deleteMeeting = function(event, index) {
-      $scope.events.splice(index, 1);
+    $scope.deleteMeeting = function(meeting) {
+      var lsList = localStorageService.get('calendar');
+      console.log("lsList", lsList);
+      for (var i=0; i<lsList.length; i++) {
+        if (meeting.title === lsList[i].title ) {
+          lsList.splice(i, 1);
+        }
+      }
+      console.log("New List", lsList);
+      localStorageService.set('calendar', lsList);
+      $route.reload();
+      // lsList.splice(index, 1);
+      // console.log(lsList);
     };
 
     $scope.eventTimesChanged = function(event) {

@@ -66,7 +66,12 @@ angular.module("ggpApp", [
                 })                  
                 .when('/graph', {
                     templateUrl: 'components/graph/graph.html',
-                    controller: 'GraphCtrl'
+                    controller: 'GraphCtrl', 
+                    resolve: {
+                        graphData: function(initGraphData) {
+                            return initGraphData('a4ce3ae64bb34998bd28479d8b7f8201product236779');
+                        }
+                    }
                 })                  
                 .when('/comingsoon', {
                     templateUrl: 'components/comingsoon/comingsoon.html',

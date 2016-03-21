@@ -8,10 +8,10 @@
         </div>
       </div>
 
-      <!-- BEGIN: Type -->
+      <!-- BEGIN: Meeting Color -->
       <div class="form-group">
         <label for="type" class="col-sm-3">Meeting Color</label>
-        <div class="col-sm-8">
+        <div class="col-sm-5">
           <select ng-model="meeting.type" class="form-control">
               <option value="important">Red</option>
               <option value="warning">Yellow</option>
@@ -36,14 +36,14 @@
         </div>
       </div>
 
-      <!-- BEGIN: Start Date -->
+      <!-- BEGIN: Date -->
       <div class="form-group">
-        <label for="notes" class="col-sm-3">Start Time</label>
+        <label for="notes" class="col-sm-3">Date</label>
         <div class="col-sm-5">
           <p class="input-group">
             <input type="text" class="form-control" 
               uib-datepicker-popup="shortDate" 
-              ng-model="meeting.startsAt" 
+              ng-model="meeting.date" 
               is-open="showStartDatePicker" 
               close-text="Close" 
               alt-input-formats="altInputFormats" 
@@ -53,37 +53,20 @@
             </span>
           </p>
         </div>
-        <div class="col-sm-3">
-           <uib-timepicker ng-model="meeting.startsAt" 
-                           hour-step="1" 
-                           minute-step="1">
-            </uib-timepicker>
-        </div>
       </div>
 
-      <!-- BEGIN: End Date -->
+      <!-- BEGIN: TIME -->
       <div class="form-group">
-        <label for="notes" class="col-sm-3">End Time</label>
-        <div class="col-sm-5">
-          <p class="input-group">
-            <input type="text" class="form-control" 
-              uib-datepicker-popup="shortDate" 
-              ng-model="meeting.endsAt" 
-              is-open="showEndDatePicker" 
-              close-text="Close" 
-              alt-input-formats="altInputFormats" 
-              readonly/>
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-default" ng-click="openEndDate()"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-          </p>
-        </div>
-        <div class="col-sm-3">
-            <uib-timepicker ng-model="meeting.endsAt" 
-                           hour-step="1" 
-                           minute-step="1">
-            </uib-timepicker>
-        </div>
+        <label for="notes" class="col-sm-3">Time</label>
+          
+          <div class="col-sm-4">
+            <uib-timepicker ng-model="meeting.startTime"></uib-timepicker>
+          </div>
+
+          <div class="col-sm-4">
+            <uib-timepicker ng-model="meeting.endTime"></uib-timepicker>
+          </div>
+
       </div>
 
       <!-- BEGIN: Notes -->

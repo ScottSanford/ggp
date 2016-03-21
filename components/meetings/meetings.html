@@ -60,7 +60,7 @@
     on-event-click="meetingDetails(calendarEvent)"
     on-event-times-changed="eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
     delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-    on-delete-event-click="deleteMeeting(calendarEvent, $index)"
+    on-delete-event-click="deleteMeeting(calendarEvent)"
     cell-is-open="isCellOpen"
     day-view-start="06:00"
     day-view-end="22:00"

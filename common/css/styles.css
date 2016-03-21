@@ -154,7 +154,7 @@ ul.nested-list {
 
 ====================================================*/
 .title-container {
-	padding:40px 0px;
+	padding:10px 0px;
 	text-align: center;
 }
 
@@ -162,7 +162,7 @@ ul.nested-list {
 	border:2px solid #808080;
 	margin:10px 0;
 	border-radius: 4px;
-	min-height: 225px;
+	min-height: 250px;
 }
 
 .property-container div {
@@ -306,7 +306,7 @@ ul.nested-list {
 }
 
 .gallery-title {
-	margin-top:200px;
+	margin-top:190px;
 }
 
 .gallery-container {
@@ -420,6 +420,10 @@ ul.nested-list {
 	cursor: pointer;
 }
 
+
+.btn-group .btn-default {
+	width:100%;
+}
 /*===================================================
 
 				Tools Styles
@@ -562,9 +566,17 @@ and (orientation : portrait) {
 	}
 
 	.property-grid-container {
-		height:715px;
+		height:530px;
 		overflow-y: scroll;
         -webkit-overflow-scrolling: touch;
+	}	
+
+	.property-container {
+		min-height:230px;
+	}
+
+	.portrait-margin {
+		margin-top:15px;
 	}
 
 	/*Property View*/
@@ -581,7 +593,11 @@ and (orientation : portrait) {
 	}
 
 	.key-facts {
-		margin-top:275px;
+		margin-top:35px;
+	}
+
+	.center-text {
+		text-align: center;
 	}
 
 	/*Tool View*/
