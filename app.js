@@ -13,7 +13,8 @@ angular.module("ggpApp", [
         'angularjs-dropdown-multiselect'
         ])
 
-        .config(function ($routeProvider, $compileProvider) { 
+        .config(function ($routeProvider, $compileProvider, LightboxProvider) { 
+              LightboxProvider.templateUrl = 'common/tmpls/lightbox.html';
               $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/)/);
               
               $routeProvider

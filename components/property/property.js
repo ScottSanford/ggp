@@ -1,10 +1,14 @@
 angular.module('ggpApp')
 
 .controller('PropertyCtrl', function(
-	$scope, $location, $routeParams, 
+	$scope, $location, $rootScope, $routeParams, 
 	mfly, propertyData, CSVConverterSvc,
 	localStorageService, Lightbox){
 
+	$scope.mapNav     = false;
+	$scope.compareNav = false;
+	
+	console.log("propertyData :: " ,propertyData);
 	for (var i =0; i <propertyData.length; i++) {
 		if ($routeParams.id === propertyData[i].property_id) {
 			$scope.mall = propertyData[i];
@@ -15,6 +19,23 @@ angular.module('ggpApp')
 	mfly.getFolder("a4ce3ae64bb34998bd28479d8b7f8201product235988").then(function(data){
 		for (var i = 0; i < data.length; i++) {
 			if (data[i].propertyId === $routeParams.id) {
+
+				// show Map Nav
+				if (data[i].propertyId === '2009' || 
+				data[i].propertyId === "3802" ||
+				data[i].propertyId === '3812' ||
+				data[i].propertyId === '2173') {
+					$scope.mapNav = true;
+				}
+
+				// show Compare Nav
+				if (data[i].propertyId === '2009' || 
+				data[i].propertyId === "3802" ||
+				data[i].propertyId === '4386' ||
+				data[i].propertyId === '3812' ||
+				data[i].propertyId === '2173') {
+					$scope.compareNav = true;
+				}
 
 				mfly.getFolder(data[i].id).then(function(data){
 
@@ -37,8 +58,11 @@ angular.module('ggpApp')
 
 							$scope.photos = photoArray;
 
-					});
-					
+							$scope.openLightboxModal = function (index) {
+							    Lightbox.openModal($scope.photos, index);
+							};
+
+					});			
 					
 				});
 			}
@@ -64,6 +88,10 @@ angular.module('ggpApp')
 
 
 		});
+	};
+
+	$rootScope.goToAnnotations = function() {
+		console.log('anno clicked');
 	};
 
 	$scope.removeQuotes = function() {
@@ -124,9 +152,15 @@ angular.module('ggpApp')
 	//                   \/\/
 	//                    \/	
 
+
 	$scope.goToMap = function() {
 		$location.url('map');
 	};	
+
+	$scope.goToCompare = function() {
+		var id = $routeParams.id;
+		$location.url('graph?id=' + id);
+	}
 
 	$scope.goToMeetingBuilder = function() {
 		$location.url('meetings');

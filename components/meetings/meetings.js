@@ -14,6 +14,7 @@ angular.module('ggpApp')
         title: 'Gap Meeting',
         type: 'important',
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),      
+        endsAt: moment().startOf('day').add(8, 'hours').toDate(),      
         properties: [
          {
           id: 1, 
@@ -41,6 +42,7 @@ angular.module('ggpApp')
         title: 'Starbucks Meeting',
         type: 'success',
         startsAt: moment().startOf('day').add(8, 'hours').toDate(),      
+        startsAt: moment().startOf('day').add(9, 'hours').toDate(),      
         properties: [
          {
           id: 1, 
@@ -173,17 +175,13 @@ angular.module('ggpApp')
       // console.log(lsList);
     };
 
-    $scope.eventTimesChanged = function(event) {
-      console.log('Dropped or resized', event);
-    };
+
+    $rootScope.showStartDatePicker = false;
 
     $scope.openStartDate = function() {
+
  		   $scope.showStartDatePicker = !$scope.showStartDatePicker;
+       
     };    
-
-    $scope.openEndDate = function() {
- 		   $scope.showEndDatePicker = !$scope.showEndDatePicker;
-    };
-
 
 });
