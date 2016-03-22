@@ -5,24 +5,10 @@
 
 
 <div class="col-md-12">
-	
+
 	<div class="title-container">
 		<span class="uppercase color-gray font-size-30">Compare Chart</span>
 	</div>
-
-	<div class="padding-top-20">
-		<canvas id="line" class="chart chart-line" 
-				chart-data="data"
-  				chart-labels="labels" 
-  				chart-legend="true" 
-  				chart-series="series"
-  				chart-click="onClick">
-		</canvas> 
-	</div>
-
-</div>
-
-<div class="col-md-12">
 
 	<div class="row line-seperator" ng-hide="graphButtons">
 		<!-- BEGIN: Graph Name Dropdown -->
@@ -62,3 +48,20 @@
    	<button class="btn btn-default center-block margin-top-20" ng-show="graphButtons" ng-click="resetButtons()">Reset</button>
 
 </div>
+
+<div class="col-md-12">
+
+
+	<div class="padding-top-20">
+		<canvas id="line" class="chart chart-line" 
+				chart-data="data"
+  				chart-labels="labels" 
+  				chart-legend="true" 
+  				chart-series="series"
+  				chart-click="onClick"
+  				>
+		</canvas> 
+	</div>
+
+</div>
+

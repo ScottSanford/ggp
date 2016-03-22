@@ -589,6 +589,17 @@ and (orientation : landscape) {
 		margin-top:10px;
 	}
 
+	/*graph*/
+	canvas#line {
+		width:auto;
+		height:350px;
+	}
+
+	canvas {
+		display: block;
+		margin:0 auto;
+	}
+
 }
 
 /* iPad Portrait */
@@ -675,6 +686,7 @@ and (orientation : portrait) {
 	.legends {
 		display: none;
 	}
+
 }
 
 
