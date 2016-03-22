@@ -446,6 +446,10 @@ ul.nested-list {
 .cal-events-num {
 	position: relative;
 }
+
+.ngdialog.ngdialog-theme-default {
+	padding-top:25px;
+}
 /*===================================================
 
 				Tools Styles

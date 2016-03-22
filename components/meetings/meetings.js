@@ -5,7 +5,7 @@ angular.module('ggpApp')
 
     //These variables MUST be set as a minimum for the calendar to work
     $scope.calendarView = 'month';
-    $scope.viewDate = new Date();
+    $scope.todayDate = Date.now();
 
     // LocalStorage
 
@@ -16,21 +16,9 @@ angular.module('ggpApp')
         startsAt: moment().startOf('day').add(7, 'hours').toDate(),      
         endsAt: moment().startOf('day').add(8, 'hours').toDate(),      
         properties: [
-         {
-          id: 1, 
-          label: 'Oakbrook Center', 
-          propId: "4386"
-         },
-         {
-          id: 2, 
-          label: 'Baybrook', 
-          propId: "2009"
-         },
-         {
-          id: 3, 
-          label: 'Glendale Galleria', 
-          propId: "3802"
-         }
+         {id: 1, label: 'Oakbrook Center', propId: "4386"},
+         {id: 2, label: 'Baybrook', propId: "2009"},
+         {id: 3, label: 'Glendale Galleria', propId: "3802"}
         ],
         recursOn: 'year',
         draggable: true,
@@ -44,21 +32,9 @@ angular.module('ggpApp')
         startsAt: moment().startOf('day').add(8, 'hours').toDate(),      
         startsAt: moment().startOf('day').add(9, 'hours').toDate(),      
         properties: [
-         {
-          id: 1, 
-          label: 'Oakbrook Center', 
-          propId: "4386"
-         },
-         {
-          id: 2, 
-          label: 'Baybrook', 
-          propId: "2009"
-         },
-         {
-          id: 3, 
-          label: 'Glendale Galleria', 
-          propId: "3802"
-         }
+         {id: 1, label: 'Oakbrook Center', propId: "4386"},
+         {id: 2, label: 'Baybrook', propId: "2009"},
+         {id: 3, label: 'Glendale Galleria', propId: "3802"}
         ],
         recursOn: 'year',
         draggable: true,
@@ -80,7 +56,7 @@ angular.module('ggpApp')
 
     }
 
-    $scope.isCellOpen = false;
+    $scope.isCellOpen = true;
 
     $scope.createMeeting = function() {
 		ngDialog.open({ 
@@ -108,13 +84,11 @@ angular.module('ggpApp')
             console.log(start);
             var lsCalendar = localStorageService.get('calendar') || [];
             
-        //     // push meeting to array 
-        //     lsCalendar.push(meeting);
-        //     // push array to local storage
-        //     localStorageService.set('calendar', lsCalendar);
-        //     // set array to $scope
-			    	// $route.reload();
-			    	// $scope.closeThisDialog();
+            lsCalendar.push(meeting);
+            localStorageService.set('calendar', lsCalendar);
+
+			    	$route.reload();
+			    	$scope.closeThisDialog();
 
 			    }
 			}
@@ -179,8 +153,16 @@ angular.module('ggpApp')
     $rootScope.showStartDatePicker = false;
 
     $scope.openStartDate = function() {
-    
- 		   $scope.showStartDatePicker = !$scope.showStartDatePicker;
+
+       $scope.showStartDatePicker = !$scope.showStartDatePicker;
+       
+    };    
+
+    $rootScope.showEndDatePicker = false;
+
+    $scope.openEndDate = function() {
+
+ 		   $scope.showEndDatePicker = !$scope.showEndDatePicker;
        
     };    
 

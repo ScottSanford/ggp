@@ -19,7 +19,7 @@
           type="button"
           class="btn btn-default"
           mwl-date-modifier
-          date="viewDate"
+          date="todayDate"
           set-to-today>
           Today
         </button>
@@ -27,25 +27,16 @@
         <span
           class="btn fa fa-angle-left"
           mwl-date-modifier
-          date="viewDate"
+          date="todayDate"
           decrement="calendarView">
         </span>
         <span
           class="btn fa fa-angle-right"
           mwl-date-modifier
-          date="viewDate"
+          date="todayDate"
           increment="calendarView">
         </span>
       </div>
-    </div>
-
-    <div class="col-md-6 col-sm-12">
-    	<div class="pull-right">
-	        <button type="button" class="btn btn-default" ng-model="calendarView" uib-btn-radio="'day'">Day</button>
-	        <button type="button" class="btn btn-default" ng-model="calendarView" uib-btn-radio="'week'">Week</button>
-	        <button type="button" class="btn btn-default" ng-model="calendarView" uib-btn-radio="'month'">Month</button>
-	        <button type="button" class="btn btn-default" ng-model="calendarView" uib-btn-radio="'year'">Year</button>
-	    </div>
     </div>
 
   </div>
@@ -56,14 +47,13 @@
     events="events"
     view="calendarView"
     view-title="calendarTitle"
-    view-date="viewDate"
+    view-date="todayDate"
     on-event-click="meetingDetails(calendarEvent)"
-    on-event-times-changed="eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
     delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
     on-delete-event-click="deleteMeeting(calendarEvent)"
     cell-is-open="isCellOpen"
     day-view-start="00:00"
-    day-view-end="24:00"
+    day-view-end="23:00"
     day-view-split="30"
     cell-modifier="modifyCell(calendarCell)">
   </mwl-calendar>

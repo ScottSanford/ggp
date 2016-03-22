@@ -38,36 +38,56 @@
 
       <!-- BEGIN: Date -->
       <div class="form-group">
-        <label for="notes" class="col-sm-3">Date</label>
-        <div class="col-sm-5">
+        <label for="notes" class="col-sm-3">Start</label>
+        <div class="col-sm-4">
           <p class="input-group">
             <input type="text" class="form-control" 
               uib-datepicker-popup="shortDate" 
-              ng-model="meeting.date" 
+              ng-model="meeting.startsAt" 
               is-open="$parent.showStartDatePicker" 
               close-text="Close" 
               alt-input-formats="altInputFormats" 
+              readonly
               />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="openStartDate()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </p>
+
+          <div class="col-sm-4">
+            <uib-timepicker ng-model="meeting.startsAt"></uib-timepicker>
+          </div>
+
         </div>
-      </div>
+      </div>      
 
-      <!-- BEGIN: TIME -->
       <div class="form-group">
-        <label for="notes" class="col-sm-3">Time</label>
+        <label for="notes" class="col-sm-3">End</label>
+       
+        <div class="col-sm-4">
           
-          <div class="col-sm-4">
-            <uib-timepicker ng-model="meeting.startTime"></uib-timepicker>
-          </div>
+          <p class="input-group">
+            <input type="text" class="form-control" 
+              uib-datepicker-popup="shortDate" 
+              ng-model="meeting.endsAt" 
+              is-open="$parent.showEndDatePicker" 
+              close-text="Close" 
+              alt-input-formats="altInputFormats" 
+              readonly
+              />
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="openEndDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
 
           <div class="col-sm-4">
-            <uib-timepicker ng-model="meeting.endTime"></uib-timepicker>
+            <uib-timepicker ng-model="meeting.endsAt"></uib-timepicker>
           </div>
+
+        </div>
 
       </div>
+
 
       <!-- BEGIN: Notes -->
       <div class="form-group">

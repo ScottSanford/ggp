@@ -3,104 +3,110 @@ angular.module('ggpApp')
 .controller('GraphCtrl', function($scope, graphData){
 
   var graphs = [
-    {name: 'Baybrook Mall', propId: '2009'},
-    {name: 'Glendale Galleria CA', propId: '3802'},
-    {name: 'Oakbrook Mall', propId: '4386'},
-    {name: 'Stonebriar Center', propId: '3812'}, 
-    {name: 'Stonestown Galleria', propId: '2173'}
+    {label: 'Baybrook Mall', propId: '2009', id: 1},
+    {label: 'Glendale Galleria CA', propId: '3802', id: 2},
+    {label: 'Oakbrook Mall', propId: '4386', id: 3},
+    {label: 'Stonebriar Center', propId: '3812', id: 4}, 
+    {label: 'Stonestown Galleria', propId: '2173', id: 5}
   ];
 
-  $scope.graphs = graphs;
+  $scope.graphs = graphs; 
 
-  function initGraphObj(graphName , id) {
-        var graphArray = [];
+  Chart.defaults.global.scaleLabel = function(label){
+
+    var commas = label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
+
+    var dollarSign = "$" + commas;
+
+    return dollarSign;
+  }
+
+
+  Chart.defaults.global.tooltipTemplate = function(label){
+    
+    return label.datasetLabel + ': $' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  };   
+
+  Chart.defaults.global.multiTooltipTemplate = function(label){
+    
+    return label.datasetLabel + ': $' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  }; 
+  
+  $scope.labels = ["2012", "2013", "2014", "2015", "2016"];
+
+  function graphArray(_id) {
+        var graph = [];
         var sum16      = 0; 
         var sum15      = 0; 
         var sum14      = 0; 
         var sum13      = 0; 
         var sum12      = 0; 
-
+         
         for (var i=0; i < graphData.length; i++) {
-            if (graphData[i].id === id && graphData[i].year === '2016') {
+            if (graphData[i].id === _id && graphData[i].year === '2016') {
                 var total = graphData[i].total;
                 var number = Number(total.replace(/[^0-9\.]+/g,""));
                 sum16 += number;
             }            
-            if (graphData[i].id === id && graphData[i].year === '2015') {
+            if (graphData[i].id === _id && graphData[i].year === '2015') {
                 var total = graphData[i].total;
                 var number = Number(total.replace(/[^0-9\.]+/g,""));
                 sum15 += number;              
             }            
-            if (graphData[i].id === id && graphData[i].year === '2014') {
+            if (graphData[i].id === _id && graphData[i].year === '2014') {
                 var total = graphData[i].total;
                 var number = Number(total.replace(/[^0-9\.]+/g,""));
                 sum14 += number;               
             }            
-            if (graphData[i].id === id && graphData[i].year === '2013') {
+            if (graphData[i].id === _id && graphData[i].year === '2013') {
                 var total = graphData[i].total;
                 var number = Number(total.replace(/[^0-9\.]+/g,""));
                 sum13 += number;           
             }            
-            if (graphData[i].id === id && graphData[i].year === '2012') {
+            if (graphData[i].id === _id && graphData[i].year === '2012') {
                 var total = graphData[i].total;
                 var number = Number(total.replace(/[^0-9\.]+/g,""));
                 sum12 += number;        
             }
         };
 
-        graphArray.push(['2016' , sum16]);
-        graphArray.push(['2015' , sum15]);
-        graphArray.push(['2014' , sum14]);
-        graphArray.push(['2013' , sum13]);
-        graphArray.push(['2012' , sum12]);
+        graph.push(sum16);
+        graph.push(sum15);
+        graph.push(sum14);
+        graph.push(sum13);
+        graph.push(sum12);
 
-        var graphObj = {};
-        graphObj['key'] = graphName;
-        graphObj['values'] = graphArray;
-        var dataArray = [];
-        dataArray.push(graphObj);
-        return dataArray; 
+        return graph;
   };
 
-  $scope.showPropertyOnGraph = function(graph) {
-    $scope.data = initGraphObj(graph.name , graph.propId);
+  $scope.listTwo = false;
+  
+  $scope.graphOne = function(graph, index) {
+    $scope.listTwo = true;
+    $scope.series = [graph.label];
+    $scope.data = [graphArray(graph.propId)];
+    graphs.splice(index, 1);
+    console.log(graphs);
+  };  
+
+  $scope.graphTwo = function(graph) {
+    var newSeries = $scope.series;
+    var newData   = $scope.data;
+
+    newSeries.push(graph.label);
+    $scope.series = newSeries;
+
+    var chartData = graphArray(graph.propId);
+    console.log("Chart Data :: ", chartData);
+    newData.push(chartData);
+    $scope.data = newData;
   };
 
-  $scope.options = {
-            chart: {
-                type: 'cumulativeLineChart',
-                height: 450,
-            margin : {
-                    top: 20,
-                    right: 20,
-                    bottom: 60,
-                    left: 65
-                },
-                x: function(d){ return d[0]; },
-                y: function(d){ return d[1]/100; },
 
-                color: d3.scale.category10().range(),
-                duration: 300,
-                useInteractiveGuideline: true,
-                clipVoronoi: false,
-
-                xAxis: {
-                    axisLabel: 'Date',
-                    staggerLabels: true
-                },
-
-                yAxis: {
-                    axisLabel: 'Total Sales Volume',
-                    axisLabelDistance: 20
-                }
-            }
-        };
-
-        // $scope.data = [
-        //     {
-        //         key: "Baybrook Mall",
-        //         values: [ [ '2016' , 31406850] , [ '2015' , 21406850] , [ '2014' , 11406850] , [ '2013' , 27406850] , [ '2012' , 61406850]]
-        //     }
-        // ];
+  $scope.onClick = function (points, evt) {
+    console.log(points, evt);
+  };
 
 });

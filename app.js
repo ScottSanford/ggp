@@ -7,15 +7,18 @@ angular.module("ggpApp", [
         'LocalStorageModule', 
         'bootstrapLightbox', 
         'ngTouch', 
-        'nvd3', 
         'ui-rangeSlider',
         'ngDialog', 
         'angularjs-dropdown-multiselect', 
-        'ngPinchZoom'
+        'ngPinchZoom', 
+        'chart.js'
         ])
 
-        .config(function ($routeProvider, $compileProvider, LightboxProvider) { 
+        .config(function ($routeProvider, $compileProvider, LightboxProvider, ChartJsProvider) { 
               LightboxProvider.templateUrl = 'common/tmpls/lightbox.html';
+              ChartJsProvider.setOptions({ 
+                    // scaleLabel: "<%=value%>"
+              });
               $compileProvider.imgSrcSanitizationWhitelist(/^(mfly:|https:\/\/)/);
               
               $routeProvider
