@@ -1,6 +1,6 @@
 angular.module('ggpApp')
 
-.controller('GraphCtrl', function($scope, graphData){
+.controller('GraphCtrl', function($scope, $window, graphData){
 
   var graphs = [
     {label: 'Baybrook Mall', propId: '2009', id: 1},
@@ -9,6 +9,8 @@ angular.module('ggpApp')
     {label: 'Stonebriar Center', propId: '3812', id: 4}, 
     {label: 'Stonestown Galleria', propId: '2173', id: 5}
   ];
+
+  $scope.graphButtons = false;
 
   $scope.graphs = graphs; 
 
@@ -92,6 +94,7 @@ angular.module('ggpApp')
   };  
 
   $scope.graphTwo = function(graph) {
+    $scope.graphButtons = true;
     var newSeries = $scope.series;
     var newData   = $scope.data;
 
@@ -103,6 +106,10 @@ angular.module('ggpApp')
     newData.push(chartData);
     $scope.data = newData;
   };
+
+  $scope.resetButtons = function() {
+    $window.location.reload();
+  }
 
 
   $scope.onClick = function (points, evt) {
