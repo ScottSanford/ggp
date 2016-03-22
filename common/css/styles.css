@@ -162,6 +162,10 @@ ul.nested-list {
 	text-align: center;
 }
 
+.title-container span {
+	padding: 10px 0;
+}
+
 .property-container {
 	border:2px solid #808080;
 	margin:10px 0;
@@ -530,6 +534,15 @@ ul.nested-list {
 	border-right: 0;
 }
 
+.legends {
+	margin-top:240px;
+}
+
+.legend {
+	height:215px;
+	width:auto;
+}
+
 #map {
 	height:100vh;
 	width: 100%;
@@ -572,6 +585,10 @@ and (orientation : landscape) {
         -webkit-overflow-scrolling: touch;
 	}
 
+	.choose-map {
+		margin-top:10px;
+	}
+
 }
 
 /* iPad Portrait */
@@ -581,7 +598,8 @@ and (max-width : 1024px)
 and (orientation : portrait) { 
 
 	.title-container {
-		padding:25px 0;
+		padding:50px 0;
+		margin-top: 50px; 
 	}
 
 	*[role="presentation"]:last-of-type {
@@ -646,11 +664,16 @@ and (orientation : portrait) {
 
 	.mapinfo-container {
 		text-align: center;
+		padding-bottom: 25px;
 	}
 	
 	#map {
 		margin-top:150px;
 		height:100vh;
+	}
+
+	.legends {
+		display: none;
 	}
 }
 
