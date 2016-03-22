@@ -109,7 +109,7 @@ angular.module('ggpApp')
 	var lsStatus = localStorageService.get('status');
 	if (lsFavorites) {
 		lsFavorites.forEach(function(val, key){
-			if (val.id === $routeParams.id) {
+			if (val.property_id === $routeParams.id) {
 				
 				$scope.status = lsStatus !== undefined ? false : true; // orange star
 
