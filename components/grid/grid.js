@@ -77,10 +77,10 @@ angular.module('ggpApp')
 	$scope.stores = {
 		range: {
 			min: 0, 
-			max: 500
+			max: 325
 		}, 
 		minStart: 0, 
-		maxEnd: 500
+		maxEnd: 325
 	};
 
 	$scope.filterStores = function (minValue, maxValue) {

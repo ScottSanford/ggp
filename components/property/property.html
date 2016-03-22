@@ -73,7 +73,7 @@
 				<div class="pull-left font-size-20">Gallery</div>	
 				<div class="folder-name"
 					 ng-class="{'active-folder-name': $index == selected}"
-					 ng-repeat="folderName in folderNames" 
+					 ng-repeat="folderName in folderNames | limitTo:6" 
 					 ng-show="!$first"
 				 	 ng-click="showPhotos(folderName.id, $index)">{{ folderName.name }}
 				</div>
