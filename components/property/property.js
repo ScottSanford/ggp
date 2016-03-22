@@ -137,7 +137,7 @@ angular.module('ggpApp')
 	$scope.removeFromFavorites = function(mall) {
 		var favoriteList = localStorageService.get('favorites');
 		var newList = favoriteList.filter(function(item){
-			if (item.name !== mall.name) {
+			if (item.property_name !== mall.property_name) {
 				return item;
 			}
 		});

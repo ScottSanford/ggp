@@ -3,9 +3,6 @@ angular.module('ggpApp')
 .controller('FavoritesCtrl', function($scope, mfly,localStorageService){
 
 	var favorites = localStorageService.get('favorites');
-	console.log("Favorites :: ",favorites);
-
-	
 
 	mfly.search('@Banner').then(function(data){
 		
