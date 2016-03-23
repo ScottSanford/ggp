@@ -1,6 +1,6 @@
 angular.module('ggpApp')
 
-.controller('FavoritesCtrl', function($scope, mfly,localStorageService){
+.controller('FavoritesCtrl', function($scope, mfly,localStorageService, $route){
 
 	var favorites = localStorageService.get('favorites');
 
@@ -21,5 +21,10 @@ angular.module('ggpApp')
 		$scope.favorites = favorites;
 
 	});
+
+	$scope.removeFavorites = function() {
+		localStorageService.remove('favorites');
+		$route.reload();
+	};
 
 });

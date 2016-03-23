@@ -115,7 +115,7 @@ ol {
 .breadcrumb {
 	background-color: #fff;
 	margin-bottom:0px;
-	font-size:18px;
+	font-size:25px;
 }
 
 ul.nested-list {
@@ -411,6 +411,12 @@ ul.nested-list {
 	left:45px;
 }
 
+.remove-favorites {
+	position: absolute;
+	bottom:10px;
+	right:10px;
+}
+
 /*===================================================
 
 		        Meeting Builder Styles
@@ -609,8 +615,8 @@ and (max-width : 1024px)
 and (orientation : portrait) { 
 
 	.title-container {
-		padding:50px 0;
-		margin-top: 50px; 
+		padding:15px 0;
+		margin-top: 35px; 
 	}
 
 	*[role="presentation"]:last-of-type {
