@@ -367,6 +367,10 @@ ul.nested-list {
 				Favorites Styles
 
 ====================================================*/
+.favorites-container-relative {
+	position: relative;
+}
+
 .favorite-container {
 	min-height:475px;
 	border:2px solid #808080;
@@ -417,7 +421,7 @@ ul.nested-list {
 
 .remove-favorites {
 	position: absolute;
-	bottom:10px;
+	top:10px;
 	right:10px;
 }
 
@@ -618,6 +622,13 @@ and (orientation : landscape) {
 		height:570px;
 		overflow-y:scroll;
 		-webkit-overflow-scrolling: touch;
+	}
+
+	/*favorites*/
+	.favorites-container-relative {
+		height:606px;
+		overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;	
 	}
 
 }

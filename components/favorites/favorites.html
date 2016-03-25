@@ -7,8 +7,8 @@
 	<span class="uppercase color-gray font-size-30">Favorites</span>
 </div>
 
-<div class="row row-horizon">
-	<div ng-repeat="f in favorites" class="col-sm-4 col-md-3">
+<div class="row favorites-container-relative margin-top-20 padding-bottom-20">
+	<div ng-repeat="f in favorites" class="col-sm-4 col-md-3 margin-top-10 ">
 		<favorite-property favorite="f" propid="{{f.property_id}}"></favorite-property>
 	</div>
 </div>
