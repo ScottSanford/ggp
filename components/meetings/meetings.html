@@ -42,18 +42,21 @@
   </div>
 
   <br>
-
-  <mwl-calendar
-    events="events"
-    view="calendarView"
-    view-title="calendarTitle"
-    view-date="todayDate"
-    on-event-click="meetingDetails(calendarEvent)"
-    delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
-    on-delete-event-click="deleteMeeting(calendarEvent)"
-    cell-is-open="isCellOpen"
-    day-view-start="00:00"
-    day-view-end="23:00"
-    day-view-split="30"
-    cell-modifier="modifyCell(calendarCell)">
-  </mwl-calendar>
+<div class="row">
+  <div class="col-xs-12 calendar-container padding-bottom-20">
+    <mwl-calendar
+      events="events"
+      view="calendarView"
+      view-title="calendarTitle"
+      view-date="todayDate"
+      on-event-click="meetingDetails(calendarEvent)"
+      delete-event-html="'<i class=\'glyphicon glyphicon-remove\'></i>'"
+      on-delete-event-click="deleteMeeting(calendarEvent)"
+      cell-is-open="isCellOpen"
+      day-view-start="00:00"
+      day-view-end="23:00"
+      day-view-split="30"
+      cell-modifier="modifyCell(calendarCell)">
+    </mwl-calendar>
+  </div>
+</div>

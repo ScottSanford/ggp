@@ -426,6 +426,9 @@ ul.nested-list {
 		        Meeting Builder Styles
 
 ====================================================*/
+.calendar-container {
+	position: relative;
+}
 
 .cal-slide-content {
 	background-color: #eee;
@@ -608,6 +611,13 @@ and (orientation : landscape) {
 	canvas {
 		display: block;
 		margin:0 auto;
+	}
+
+	/*meeting*/
+	.calendar-container {
+		height:570px;
+		overflow-y:scroll;
+		-webkit-overflow-scrolling: touch;
 	}
 
 }
