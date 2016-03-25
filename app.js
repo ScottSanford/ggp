@@ -15,7 +15,7 @@ angular.module("ggpApp", [
         ])
 
         .config(function ($routeProvider, $compileProvider, LightboxProvider, ChartJsProvider) { 
-              LightboxProvider.templateUrl = 'common/tmpls/lightbox.html';
+              LightboxProvider.templateUrl = 'components/lightbox/lightbox.html';
               ChartJsProvider.setOptions({ 
                     // scaleLabel: "<%=value%>"
               });
@@ -39,7 +39,7 @@ angular.module("ggpApp", [
                             return initData('a4ce3ae64bb34998bd28479d8b7f8201product236173');
                         }
                     }
-                })                                
+                })                                                 
                 .when('/favorites', {
                     templateUrl: 'components/favorites/favorites.html',
                     controller: 'FavoritesCtrl'

@@ -13,8 +13,8 @@ angular.module('ggpApp')
   //                     \/ 
 
   var dropDownOne = [
-    {label: 'Property to Property', id: 1},
-    {label: 'Unit to Unit', id: 2}
+    {label: 'Property', id: 1},
+    {label: 'Property to Property', id: 2}
   ];
 
   $scope.initDropDown = dropDownOne;
@@ -26,9 +26,14 @@ angular.module('ggpApp')
     };
   $scope.initDropDownEvents = {
     onItemSelect: function(item) {
-      if (item.id == 1) {
-        $scope.propToProp = true;
-        $scope.unitToUnit = false;
+      if (item.id == 2) {
+        $scope.propToProp    = true;
+
+        $scope.unitToUnit    = false;
+
+        $scope.categoryUnits = false;
+        $scope.categoryList  = false;
+        $scope.unitList      = false;
       } else {
         $scope.unitToUnit = true;
         $scope.propToProp = false;
@@ -55,8 +60,6 @@ angular.module('ggpApp')
 
   $scope.getProperties = function() {
     
-    console.log($scope.propSelected);
-
     var properties = $scope.propSelected;
 
     var seriesNames = [];
@@ -78,7 +81,7 @@ angular.module('ggpApp')
   //                                                  \/
 
   $scope.unitProperties = uniques;
-  $scope.unitSelected   = [];
+  $scope.unitSelected   = {};
   $scope.unitSettings   = {
     displayProp: 'key', 
     externalIdProp: '', 
@@ -126,7 +129,8 @@ angular.module('ggpApp')
 
       categories.pop();
 
-      $scope.categoryList        = true;
+      $scope.categoryList = true;
+      $scope.unitList     = false;
       $scope.categoryListOptions = categories;
 
     } 
@@ -144,7 +148,8 @@ angular.module('ggpApp')
       });
 
       units.pop();
-      $scope.unitList        = true;
+      $scope.unitList     = true;
+      $scope.categoryList = false;
       $scope.unitListOptions = units;
     }
   }
@@ -188,7 +193,6 @@ angular.module('ggpApp')
   $scope.unitListSettings = dropDownSettings('storeName');
 
   $scope.getUnitToUnits = function() {
-    console.log($scope.unitListSelected);
 
     var properties = $scope.unitListSelected;
 
@@ -360,39 +364,6 @@ angular.module('ggpApp')
         graph.push(sum12);
 
         return graph;
-  };
-
-  $scope.listTwo = false;
-  
-  $scope.graphOne = function(graph, index) {
-    $scope.listTwo = true;
-    $scope.series = [graph.label];
-    $scope.data = [lineChartPoints(graph.propId)];
-    graphs.splice(index, 1);
-    console.log(graphs);
-  };  
-
-  $scope.graphTwo = function(graph) {
-    $scope.graphButtons = true;
-    var newSeries = $scope.series;
-    var newData   = $scope.data;
-
-    newSeries.push(graph.label);
-    $scope.series = newSeries;
-
-    var chartData = lineChartPoints(graph.propId);
-    console.log("Chart Data :: ", chartData);
-    newData.push(chartData);
-    $scope.data = newData;
-  };
-
-  $scope.resetButtons = function() {
-    $window.location.reload();
-  }
-
-
-  $scope.onClick = function (points, evt) {
-    console.log(points, evt);
   };
 
   Chart.defaults.global.scaleLabel = function(label){

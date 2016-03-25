@@ -226,6 +226,10 @@ ul.nested-list {
 	padding:10px 25px;
 }
 
+.ngrs-range-slider .ngrs-runner {
+	height:30px;
+}
+
 .property-grid-container {
 	position: relative;
 }

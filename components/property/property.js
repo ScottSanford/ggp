@@ -77,6 +77,7 @@ angular.module('ggpApp')
 			for (var i=0; i < data.length; i++) {
 				var obj = {};
 				obj['url'] = data[i].thumbnailUrl;
+				obj['id']  = data[i].id;
 				photoArray.push(obj);
 			}
 
@@ -86,20 +87,12 @@ angular.module('ggpApp')
 			    Lightbox.openModal($scope.photos, index);
 			};
 
-
 		});
 	};
 
 	$rootScope.goToAnnotations = function(id) {
 		mfly.openItem(id);
 	};
-
-	$scope.removeQuotes = function() {
-		return function predicateFunc(item) {
-	    	// return item.replace(/"/g,"");
-	  	};
-	};
-
 
 	// Add to Favorites \/\/\/
 	//                   \/\/
