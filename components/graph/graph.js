@@ -1,45 +1,124 @@
 angular.module('ggpApp')
 
-.controller('GraphCtrl', function($scope, $window, graphData){
+.controller('GraphCtrl', function($scope, $window, graphData, localStorageService){
+  //  ngShows
+  $scope.propToProp    = false;
+  $scope.unitToUnit    = false; 
+  $scope.propertyUnits = false;
 
-  var graphs = [
-    {label: 'Baybrook Mall', propId: '2009', id: 1},
-    {label: 'Glendale Galleria CA', propId: '3802', id: 2},
-    {label: 'Oakbrook Mall', propId: '4386', id: 3},
-    {label: 'Stonebriar Center', propId: '3812', id: 4}, 
-    {label: 'Stonestown Galleria', propId: '2173', id: 5}
+  // Initial List      \/\/\/
+  //                    \/\/
+  //                     \/ 
+
+  var dropDownOne = [
+    {label: 'Property to Property', id: 1},
+    {label: 'Unit to Unit', id: 2}
   ];
 
-  $scope.graphButtons = false;
+  $scope.initDropDown = dropDownOne;
+  $scope.initDropDownSelected = {};
+  $scope.initDropDownSettings = {
+      selectionLimit: 1, 
+      closeOnSelect: true, 
+      externalIdProp: '', 
+    };
+  $scope.initDropDownEvents = {
+    onItemSelect: function(item) {
+      if (item.id == 1) {
+        $scope.propToProp = true;
+        $scope.unitToUnit = false;
+      } else {
+        $scope.unitToUnit = true;
+        $scope.propToProp = false;
+      }
+    }
+  };
 
-  $scope.graphs = graphs; 
+  // Properties to Properties List   \/\/\/
+  //                                  \/\/
+  //                                   \/
+  var uniques = _.map(_.groupBy(graphData,function(doc){
+  return doc.id;
+  }),function(grouped){
+    return grouped[0];
+  });
 
-  Chart.defaults.global.scaleLabel = function(label){
+  $scope.propProperties = uniques;
+  $scope.propSelected = [];
+  $scope.propSettings = {
+    displayProp: 'key', 
+    externalIdProp: '', 
+    idProp: 'key'
+  };
 
-    var commas = label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
-
-    var dollarSign = "$" + commas;
-
-    return dollarSign;
-  }
-
-
-  Chart.defaults.global.tooltipTemplate = function(label){
+  $scope.getProperties = function() {
     
-    return label.datasetLabel + ': $' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    console.log($scope.propSelected);
 
-  };   
+    var properties = $scope.propSelected;
 
-  Chart.defaults.global.multiTooltipTemplate = function(label){
+    var seriesNames = [];
+    var chartData   = [];
+
+    properties.forEach(function(obj, index){
+      seriesNames.push(obj.key);
+      $scope.series = seriesNames;
+
+      chartData.push(lineChartPoints(obj.id));
+      $scope.data = chartData;
+    });
+
+  };
+
+
+  //  Properties for Unit List     \/\/\/
+  //                                \/\/
+  //                                 \/
+
+  $scope.unitProperties = uniques;
+  $scope.unitSelected   = [];
+  $scope.unitSettings   = {
+    displayProp: 'key', 
+    externalIdProp: '', 
+    idProp: 'key', 
+    selectionLimit: 1
+  };
+
+  $scope.getPropertyForUnits = function() {
+
+      var unitSelected = $scope.unitSelected;
+      
+      var propertyStores =  _.map(_.groupBy(graphData,function(data){
+          if (unitSelected.key === data.key) {
+            return data.storeName;
+          }
+        }),function(grouped){
+          return grouped[0];
+      });
+
+      propertyStores.pop()
+      console.log(propertyStores);
+      $scope.propertyUnits = true;
+      $scope.propUnits = propertyStores;
+
+  };
     
-    return label.datasetLabel + ': $' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  }; 
+  $scope.propUnitsSelected = [];
+  $scope.propUnitsSettings = {
+    displayProp: 'storeName', 
+    externalIdProp: '', 
+    idProp: 'storeName', 
+    scrollableHeight: '100px',
+    scrollable: true
+  };
+
+
   
   $scope.labels = ["2012", "2013", "2014", "2015", "2016"];
 
-  function graphArray(_id) {
-        var graph = [];
+  function lineChartPoints(_id) {
+        var graph      = [];
         var sum16      = 0; 
         var sum15      = 0; 
         var sum14      = 0; 
@@ -88,7 +167,7 @@ angular.module('ggpApp')
   $scope.graphOne = function(graph, index) {
     $scope.listTwo = true;
     $scope.series = [graph.label];
-    $scope.data = [graphArray(graph.propId)];
+    $scope.data = [lineChartPoints(graph.propId)];
     graphs.splice(index, 1);
     console.log(graphs);
   };  
@@ -101,7 +180,7 @@ angular.module('ggpApp')
     newSeries.push(graph.label);
     $scope.series = newSeries;
 
-    var chartData = graphArray(graph.propId);
+    var chartData = lineChartPoints(graph.propId);
     console.log("Chart Data :: ", chartData);
     newData.push(chartData);
     $scope.data = newData;
@@ -115,5 +194,28 @@ angular.module('ggpApp')
   $scope.onClick = function (points, evt) {
     console.log(points, evt);
   };
+
+  Chart.defaults.global.scaleLabel = function(label){
+
+    var commas = label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
+
+    var dollarSign = "$" + commas;
+
+    return dollarSign;
+  }
+
+
+  Chart.defaults.global.tooltipTemplate = function(label){
+    
+    return label.datasetLabel + ': $' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  };   
+
+  Chart.defaults.global.multiTooltipTemplate = function(label){
+    
+    return label.datasetLabel + ': $' + label.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  }; 
+
 
 });

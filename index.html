@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html ng-app="ggpApp">
   <head>
     <meta charset="UTF-8">
@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="common/libs/bootstrap/dist/css/bootstrap.css">    
     <link rel="stylesheet" href="common/libs/angular-rangeslider/angular.rangeSlider.css">
     <link rel="stylesheet" href="common/libs/font-awesome/css/font-awesome.css">
-    <link rel="stylesheet" href="common/libs/standardized-menu/css/jquery.mmenu.css">
-    <link rel="stylesheet" href="common/libs/standardized-menu/css/mfly-menu.css">
+    <link rel="stylesheet" href="common/js/standardized-menu/jquery.mmenu.css">
+    <link rel="stylesheet" href="common/js/standardized-menu/mfly-menu.css">
     <link rel="stylesheet" href="common/libs/angular-bootstrap/ui-bootstrap-csp.css">
     <link rel="stylesheet" href="common/libs/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="common/libs/ng-dialog/css/ngDialog.css">
@@ -36,7 +36,7 @@
           <li class="second-screen">
             <i class="fa fa-slideshare"></i> Second Screen
           </li>
-          <li class="collections">
+         <!--  <li class="collections">
             <i class="fa fa-plus"></i> Collections
           </li>
           <li class="email">
@@ -47,7 +47,7 @@
           </li>
           <li class="next">
             <i class="fa fa-arrow-right"></i> Next
-          </li>
+          </li> -->
           <li class="close-btn">
             <i class="fa fa-close"></i> Close
           </li>
@@ -64,6 +64,8 @@
   <script src="common/libs/angular/angular.js"></script>
 
   <!-- Dependancies -->
+  <script src="common/libs/lodash/dist/lodash.js"></script>
+  <script src="common/libs/underscore/underscore.js"></script>
   <script src="common/libs/angular-route/angular-route.js"></script>
   <script src="common/libs/angular-local-storage/dist/angular-local-storage.js"></script>
   <script src="common/libs/angular-touch/angular-touch.js"></script>
@@ -76,13 +78,12 @@
   <script src="common/libs/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
   <script src="common/libs/angular-rangeslider/angular.rangeSlider.js"></script>
   <script src="common/libs/angular-pinch-zoom/dist/ng-pinch-zoom.min.js"></script>
-  <script src="common/libs/lodash/dist/lodash.min.js"></script>
   <script src="common/libs/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js"></script>
   <script src="common/libs/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
-  <script src="common/libs/standardized-menu/js/jquery.mmenu.min.js"></script>
-  <script src="common/libs/standardized-menu/js/hamburger-menu.js"></script>
+  <script src="common/js/standardized-menu/jquery.mmenu.min.js"></script>
+  <script src="common/js/standardized-menu/hamburger-menu.js"></script>
   <script src="app.js"></script>
-  <script src="common/libs/standardized-menu/js/fastclick.js"></script>
+  <script src="common/js/standardized-menu/fastclick.js"></script>
   <script src="common/libs/mfly-commands/src/mflyCommands.js"></script>
 
   <!-- Factories -->

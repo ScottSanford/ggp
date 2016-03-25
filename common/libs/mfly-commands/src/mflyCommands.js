@@ -303,6 +303,19 @@ var mflyCommands = function () {
             doControlStatement(url);
         },
 
+        open: function (_id, bookmark) {
+            var url = prefix + "control/item/" + _id;
+            var params = {};
+            if (_isWeb()) {
+                params.returnurl = window.location.href;
+            }
+            if (bookmark) {
+                params.bookmark = bookmark;
+            }
+            url += '?' + $.param(params);
+            doControlStatement(url);
+        },
+
         openFolder: function (_id) {
             doControlStatement(prefix + "folder/" + _id);
         },
@@ -848,8 +861,19 @@ var mflyCommands = function () {
                     _internalGetData('logout', null, dfd);
                 });
             }
+        },
+
+        getRecentlyCreatedContent: function () {
+            return $.Deferred(function (dfd) {
+                _internalGetData('recentlycreated', null, dfd);
+			});
+		},
+        getLastViewedContent: function() {
+            return $.Deferred(function (dfd) {
+                _internalGetData('lastviewed', null, dfd);
+            });
         }
-    }
+    };
 }();
 
 /**

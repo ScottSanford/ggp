@@ -1,8 +1,8 @@
 /*
-  jQuery.mmenu CSS
+	jQuery.mmenu CSS
 */
 /*
-  jQuery.mmenu panels CSS
+	jQuery.mmenu panels CSS
 */
 .mm-menu.mm-horizontal > .mm-panel {
   -webkit-transition: left 0.4s ease;
@@ -86,13 +86,13 @@
       overflow: hidden;
       color: inherit;
       line-height: 20px;
-/*      display: block;*/
-      padding: 10px 10px 10px 30px;
+      display: block;
+      padding: 10px 10px 10px 20px;
       margin: 0; }
   .mm-list > li:not(.mm-subtitle):not(.mm-label):not(.mm-search):not(.mm-noresults):after {
-/*    content: '';
+    content: '';
     border-bottom-width: 1px;
-    border-bottom-style: solid;*/
+    border-bottom-style: solid;
     display: block;
     width: 100%;
     position: absolute;
@@ -222,7 +222,7 @@ html.mm-opened .mm-page {
   background: rgba(255, 255, 255, 0.05); }
 
 /*
-  jQuery.mmenu offcanvas addon CSS
+	jQuery.mmenu offcanvas addon CSS
 */
 .mm-page,
 .mm-fixed-top,
@@ -324,4 +324,4 @@ html.mm-opening .mm-fixed-bottom {
   html.mm-opening #mm-blocker,
   html.mm-opening .mm-fixed-top,
   html.mm-opening .mm-fixed-bottom {
-    left: 223px; } }
+    left: 230px; } }

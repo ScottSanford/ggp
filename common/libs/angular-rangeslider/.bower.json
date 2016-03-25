@@ -19,6 +19,5 @@
   },
   "_source": "git://github.com/danielcrisp/angular-rangeslider.git",
   "_target": "^0.0.14",
-  "_originalSource": "angular-rangeslider",
-  "_direct": true
+  "_originalSource": "angular-rangeslider"
 }

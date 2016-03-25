@@ -133,6 +133,7 @@ angular.module('ggpApp')
                         obj = {
                             id: currentline[0], 
                             key: currentline[1], 
+                            storeName: currentline[2],
                             year: currentline[12], 
                             total: currentline[26]
                         };

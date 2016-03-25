@@ -1,6 +1,6 @@
 {
   "name": "mfly-commands",
-  "version": "1.9.10",
+  "version": "1.11.0",
   "authors": [
     "nachiket mehta <nmehta@mediafly.com>",
     "jason shah <jshah@mediafly.com>"
@@ -26,14 +26,13 @@
   "dependencies": {
     "jquery": "~1.11.0"
   },
-  "_release": "1.9.10",
+  "_release": "1.11.0",
   "_resolution": {
     "type": "version",
-    "tag": "v1.9.10",
-    "commit": "91b71ffc7ceabfe8e87d92c1c4a8fac28c3de023"
+    "tag": "v1.11.0",
+    "commit": "49f17af330b80bbc3b2bc569a3243342b4d80813"
   },
   "_source": "git://github.com/Mediafly/mflyCommands.git",
   "_target": "^1.9.10",
-  "_originalSource": "mfly-commands",
-  "_direct": true
+  "_originalSource": "mfly-commands"
 }
