@@ -49,7 +49,8 @@ $(document).ready(function(){
 		mflyCommands.next();
 	})
 
-	$('.close').bind("touchstart click" , function(){
+	$('.close-btn').bind("touchstart click" , function(){
+		console.log('clicked close');
 		$('#menu').trigger("close.mm");
 		mflyCommands.close();
 	})

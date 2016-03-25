@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>GGP</title>
 
     <link rel="stylesheet" href="common/libs/bootstrap/dist/css/bootstrap.css">      
@@ -138,6 +139,66 @@
 
             // Prevents preventDefault from being called on document if it sees a scrollable div
             $('body').on('touchmove','.property-grid-container',function(e) {
+              if($(this)[0].scrollHeight > $(this).innerHeight()) {
+                    e.stopPropagation();
+                }
+            });
+
+            $('body').on('touchstart','.favorites-container-relative',function(e) {
+                // Only execute the below code once at a time
+                if (!scrolling) {
+                    scrolling = true;   
+                    if (e.currentTarget.scrollTop === 0) {
+                      e.currentTarget.scrollTop = 1;
+                    } else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
+                      e.currentTarget.scrollTop -= 1;
+                    }
+                    scrolling = false;
+                }
+            });
+
+            // Prevents preventDefault from being called on document if it sees a scrollable div
+            $('body').on('touchmove','.favorites-container-relative',function(e) {
+              if($(this)[0].scrollHeight > $(this).innerHeight()) {
+                    e.stopPropagation();
+                }
+            });
+
+            $('body').on('touchstart','.calendar-container',function(e) {
+                // Only execute the below code once at a time
+                if (!scrolling) {
+                    scrolling = true;   
+                    if (e.currentTarget.scrollTop === 0) {
+                      e.currentTarget.scrollTop = 1;
+                    } else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
+                      e.currentTarget.scrollTop -= 1;
+                    }
+                    scrolling = false;
+                }
+            });
+
+            // Prevents preventDefault from being called on document if it sees a scrollable div
+            $('body').on('touchmove','.calendar-container',function(e) {
+              if($(this)[0].scrollHeight > $(this).innerHeight()) {
+                    e.stopPropagation();
+                }
+            });            
+
+            $('body').on('touchstart','.dropdown-menu',function(e) {
+                // Only execute the below code once at a time
+                if (!scrolling) {
+                    scrolling = true;   
+                    if (e.currentTarget.scrollTop === 0) {
+                      e.currentTarget.scrollTop = 1;
+                    } else if (e.currentTarget.scrollHeight === e.currentTarget.scrollTop + e.currentTarget.offsetHeight) {
+                      e.currentTarget.scrollTop -= 1;
+                    }
+                    scrolling = false;
+                }
+            });
+
+            // Prevents preventDefault from being called on document if it sees a scrollable div
+            $('body').on('touchmove','.dropdown-menu',function(e) {
               if($(this)[0].scrollHeight > $(this).innerHeight()) {
                     e.stopPropagation();
                 }

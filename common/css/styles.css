@@ -374,7 +374,7 @@ ul.nested-list {
 .favorite-container {
 	min-height:475px;
 	border:2px solid #808080;
-	position: relative;
+	/*position: relative;*/
 }
 
 .favorite-container span {
@@ -628,7 +628,12 @@ and (orientation : landscape) {
 	.favorites-container-relative {
 		height:606px;
 		overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;	
+        -webkit-overflow-scrolling: touch;
+	}
+
+	/*chart*/
+	.dropdown-menu {
+	  -webkit-overflow-scrolling: touch;
 	}
 
 }
