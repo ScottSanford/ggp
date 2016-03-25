@@ -43,7 +43,7 @@
 	</div>	
 	<!-- OR -->
 	<!-- BEGIN: Unique Properties Dropdown -->
-	<div class="col-sm-4" ng-show="unitToUnit">	
+	<div class="col-sm-3" ng-show="unitToUnit">	
 		<div class="row">
 			<div class="col-sm-7">
 				<div class="font-size-16">Select Property</div>
@@ -59,18 +59,58 @@
 		</div>
 	</div>
 
-	<!-- BEGIN: Property Stores -->
-	<div class="col-sm-2" ng-show="propertyUnits">	
-		<div class="font-size-16">Select Units</div>
-		<div ng-dropdown-multiselect="" 
-			options="propUnits" 
-			selected-model="propUnitsSelected" 
-			extra-settings="propUnitsSettings"
-			events="propUnitsEvents">
+	<!-- BEGIN: Category or Units -->
+	<div class="col-sm-3" ng-show="categoryUnits">
+		<div class="row">
+			<div class="col-sm-7">	
+				<div class="font-size-16">Comparision</div>
+				<div ng-dropdown-multiselect="" 
+					options="categoryUnitsOptions" 
+					selected-model="categoryUnitsSelected" 
+					extra-settings="categoryUnitsSettings">
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<button class="btn btn-default margin-top-10" ng-click="categoryOrUnit()">Submit</button>
+			</div>
+		</div>
+	</div>	
+
+	<!-- BEGIN: Categories -->
+	<div class="col-sm-3" ng-show="categoryList">
+		<div class="row">
+			<div class="col-sm-7">	
+				<div class="font-size-16">Select Categories</div>
+				<div ng-dropdown-multiselect="" 
+					options="categoryListOptions" 
+					selected-model="categoryListSelected" 
+					extra-settings="categoryListSettings"
+					events="categoryListEvents">
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<button class="btn btn-default margin-top-10" ng-click="getCategoryToCategory()">Submit</button>
+			</div>
 		</div>
 	</div>
 
-</div>
+	<!-- BEGIN: Units -->
+	<div class="col-sm-3" ng-show="unitList">
+		<div class="row">
+			<div class="col-sm-7">	
+				<div class="font-size-16">Select Units</div>
+				<div ng-dropdown-multiselect="" 
+					options="unitListOptions" 
+					selected-model="unitListSelected" 
+					extra-settings="unitListSettings"
+					events="unitListEvents">
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<button class="btn btn-default margin-top-10" ng-click="getUnitToUnits()">Submit</button>
+			</div>
+		</div>
+	</div>
 
 <div class="col-md-12">
 

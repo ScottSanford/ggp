@@ -4,6 +4,8 @@ angular.module('ggpApp')
   //  ngShows
   $scope.propToProp    = false;
   $scope.unitToUnit    = false; 
+
+  $scope.categoryUnits = false;
   $scope.propertyUnits = false;
 
   // Initial List      \/\/\/
@@ -71,9 +73,9 @@ angular.module('ggpApp')
   };
 
 
-  //  Properties for Unit List     \/\/\/
-  //                                \/\/
-  //                                 \/
+  //  Choose Property for Category/Units Dropdown   \/\/\/
+  //                                                 \/\/
+  //                                                  \/
 
   $scope.unitProperties = uniques;
   $scope.unitSelected   = [];
@@ -85,10 +87,55 @@ angular.module('ggpApp')
   };
 
   $scope.getPropertyForUnits = function() {
+      
+      $scope.categoryUnits = true;
 
+  };
+    
+  //  Category/Units Dropdown   \/\/\/
+  //                             \/\/
+  //                              \/
+  var dropDownTwo = [
+    {label: 'Category to Category', id: 1},
+    {label: 'Unit to Unit', id: 2}
+  ];
+
+  $scope.categoryUnitsOptions  = dropDownTwo;
+  $scope.categoryUnitsSelected = {};
+  $scope.categoryUnitsSettings = {
+    selectionLimit: 1, 
+    closeOnSelect: true, 
+    externalIdProp: '',
+  };
+
+  $scope.categoryOrUnit = function() {
+
+    var selected = $scope.categoryUnitsSelected;
+    // category
+    if (selected.id == 1) {
+      
       var unitSelected = $scope.unitSelected;
       
-      var propertyStores =  _.map(_.groupBy(graphData,function(data){
+      var categories =  _.map(_.groupBy(graphData,function(data){
+          if (unitSelected.key === data.key) {
+            return data.category;
+          }
+        }),function(grouped){
+          return grouped[0];
+      });
+
+      categories.pop();
+
+      $scope.categoryList        = true;
+      $scope.categoryListOptions = categories;
+
+    } 
+    // unit
+    else {
+
+      var unitSelected = $scope.unitSelected;
+
+      var units =  _.map(_.groupBy(graphData,function(data){
           if (unitSelected.key === data.key) {
             return data.storeName;
           }
@@ -96,24 +143,67 @@ angular.module('ggpApp')
           return grouped[0];
       });
 
-      propertyStores.pop()
-      console.log(propertyStores);
-      $scope.propertyUnits = true;
-      $scope.propUnits = propertyStores;
+      units.pop();
+      $scope.unitList        = true;
+      $scope.unitListOptions = units;
+    }
+  }
 
+  //  Category List  \/\/\/
+  //                  \/\/
+  //                   \/
+  function dropDownSettings(_type) {
+    return {
+      displayProp: _type, 
+      externalIdProp: '', 
+      idProp: _type, 
+      scrollableHeight: '300px',
+      scrollable: true, 
+      enableSearch: true
+    }
   };
-    
 
-  $scope.propUnitsSelected = [];
-  $scope.propUnitsSettings = {
-    displayProp: 'storeName', 
-    externalIdProp: '', 
-    idProp: 'storeName', 
-    scrollableHeight: '100px',
-    scrollable: true
+  $scope.categoryListSelected = [];
+  $scope.categoryListSettings = dropDownSettings('category');
+  $scope.getCategoryToCategory = function() {
+    var selected = $scope.categoryListSelected;
+
+    var seriesNames = [];
+    var chartData   = [];
+
+    selected.forEach(function(obj, index){
+      seriesNames.push(obj.category);
+      $scope.series = seriesNames;
+
+      chartData.push(categoryChartPoints(obj.category, obj.key));
+      $scope.data = chartData;
+    });
   };
 
+  //  Unit List  \/\/\/
+  //              \/\/
+  //               \/
 
+  $scope.unitListSelected = [];
+  $scope.unitListSettings = dropDownSettings('storeName');
+
+  $scope.getUnitToUnits = function() {
+    console.log($scope.unitListSelected);
+
+    var properties = $scope.unitListSelected;
+
+    var seriesNames = [];
+    var chartData   = [];
+
+    properties.forEach(function(obj, index){
+      seriesNames.push(obj.storeName);
+      $scope.series = seriesNames;
+
+      chartData.push(unitChartPoints(obj.storeName, obj.key));
+      $scope.data = chartData;
+    }); 
+  };
+  
   
   $scope.labels = ["2012", "2013", "2014", "2015", "2016"];
 
@@ -147,6 +237,116 @@ angular.module('ggpApp')
                 sum13 += number;           
             }            
             if (graphData[i].id === _id && graphData[i].year === '2012') {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum12 += number;        
+            }
+        };
+
+        graph.push(sum16);
+        graph.push(sum15);
+        graph.push(sum14);
+        graph.push(sum13);
+        graph.push(sum12);
+
+        return graph;
+  };  
+
+  function unitChartPoints(_store, _property) {
+        var graph      = [];
+        var sum16      = 0; 
+        var sum15      = 0; 
+        var sum14      = 0; 
+        var sum13      = 0; 
+        var sum12      = 0; 
+         
+        for (var i=0; i < graphData.length; i++) {
+            if ((graphData[i].storeName === _store) && 
+                (graphData[i].year === '2016') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum16 += number;
+            }            
+            if ((graphData[i].storeName === _store) && 
+                (graphData[i].year === '2015') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum15 += number;              
+            }            
+            if ((graphData[i].storeName === _store) && 
+                (graphData[i].year === '2014') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum14 += number;               
+            }            
+            if ((graphData[i].storeName === _store) && 
+                (graphData[i].year === '2013') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum13 += number;           
+            }            
+            if ((graphData[i].storeName === _store) && 
+                (graphData[i].year === '2012') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum12 += number;        
+            }
+        };
+
+        graph.push(sum16);
+        graph.push(sum15);
+        graph.push(sum14);
+        graph.push(sum13);
+        graph.push(sum12);
+
+        return graph;
+  };  
+
+  function categoryChartPoints(_category, _property) {
+        var graph      = [];
+        var sum16      = 0; 
+        var sum15      = 0; 
+        var sum14      = 0; 
+        var sum13      = 0; 
+        var sum12      = 0; 
+         
+        for (var i=0; i < graphData.length; i++) {
+            if ((graphData[i].category === _category) && 
+                (graphData[i].year === '2016') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum16 += number;
+            }            
+            if ((graphData[i].category === _category) && 
+                (graphData[i].year === '2015') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum15 += number;              
+            }            
+            if ((graphData[i].category === _category) && 
+                (graphData[i].year === '2014') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum14 += number;               
+            }            
+            if ((graphData[i].category === _category) && 
+                (graphData[i].year === '2013') && 
+                (graphData[i].key === _property)) {
+                var total = graphData[i].total;
+                var number = Number(total.replace(/[^0-9\.]+/g,""));
+                sum13 += number;           
+            }            
+            if ((graphData[i].category === _category) && 
+                (graphData[i].year === '2012') && 
+                (graphData[i].key === _property)) {
                 var total = graphData[i].total;
                 var number = Number(total.replace(/[^0-9\.]+/g,""));
                 sum12 += number;        

@@ -134,6 +134,7 @@ angular.module('ggpApp')
                             id: currentline[0], 
                             key: currentline[1], 
                             storeName: currentline[2],
+                            category: currentline[7],
                             year: currentline[12], 
                             total: currentline[26]
                         };
