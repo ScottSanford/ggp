@@ -152,6 +152,14 @@ ul.nested-list {
 	width:90%;
 }
 
+.list-comma::after {
+  content: ', ';
+}
+
+.list-comma:last-child::after {
+  content: '';
+}
+
 /*===================================================
 
 				Grid Styles

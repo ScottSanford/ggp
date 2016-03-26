@@ -2,11 +2,13 @@ angular.module('ggpApp')
 
 .controller('GraphCtrl', function($scope, $window, graphData, localStorageService){
   //  ngShows
+  $scope.chartOutputOne   = false;
+  $scope.chartOutputTwo   = false;
+  $scope.chartOutputThree = false;
   $scope.propToProp    = false;
   $scope.unitToUnit    = false; 
-
   $scope.categoryUnits = false;
-  $scope.propertyUnits = false;
+  $scope.buttonOne     = false;
 
   // Initial List      \/\/\/
   //                    \/\/
@@ -23,6 +25,7 @@ angular.module('ggpApp')
       selectionLimit: 1, 
       closeOnSelect: true, 
       externalIdProp: '', 
+      smartButtonMaxItems: 1
     };
   $scope.initDropDownEvents = {
     onItemSelect: function(item) {
@@ -34,9 +37,15 @@ angular.module('ggpApp')
         $scope.categoryUnits = false;
         $scope.categoryList  = false;
         $scope.unitList      = false;
+        $scope.chartOutputOne = false;
+        $scope.chartOutputTwo = false;
+        $scope.chartOutputThree = false;
       } else {
         $scope.unitToUnit = true;
         $scope.propToProp = false;
+        $scope.chartOutputOne = false;
+        $scope.chartOutputTwo = false;
+        $scope.chartOutputThree = false;
       }
     }
   };
@@ -55,8 +64,20 @@ angular.module('ggpApp')
   $scope.propSettings = {
     displayProp: 'key', 
     externalIdProp: '', 
-    idProp: 'key'
+    idProp: 'key', 
+    smartButtonMaxItems: 1
   };
+  $scope.unitPropertiesEvents = {
+    onItemSelect: function () {
+      $scope.buttonOne     = true;
+      $scope.categoryUnits = false;
+      $scope.categoryList  = false;
+      $scope.unitList      = false;
+      $scope.chartOutputOne = false;
+      $scope.chartOutputTwo = false;
+      $scope.chartOutputThree = false;
+    }
+  }
 
   $scope.getProperties = function() {
     
@@ -73,6 +94,10 @@ angular.module('ggpApp')
       $scope.data = chartData;
     });
 
+    $scope.chartOutputOne = true;
+    $scope.chartOutputTwo = false;
+    $scope.chartOutputThree = false;
+
   };
 
 
@@ -86,13 +111,16 @@ angular.module('ggpApp')
     displayProp: 'key', 
     externalIdProp: '', 
     idProp: 'key', 
-    selectionLimit: 1
+    selectionLimit: 1, 
+    smartButtonMaxItems: 1
   };
 
   $scope.getPropertyForUnits = function() {
       
-      $scope.categoryUnits = true;
-
+      $scope.categoryUnits  = true;
+      $scope.chartOutputOne = false;
+      $scope.chartOutputTwo = false;
+      $scope.chartOutputThree = false;
   };
     
   //  Category/Units Dropdown   \/\/\/
@@ -100,7 +128,7 @@ angular.module('ggpApp')
   //                              \/
   var dropDownTwo = [
     {label: 'Category to Category', id: 1},
-    {label: 'Unit to Unit', id: 2}
+    {label: 'Tenant to Tenant', id: 2}
   ];
 
   $scope.categoryUnitsOptions  = dropDownTwo;
@@ -109,10 +137,19 @@ angular.module('ggpApp')
     selectionLimit: 1, 
     closeOnSelect: true, 
     externalIdProp: '',
+    smartButtonMaxItems: 1
   };
+  $scope.categoryUnitsEvents = {
+    onItemSelect: function() {
+      $scope.categoryList  = false;
+      $scope.unitList      = false;
+    }
+  }
 
   $scope.categoryOrUnit = function() {
-
+    $scope.chartOutputOne = false;
+    $scope.chartOutputTwo = false;
+    $scope.chartOutputThree = false;
     var selected = $scope.categoryUnitsSelected;
     // category
     if (selected.id == 1) {
@@ -164,13 +201,17 @@ angular.module('ggpApp')
       idProp: _type, 
       scrollableHeight: '300px',
       scrollable: true, 
-      enableSearch: true
+      enableSearch: true, 
+      smartButtonMaxItems: 1
     }
   };
 
   $scope.categoryListSelected = [];
   $scope.categoryListSettings = dropDownSettings('category');
   $scope.getCategoryToCategory = function() {
+    $scope.chartOutputTwo = true;
+    $scope.chartOutputOne = false;
+    $scope.chartOutputThree = false;
     var selected = $scope.categoryListSelected;
 
     var seriesNames = [];
@@ -193,7 +234,9 @@ angular.module('ggpApp')
   $scope.unitListSettings = dropDownSettings('storeName');
 
   $scope.getUnitToUnits = function() {
-
+    $scope.chartOutputThree = true;
+    $scope.chartOutputOne = false;
+    $scope.chartOutputTwo = false;
     var properties = $scope.unitListSelected;
 
     var seriesNames = [];

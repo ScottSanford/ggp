@@ -5,12 +5,43 @@
 
 
 <div class="col-md-12">
-
-	<div class="title-container">
-		<span class="uppercase color-gray font-size-30">Chart Analysis</span>
+	<!-- PROPERTY TO PROPERTY -->
+	<div ng-show="chartOutputOne">
+		<div>
+			Property Analysis of: 
+			<b class="list-comma" ng-repeat="prop in propSelected">
+				{{prop.key}}
+			</b>
+		
+		</div>
+		<div>
+			<b class="list-comma" ng-repeat="tenant in unitListSelected" ng-show="unitToUnit">{{ tenant.storeName }}</b>
+		</div>
+	</div>
+	<!-- CATEGORIES -->
+	<div ng-show="chartOutputTwo">
+		<div>
+			Property Analysis of: 
+			<b>{{unitSelected.key}}</b>
+		</div>
+		<div>
+			{{ categoryUnitsSelected.label }} 
+			<b class="list-comma" ng-repeat="category in categoryListSelected" ng-show="unitToUnit">{{ category.category }}</b>
+		</div>
+	</div>
+	<!-- TENANTS -->
+	<div ng-show="chartOutputThree">
+		<div>
+			Property Analysis of: 
+			<b>{{unitSelected.key}}</b>
+		</div>
+		<div>
+			{{ categoryUnitsSelected.label }} 
+			<b class="list-comma" ng-repeat="tenant in unitListSelected" ng-show="unitToUnit">{{ tenant.storeName }}</b>
+		</div>
 	</div>
 
-	<div class="row line-seperator padding-top-10" ng-hide="graphButtons">
+	<div class="row line-seperator padding-top-10">
 	
 	<!-- STEP 1 -->
 	<!-- BEGIN: Initial Dropdown -->
@@ -25,11 +56,29 @@
 	</div>
 
 	<!-- STEP 2 -->
-	<!-- BEGIN: Unique Properties Dropdown -->
+	<!-- BEGIN: Property #2 -->
+	<div class="col-sm-3" ng-show="unitToUnit">	
+		<div class="row">
+			<div class="col-sm-7">
+				<div class="font-size-16">Property</div>
+				<div ng-dropdown-multiselect="" 
+					options="unitProperties" 
+					selected-model="unitSelected" 
+					extra-settings="unitSettings"
+					events="unitPropertiesEvents">
+				</div>
+			</div>
+			<div class="col-sm-5">
+				<button class="btn btn-default margin-top-10" ng-click="getPropertyForUnits()" ng-show="buttonOne">Next</button>
+			</div>
+		</div>
+	</div>
+	<!-- OR -->
+	<!-- BEGIN: Property to Property Dropdown #2 -->
 	<div class="col-sm-4" ng-show="propToProp">	
 		<div class="row">
 			<div class="col-sm-7">
-				<div class="font-size-16">Select Properties</div>
+				<div class="font-size-16">Properties</div>
 				<div ng-dropdown-multiselect="" 
 				options="propProperties" 
 				selected-model="propSelected" 
@@ -41,25 +90,8 @@
 			</div>
 		</div>
 	</div>	
-	<!-- OR -->
-	<!-- BEGIN: Unique Properties Dropdown -->
-	<div class="col-sm-3" ng-show="unitToUnit">	
-		<div class="row">
-			<div class="col-sm-7">
-				<div class="font-size-16">Select Property</div>
-				<div ng-dropdown-multiselect="" 
-					options="unitProperties" 
-					selected-model="unitSelected" 
-					extra-settings="unitSettings">
-				</div>
-			</div>
-			<div class="col-sm-5">
-				<button class="btn btn-default margin-top-10" ng-click="getPropertyForUnits()">Submit</button>
-			</div>
-		</div>
-	</div>
 
-	<!-- BEGIN: Category or Units -->
+	<!-- BEGIN: PROPERTY #3 -->
 	<div class="col-sm-3" ng-show="categoryUnits">
 		<div class="row">
 			<div class="col-sm-7">	
@@ -67,20 +99,21 @@
 				<div ng-dropdown-multiselect="" 
 					options="categoryUnitsOptions" 
 					selected-model="categoryUnitsSelected" 
-					extra-settings="categoryUnitsSettings">
+					extra-settings="categoryUnitsSettings"
+					events="categoryUnitsEvents">
 				</div>
 			</div>
 			<div class="col-sm-5">
-				<button class="btn btn-default margin-top-10" ng-click="categoryOrUnit()">Submit</button>
+				<button class="btn btn-default margin-top-10" ng-click="categoryOrUnit()">Next</button>
 			</div>
 		</div>
 	</div>	
 
-	<!-- BEGIN: Categories -->
+	<!-- BEGIN: PROPERTY #4 -->
 	<div class="col-sm-3" ng-show="categoryList">
 		<div class="row">
 			<div class="col-sm-7">	
-				<div class="font-size-16">Select Categories</div>
+				<div class="font-size-16">Categories</div>
 				<div ng-dropdown-multiselect="" 
 					options="categoryListOptions" 
 					selected-model="categoryListSelected" 
@@ -93,12 +126,12 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- BEGIN: Units -->
+	<!-- OR -->
+	<!-- BEGIN: PROPERTY #4 -->
 	<div class="col-sm-3" ng-show="unitList">
 		<div class="row">
 			<div class="col-sm-7">	
-				<div class="font-size-16">Select Units</div>
+				<div class="font-size-16">Tenants</div>
 				<div ng-dropdown-multiselect="" 
 					options="unitListOptions" 
 					selected-model="unitListSelected" 
