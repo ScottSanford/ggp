@@ -77,13 +77,13 @@ angular.module('ggpApp')
             meeting['draggable']   = false;
             meeting['resizeable']  = true;
             meeting['properties']  = $scope.selectedProperties;
+            meeting['collectionProperties'] = $scope.selectedCollection[0].properties;
 
             var start = meeting.startTime;
             var end   = meeting.endTime;
             
-            console.log(start);
             var lsCalendar = localStorageService.get('calendar') || [];
-            
+            console.log('Meeting -->', meeting);
             lsCalendar.push(meeting);
             localStorageService.set('calendar', lsCalendar);
 
@@ -107,6 +107,16 @@ angular.module('ggpApp')
 
   $scope.propertyList = reformattedProperties;
 
+  $scope.selectedCollection = [];
+  var lscollectionNames = localStorageService.get('collectionNames');
+  $scope.collectionList = lscollectionNames;
+  $scope.collectionSettings = {
+    displayProp: 'name', 
+    externalIdProp: '', 
+    idProp: 'name', 
+    smartButtonMaxItems: 1
+  };
+
   $scope.dropDownSettings = {
       enableSearch: true, 
       scrollableHeight: '300px',
@@ -125,6 +135,7 @@ angular.module('ggpApp')
             $scope.meeting = event;
 
             $scope.properties = event.properties;
+            $scope.collection = event.collectionProperties;
 
             $scope.goToProperty = function(id) {
               $scope.closeThisDialog();
@@ -136,17 +147,13 @@ angular.module('ggpApp')
 
     $scope.deleteMeeting = function(meeting) {
       var lsList = localStorageService.get('calendar');
-      console.log("lsList", lsList);
       for (var i=0; i<lsList.length; i++) {
         if (meeting.title === lsList[i].title ) {
           lsList.splice(i, 1);
         }
       }
-      console.log("New List", lsList);
       localStorageService.set('calendar', lsList);
       $route.reload();
-      // lsList.splice(index, 1);
-      // console.log(lsList);
     };
 
 

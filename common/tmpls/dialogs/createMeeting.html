@@ -34,6 +34,19 @@
             extra-settings="dropDownSettings">
           </div>
         </div>
+      </div>      
+
+      <!-- BEGIN: Select Properties -->
+      <div class="form-group">
+        <label for="properties" class="col-sm-3">Select Collection</label>
+        <div class="col-sm-8">
+          <div ng-dropdown-multiselect="" 
+            options="collectionList" 
+            selected-model="selectedCollection" 
+            ng-model="meeting.selectedCollection"
+            extra-settings="collectionSettings">
+          </div>
+        </div>
       </div>
 
       <!-- BEGIN: Date -->

@@ -13,7 +13,16 @@
 	</div>
 </div>
 
-<div class="row margin-top-18">
+<div class="row margin-top-20">
+	<div class="col-sm-3 font-size-18 bold">Collection Properties</div>
+	<div class="col-sm-9"> 
+		<ul class="font-size-16 selected-properties">
+			<li ng-repeat="collection in collection" ng-click="goToProperty(collection.property_id)">{{ collection.property_name }}</li>
+		</ul>
+	</div>
+</div>
+
+<div class="row margin-top-20">
 	<div class="col-sm-3 font-size-18 bold">Notes</div>
 	<div class="col-sm-9">{{ meeting.notes }}</div>
 </div>
