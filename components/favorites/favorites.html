@@ -3,13 +3,17 @@
   <li>Collections</li>
 </ol>
 
+	<span class="fa fa-list fa-2x color-orange" ng-click="openCollectionDialogBox()"></span>
+	<span class="uppercase color-gray font-size-30 margin-left-15">{{title.name}}</span>
 
-<div class="title-container">
-	<span class="uppercase color-gray font-size-30">Collections</span>
+<div class="row">
+	<form class="form-inline">
+		<div class="form-group">
+			<textarea class="form-control margin-left-15" rows="1" ng-model="collectionNotes"></textarea>
+		</div>
+		<button class="btn btn-default" type="submit" ng-click="addNotesToCollection(collectionNotes)">Add Notes to Collection</button>
+	</form>
 </div>
-
-<span class="fa fa-list fa-2x color-orange" ng-click="openCollectionDialogBox()"></span>
-
 <div class="row favorites-container-relative">
 	<div ng-repeat="f in favorites">
 		<favorite-property favorite="f" propid="{{f.property_id}}"></favorite-property>

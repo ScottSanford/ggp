@@ -92,6 +92,10 @@ ol {
 	margin:15px;
 }
 
+.margin-left-15 {
+	margin-left:15px;
+}
+
 .margin-top-10 {
 	margin-top:10px;
 }
@@ -375,6 +379,10 @@ ul.nested-list {
 				Favorites Styles
 
 ====================================================*/
+.form-inline .form-group textarea {
+	width:500px;
+}
+
 .favorites-container-relative {
 	position: relative;
 }
