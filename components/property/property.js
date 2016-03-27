@@ -131,33 +131,43 @@ angular.module('ggpApp')
 
 				$scope.addToSpecificCollection = function(collection, mall) {
 					var lsCNames = localStorageService.get('collectionNames');
-					
-					var successMessage = mall.property_name + ' was added to ' + collection.name + '!';
-					var infoMessage    = mall.property_name + ' has already been added to ' + collection.name + '!';
-					
-					lsCNames.forEach(function(obj, index){
-						if (obj.name === collection.name) {
-							// check to make sure property hasn't been added already
-							var props = obj.properties;
-							if (props.length == 0) {
-								obj.properties.push(mall);
-								localStorageService.set('collectionNames', lsCNames);
-        						Flash.create('success', successMessage);
-							} else {
-								props.forEach(function(o, i){
-									if (o.property_name === mall.property_name) {
-										Flash.create('danger', infoMessage);
-									} else {
-										// push property into collection array
-										obj.properties.push(mall);
-										// after adding property to array, add collections back to LS
-										localStorageService.set('collectionNames', lsCNames);
-										Flash.create('success', successMessage);
-									}
-								});
+					var successMessage = mall.property_name + ' was added to "' + collection.name + '" collection!';
+					var infoMessage    = mall.property_name + ' has already been added to "' + collection.name + '" collection!';
+
+					// right at the beginning
+					if (!lsCNames) {
+						collections.forEach(function(obj, i){
+							obj.properties.push(mall);
+						});
+						localStorageService.set('collectionNames', collections);
+						Flash.create('success', successMessage);
+					} else {
+
+						lsCNames.forEach(function(obj, index){
+							if (obj.name === collection.name) {
+								// check to make sure property hasn't been added already
+								var props = obj.properties;
+								if (props.length == 0) {
+									obj.properties.push(mall);
+									localStorageService.set('collectionNames', lsCNames);
+	        						Flash.create('success', successMessage);
+								} else {
+									props.forEach(function(o, i){
+										if (o.property_name === mall.property_name) {
+											Flash.create('danger', infoMessage);
+										} else {
+											// push property into collection array
+											obj.properties.push(mall);
+											// after adding property to array, add collections back to LS
+											localStorageService.set('collectionNames', lsCNames);
+											Flash.create('success', successMessage);
+										}
+									});
+								}
 							}
-						}
-					});
+						});
+					}
+					
 
 				}
 				
