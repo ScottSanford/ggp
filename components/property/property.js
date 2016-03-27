@@ -145,29 +145,32 @@ angular.module('ggpApp')
 
 						lsCNames.forEach(function(obj, index){
 							if (obj.name === collection.name) {
-								// check to make sure property hasn't been added already
 								var props = obj.properties;
 								if (props.length == 0) {
-									obj.properties.push(mall);
+									props.push(mall);
 									localStorageService.set('collectionNames', lsCNames);
 	        						Flash.create('success', successMessage);
 								} else {
-									props.forEach(function(o, i){
-										if (o.property_name === mall.property_name) {
-											Flash.create('danger', infoMessage);
-										} else {
-											// push property into collection array
-											obj.properties.push(mall);
-											// after adding property to array, add collections back to LS
-											localStorageService.set('collectionNames', lsCNames);
-											Flash.create('success', successMessage);
+									// check to make sure property hasn't been added to collection list
+									var index = props.find(function(obj){
+										if (obj.property_name === mall.property_name) {
+											return obj;
 										}
 									});
+									if (index) {
+										Flash.create('danger', infoMessage);
+									} else {
+										obj.properties.push(mall);
+									// 		// after adding property to array, add collections back to LS
+										localStorageService.set('collectionNames', lsCNames);
+										Flash.create('success', successMessage);
+									}
 								}
 							}
 						});
 					}
 					
+
 
 				}
 				
@@ -175,49 +178,6 @@ angular.module('ggpApp')
 		});
 
 	};
-	// var lsFavorites = localStorageService.get('favorites');
-	// var lsStatus = localStorageService.get('status');
-	// if (lsFavorites) {
-	// 	lsFavorites.forEach(function(val, key){
-	// 		if (val.property_id === $routeParams.id) {
-				
-	// 			$scope.status = lsStatus !== undefined ? false : true; // orange star
-
-	// 		} else {
-	// 			$scope.status = true; // white star
-	// 		}
-	// 	});
-	// } 
-
-	// if (lsFavorites === null || lsFavorites.length === 0) {
-	// 	$scope.status = true;
-	// } 
-
-	// $scope.addToFavorites = function(mall){
-		
-	// 	var favoriteList = localStorageService.get('favorites') || [];
-
-	// 	favoriteList.push(mall);
-	// 	localStorageService.set('favorites', favoriteList);
-	// 	localStorageService.set('status', "false");
-	// 	$scope.status = !$scope.status;
-
-	// }
-
-	// $scope.removeFromFavorites = function(mall) {
-	// 	var favoriteList = localStorageService.get('favorites');
-	// 	var newList = favoriteList.filter(function(item){
-	// 		if (item.property_name !== mall.property_name) {
-	// 			return item;
-	// 		}
-	// 	});
-	// 	localStorageService.set('favorites', newList);
-	// 	console.log(localStorageService.get('favorites'));
-	// 	localStorageService.set('status', "true");
-
-	// 	$scope.status = !$scope.status;
-	// }
-
 	// Navigation       \/\/\/
 	//                   \/\/
 	//                    \/	

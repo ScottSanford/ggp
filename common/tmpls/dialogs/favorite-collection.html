@@ -1,0 +1,18 @@
+<form class="form-horizontal margin-all-15">
+
+  <!-- BEGIN: ADD COLLECTION  -->
+  <div class="form-group">
+    <label for="title" class="col-sm-4">Choose Collection</label>
+    <div class="col-sm-6">
+      
+      <!-- BEGIN: DROPDOWN BUTTON -->
+      <select class="form-control" ng-model="format" ng-options="collection.name for collection in collections"><option></option>
+      </select>
+
+      <!-- BEGIN: SUBMIT BUTTON -->
+    </div>
+  </div>
+  
+  <button type="submit" class="btn btn-default" ng-click="chooseCollection(format.properties)">Choose</button>
+</form>
+
