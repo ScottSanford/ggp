@@ -3,7 +3,7 @@ angular.module('ggpApp')
 .controller('PropertyCtrl', function(
 	$scope, $location, $rootScope, $routeParams, 
 	mfly, propertyData, CSVConverterSvc,
-	localStorageService, Lightbox){
+	localStorageService, Lightbox, ngDialog, Flash){
 
 	$scope.mapNav     = false;
 	$scope.compareNav = false;
@@ -97,49 +97,116 @@ angular.module('ggpApp')
 	// Add to Favorites \/\/\/
 	//                   \/\/
 	//                    \/
-	
-	var lsFavorites = localStorageService.get('favorites');
-	var lsStatus = localStorageService.get('status');
-	if (lsFavorites) {
-		lsFavorites.forEach(function(val, key){
-			if (val.property_id === $routeParams.id) {
+	$scope.openCollectionDialogBox = function() {
+		ngDialog.open({ 
+			template: 'common/tmpls/dialogs/popover.html', 
+			className: 'ngdialog-theme-default', 
+			scope: $scope,
+			controller: function($scope) {
+
+				var collections = [{
+					name: 'Favorites', 
+					properties: []	
+				}];
+			
+				var lsCNames = localStorageService.get('collectionNames');
+				if (lsCNames) {
+					$scope.collections = lsCNames;
+				} else {
+					$scope.collections = collections;
+				}
+
+				// add collection name to list
+				$scope.addCollectionName = function() {
+					var obj = {
+						name: $scope.collectionName, 
+						properties: []
+					};
+
+					collections.push(obj);
+					localStorageService.set('collectionNames', collections);
+					$scope.collections = localStorageService.get('collectionNames');
+					$scope.collectionName = '';
+				}
+
+				$scope.addToSpecificCollection = function(collection, mall) {
+					var lsCNames = localStorageService.get('collectionNames');
+					
+					var successMessage = mall.property_name + ' was added to ' + collection.name + '!';
+					var infoMessage    = mall.property_name + ' has already been added to ' + collection.name + '!';
+					
+					lsCNames.forEach(function(obj, index){
+						if (obj.name === collection.name) {
+							// check to make sure property hasn't been added already
+							var props = obj.properties;
+							if (props.length == 0) {
+								obj.properties.push(mall);
+								localStorageService.set('collectionNames', lsCNames);
+        						Flash.create('success', successMessage);
+							} else {
+								props.forEach(function(o, i){
+									if (o.property_name === mall.property_name) {
+										Flash.create('danger', infoMessage);
+									} else {
+										// push property into collection array
+										obj.properties.push(mall);
+										// after adding property to array, add collections back to LS
+										localStorageService.set('collectionNames', lsCNames);
+										Flash.create('success', successMessage);
+									}
+								});
+							}
+						}
+					});
+
+				}
 				
-				$scope.status = lsStatus !== undefined ? false : true; // orange star
-
-			} else {
-				$scope.status = true; // white star
 			}
 		});
-	} 
 
-	if (lsFavorites === null || lsFavorites.length === 0) {
-		$scope.status = true;
-	} 
+	};
+	// var lsFavorites = localStorageService.get('favorites');
+	// var lsStatus = localStorageService.get('status');
+	// if (lsFavorites) {
+	// 	lsFavorites.forEach(function(val, key){
+	// 		if (val.property_id === $routeParams.id) {
+				
+	// 			$scope.status = lsStatus !== undefined ? false : true; // orange star
 
-	$scope.addToFavorites = function(mall){
+	// 		} else {
+	// 			$scope.status = true; // white star
+	// 		}
+	// 	});
+	// } 
+
+	// if (lsFavorites === null || lsFavorites.length === 0) {
+	// 	$scope.status = true;
+	// } 
+
+	// $scope.addToFavorites = function(mall){
 		
-		var favoriteList = localStorageService.get('favorites') || [];
+	// 	var favoriteList = localStorageService.get('favorites') || [];
 
-		favoriteList.push(mall);
-		localStorageService.set('favorites', favoriteList);
-		localStorageService.set('status', "false");
-		$scope.status = !$scope.status;
+	// 	favoriteList.push(mall);
+	// 	localStorageService.set('favorites', favoriteList);
+	// 	localStorageService.set('status', "false");
+	// 	$scope.status = !$scope.status;
 
-	}
+	// }
 
-	$scope.removeFromFavorites = function(mall) {
-		var favoriteList = localStorageService.get('favorites');
-		var newList = favoriteList.filter(function(item){
-			if (item.property_name !== mall.property_name) {
-				return item;
-			}
-		});
-		localStorageService.set('favorites', newList);
-		console.log(localStorageService.get('favorites'));
-		localStorageService.set('status', "true");
+	// $scope.removeFromFavorites = function(mall) {
+	// 	var favoriteList = localStorageService.get('favorites');
+	// 	var newList = favoriteList.filter(function(item){
+	// 		if (item.property_name !== mall.property_name) {
+	// 			return item;
+	// 		}
+	// 	});
+	// 	localStorageService.set('favorites', newList);
+	// 	console.log(localStorageService.get('favorites'));
+	// 	localStorageService.set('status', "true");
 
-		$scope.status = !$scope.status;
-	}
+	// 	$scope.status = !$scope.status;
+	// }
 
 	// Navigation       \/\/\/
 	//                   \/\/

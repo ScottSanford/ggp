@@ -59,24 +59,24 @@ angular.module('ggpApp')
     $scope.isCellOpen = true;
 
     $scope.createMeeting = function() {
-		ngDialog.open({ 
-			template: 'common/tmpls/dialogs/createMeeting.html', 
-			className: 'ngdialog-theme-default', 
-			scope: $scope,
-			controller: function($scope) {
+    ngDialog.open({ 
+      template: 'common/tmpls/dialogs/createMeeting.html', 
+      className: 'ngdialog-theme-default', 
+      scope: $scope,
+      controller: function($scope) {
 
-			    $scope.toggle = function($event, field, event) {
-			      $event.preventDefault();
-			      $event.stopPropagation();
-			      event[field] = !event[field];
-			    };
+          $scope.toggle = function($event, field, event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            event[field] = !event[field];
+          };
 
-			    $scope.addMeetingToCalendar = function(meeting) {
-			    	
+          $scope.addMeetingToCalendar = function(meeting) {
+            
             meeting['recursOn']    = 'year';
-			    	meeting['draggable']   = false;
-			    	meeting['resizeable']  = true;
-			    	meeting['properties']  = $scope.selectedProperties;
+            meeting['draggable']   = false;
+            meeting['resizeable']  = true;
+            meeting['properties']  = $scope.selectedProperties;
 
             var start = meeting.startTime;
             var end   = meeting.endTime;
@@ -87,51 +87,51 @@ angular.module('ggpApp')
             lsCalendar.push(meeting);
             localStorageService.set('calendar', lsCalendar);
 
-			    	$route.reload();
-			    	$scope.closeThisDialog();
+            $route.reload();
+            $scope.closeThisDialog();
 
-			    }
-			}
-		});
+          }
+      }
+    });
     };
 
-	$scope.selectedProperties = [];
+  $scope.selectedProperties = [];
 
-	var reformattedProperties = propertyData.map(function(obj, index){ 
-	   var rObj = {};
-	   rObj['label']   = obj.property_name;
-	   rObj['id']      = index + 1;
-	   rObj['propId'] = obj.property_id;
-	   return rObj;
-	});
+  var reformattedProperties = propertyData.map(function(obj, index){ 
+     var rObj = {};
+     rObj['label']   = obj.property_name;
+     rObj['id']      = index + 1;
+     rObj['propId'] = obj.property_id;
+     return rObj;
+  });
 
-	$scope.propertyList = reformattedProperties;
+  $scope.propertyList = reformattedProperties;
 
-	$scope.dropDownSettings = {
-		  enableSearch: true, 
-		  scrollableHeight: '300px',
-    	scrollable: true, 
-    	externalIdProp: '', 
+  $scope.dropDownSettings = {
+      enableSearch: true, 
+      scrollableHeight: '300px',
+      scrollable: true, 
+      externalIdProp: '', 
       smartButtonMaxItems: 3,
-	};    
+  };    
 
     $scope.meetingDetails = function(event) {
-      	ngDialog.open({ 
-      		template: 'common/tmpls/dialogs/editMeeting.html', 
-      		className: 'ngdialog-theme-default', 
-      		scope: $scope,
-      		controller: function($scope) {
-      			console.log("Meeting Details :: ", event);
-      			$scope.meeting = event;
+        ngDialog.open({ 
+          template: 'common/tmpls/dialogs/editMeeting.html', 
+          className: 'ngdialog-theme-default', 
+          scope: $scope,
+          controller: function($scope) {
+            console.log("Meeting Details :: ", event);
+            $scope.meeting = event;
 
-      			$scope.properties = event.properties;
+            $scope.properties = event.properties;
 
-      			$scope.goToProperty = function(id) {
-      				$scope.closeThisDialog();
-      				$location.url('/property?id=' + id);
-      			}
-      		}
-      	});
+            $scope.goToProperty = function(id) {
+              $scope.closeThisDialog();
+              $location.url('/property?id=' + id);
+            }
+          }
+        });
     };
 
     $scope.deleteMeeting = function(meeting) {
@@ -162,7 +162,7 @@ angular.module('ggpApp')
 
     $scope.openEndDate = function() {
 
- 		   $scope.showEndDatePicker = !$scope.showEndDatePicker;
+       $scope.showEndDatePicker = !$scope.showEndDatePicker;
        
     };    
 

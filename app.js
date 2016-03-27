@@ -11,7 +11,8 @@ angular.module("ggpApp", [
         'ngDialog', 
         'angularjs-dropdown-multiselect', 
         'ngPinchZoom', 
-        'chart.js'
+        'chart.js', 
+        'ngFlash'
         ])
 
         .config(function ($routeProvider, $compileProvider, LightboxProvider, ChartJsProvider) { 
