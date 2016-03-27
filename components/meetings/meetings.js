@@ -78,7 +78,7 @@ angular.module('ggpApp')
             meeting['resizeable']  = true;
             meeting['properties']  = $scope.selectedProperties;
             meeting['collectionProperties'] = $scope.selectedCollection[0].properties;
-
+            meeting['collectionNotes'] = $scope.selectedCollection[0].notes;
             var start = meeting.startTime;
             var end   = meeting.endTime;
             
