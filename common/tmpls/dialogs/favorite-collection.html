@@ -6,13 +6,11 @@
     <div class="col-sm-6">
       
       <!-- BEGIN: DROPDOWN BUTTON -->
-      <select class="form-control" ng-model="format" ng-options="collection.name for collection in collections"><option></option>
+      <select class="form-control" ng-model="format" ng-options="collection.name for collection in collections" ng-change="chooseCollection(format.properties, format)"><option></option>
       </select>
 
     </div>
   </div>
   
-  <!-- BEGIN: SUBMIT BUTTON -->
-  <button type="submit" class="btn btn-default" ng-click="chooseCollection(format.properties, format)">Choose</button>
 </form>
 

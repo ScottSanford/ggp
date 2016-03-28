@@ -2,7 +2,7 @@
 
   <!-- BEGIN: ADD COLLECTION  -->
   <div class="form-group">
-    <label for="title" class="col-sm-4">Add Collection</label>
+    <label for="title" class="col-sm-4">Create Collection</label>
     <div class="col-sm-6">
       <input type="text" ng-model="collectionName" placeholder="Collection Name">
       <button type="submit" class="btn btn-default" ng-click="addCollectionName()">Add</button>
@@ -20,6 +20,18 @@
 			 </li>
 		</ul>
     </div>
+  </div>
+
+  <div class="form-group">
+      <label for="type" class="col-sm-4">Add to Collection(s)</label>
+      <div class="col-sm-5">
+          <div ng-dropdown-multiselect="" 
+              options="collections" 
+              selected-model="collectionsSelected"
+              extra-settings="collectionsSettings"
+              events="collectionsEvents">
+          </div>
+      </div>
   </div>
 
   <flash-message duration="5000"></flash-message>

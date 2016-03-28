@@ -41,9 +41,9 @@ angular.module("ggpApp", [
                         }
                     }
                 })                                                 
-                .when('/favorites', {
-                    templateUrl: 'components/favorites/favorites.html',
-                    controller: 'FavoritesCtrl'
+                .when('/collections', {
+                    templateUrl: 'components/collections/collections.html',
+                    controller: 'CollectionsCtrl'
                 })                 
                 .when('/meetings', {
                     templateUrl: 'components/meetings/meetings.html',

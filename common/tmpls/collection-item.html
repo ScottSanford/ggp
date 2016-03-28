@@ -1,9 +1,7 @@
 <div class="col-sm-4 col-md-3 margin-top-10">
 	<div class="favorite-container">
 		
-		<span class="fa fa-star fa-2x favorited padding-top-10"></span>
-		
-		<div class="favorite-name uppercase font-size-18 padding-bottom-10">
+		<div class="favorite-name uppercase font-size-18 padding-bottom-10 margin-top-10 color-orange">
 			<span>{{ favorite.property_name }}</span>
 		</div>
 		
@@ -22,7 +20,8 @@
 				<div>{{ favorite.overview.anchor_tenants | trim }}</div>
 			</div>
 
-			<button class="btn view-property margin-top-50" ng-click="viewProperty()">View Property</button>
+			<button class="btn view-property margin-top-50" ng-click="viewProperty()">View</button>
+			<button class="btn remove-property margin-top-50" ng-click="removeProperty()">Remove</button>
 
 		</div>
 

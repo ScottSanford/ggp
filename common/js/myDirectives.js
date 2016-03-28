@@ -41,7 +41,7 @@ angular.module('myDirectives', [])
 	}
 })
 
-.directive('favoriteProperty', function($location){
+.directive('collectionItem', function($location){
 	return {
 
 		restrict: 'E', 
@@ -50,7 +50,7 @@ angular.module('myDirectives', [])
 		}, 
 		replace: true, 
 		transclude: true,
-		templateUrl: 'common/tmpls/favorite-property.html', 
+		templateUrl: 'common/tmpls/collection-item.html', 
 		link: function(scope, element, attrs) {
 
 			scope.viewProperty = function() {

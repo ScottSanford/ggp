@@ -9,15 +9,15 @@
 <div class="row">
 	<form class="form-inline">
 		<div class="form-group">
-			<textarea class="form-control margin-left-15" rows="1" ng-model="collectionNotes"></textarea>
+			<textarea class="form-control margin-left-15" rows="3" ng-model="collectionNotes"></textarea>
 		</div>
-		<button class="btn btn-default" type="submit" ng-click="addNotesToCollection(collectionNotes)">Add Notes to Collection</button>
+		<button class="btn btn-default" type="submit" ng-click="addNotesToCollection(collectionNotes)">Save Notes</button>
 	</form>
 </div>
 <div class="row favorites-container-relative">
 	<div ng-repeat="f in favorites">
-		<favorite-property favorite="f" propid="{{f.property_id}}"></favorite-property>
+		<collection-item favorite="f" propid="{{f.property_id}}"></collection-item>
 	</div>
 </div>
 
-<button class="btn btn-default remove-favorites" ng-click="removeFavorites()">Remove Favorites</button>
+<button class="btn btn-default remove-favorites" ng-click="removeFavorites()">Remove Collection</button>

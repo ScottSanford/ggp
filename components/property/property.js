@@ -103,20 +103,11 @@ angular.module('ggpApp')
 			className: 'ngdialog-theme-default', 
 			scope: $scope,
 			controller: function($scope) {
-
-				var collections = [{
-					name: 'Favorites', 
-					properties: []	
-				}];
-			
 				var lsCNames = localStorageService.get('collectionNames');
-				if (lsCNames) {
-					$scope.collections = lsCNames;
-				} else {
-					$scope.collections = collections;
-				}
 
-				// add collection name to list
+				var collections = [];
+
+				// BEGIN: ADD COLLECTION NAME AND EMPTY [] TO LS
 				$scope.addCollectionName = function() {
 					var obj = {
 						name: $scope.collectionName, 
@@ -128,6 +119,62 @@ angular.module('ggpApp')
 					$scope.collections = localStorageService.get('collectionNames');
 					$scope.collectionName = '';
 				}
+
+				$scope.collections = localStorageService.get('collectionNames');
+				$scope.collectionsOptions = lsCNames;
+				$scope.collectionsSelected = [];
+				$scope.collectionsSettings = {
+					displayProp: 'name',
+					idProp: 'name', 
+				    externalIdProp: '',
+				    smartButtonMaxItems: 3
+				};
+				$scope.collectionsEvents = {
+					onItemSelect: function(item) {
+						var ls = localStorageService.get('collectionNames');
+						console.log('ls', ls);
+						var mall = $scope.mall;
+						var successMessage = mall.property_name + ' was added to "' + item.name + '" collection!';
+						var infoMessage    = mall.property_name + ' has already been added to "' + item.name + '" collection!';
+
+						ls.forEach(function(obj){
+							// force loop to only check current collection
+							if (obj.name === item.name) {
+								var props = obj.properties;
+								
+
+								if (props.length == 0) {
+									props.push(mall);
+									// update ls
+									localStorageService.set('collectionNames', ls);
+	        						Flash.create('success', successMessage);
+								} else {
+
+									var index = props.find(function(obj){
+										if (mall.property_name === obj.property_name) {
+											return obj;
+										}
+									});
+									// check for duplication
+									if (index) {
+										Flash.create('danger', infoMessage);
+									} else {
+										obj.properties.push(mall);
+										// after adding property to array, add collections back to LS
+										localStorageService.set('collectionNames', ls);
+										Flash.create('success', successMessage);
+									}
+
+								}
+
+
+							}
+						});	
+
+
+						
+					}
+				};
 
 				$scope.addToSpecificCollection = function(collection, mall) {
 					var lsCNames = localStorageService.get('collectionNames');

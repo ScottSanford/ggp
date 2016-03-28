@@ -32,6 +32,10 @@ ol {
 	color:#F26522;
 }
 
+.onehalf-em {
+	font-size:1.5em;
+}
+
 .font-size-12 {
 	font-size:12px;
 }
@@ -376,7 +380,7 @@ ul.nested-list {
 
 /*===================================================
 
-				Favorites Styles
+				Collections Styles
 
 ====================================================*/
 .form-inline .form-group textarea {
@@ -388,7 +392,7 @@ ul.nested-list {
 }
 
 .favorite-container {
-	min-height:475px;
+	min-height:450px;
 	border:2px solid #808080;
 	/*position: relative;*/
 }
@@ -431,8 +435,18 @@ ul.nested-list {
 	background-color: #fff;
 	border-color: #808080;
 	position: absolute;
+	bottom:65px;
+	left:55px;
+}
+
+.remove-property {
+	width:60%;
+	color:#000;
+	background-color: #fff;
+	border-color: #808080;
+	position: absolute;
 	bottom:25px;
-	left:45px;
+	left:55px;
 }
 
 .remove-favorites {

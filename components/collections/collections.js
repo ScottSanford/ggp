@@ -1,21 +1,36 @@
 angular.module('ggpApp')
 
-.controller('FavoritesCtrl', function($scope, mfly,localStorageService, $route, ngDialog){
+.controller('CollectionsCtrl', function($scope, mfly,localStorageService, $route, ngDialog){
 
 	var collectionNames = localStorageService.get('collectionNames');
-
+	
+	$scope.title = localStorageService.get('collectionTitle');
+	$scope.favorites = localStorageService.get('showCollection');
+	
+	// if there is no collection the very first time, open Dialog
+	if (!$scope.favorites) {
+		openInitCollectionDialog();
+	}
 	// for Dialog
 	$scope.collections = collectionNames;
 
+
 	$scope.openCollectionDialogBox = function () {
+		openInitCollectionDialog();
+	};
+
+	function openInitCollectionDialog() {
 		ngDialog.open({ 
 			template: 'common/tmpls/dialogs/favorite-collection.html', 
 			className: 'ngdialog-theme-default', 
 			scope: $scope,
 			controller: function($scope) {
 				$scope.chooseCollection = function(lsProps, title) {
-					console.log("title :: ", title);
 					
+					$scope.onCollectionSelect = function() {
+						
+					};
+
 					localStorageService.set('collectionTitle', title);
 					mfly.search('@Banner').then(function(data){
 							
@@ -39,9 +54,7 @@ angular.module('ggpApp')
 				}
 			}
 		});
-	};
-	$scope.title = localStorageService.get('collectionTitle');
-	$scope.favorites = localStorageService.get('showCollection');
+	}
 
 	$scope.addNotesToCollection = function(notes) {
 		var title = localStorageService.get('collectionTitle');
