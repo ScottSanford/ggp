@@ -41,7 +41,7 @@ angular.module('myDirectives', [])
 	}
 })
 
-.directive('collectionItem', function($location){
+.directive('collectionItem', function($location, localStorageService, $route){
 	return {
 
 		restrict: 'E', 
@@ -55,6 +55,36 @@ angular.module('myDirectives', [])
 
 			scope.viewProperty = function() {
 				$location.url('/property?id=' + attrs.propid);
+			}
+
+			scope.removeProperty = function() {
+				var lsCNames = localStorageService.get('collectionNames');
+				var lsShowCollection = localStorageService.get('showCollection');
+
+				// remove from Collection Names
+				lsCNames.forEach(function(obj, index){
+					if (attrs.collection === obj.name) {
+						var props = obj.properties;
+						props.forEach(function(obj, index){
+							if (attrs.propid === obj.property_id) {
+								//remove item
+								props.splice(index,1);
+								localStorageService.set('collectionNames', lsCNames);
+							}
+						});
+					}
+				});				
+
+				//
+				lsShowCollection.forEach(function(obj, index){					
+					if (attrs.propid === obj.property_id) {
+						lsShowCollection.splice(index,1);
+						localStorageService.set('showCollection', lsShowCollection);
+					}
+			
+				});
+				
+				$route.reload();
 			}
 
 		}

@@ -16,8 +16,8 @@
 </div>
 <div class="row favorites-container-relative">
 	<div ng-repeat="f in favorites">
-		<collection-item favorite="f" propid="{{f.property_id}}"></collection-item>
+		<collection-item favorite="f" propid="{{f.property_id}}" collection="{{title.name}}"></collection-item>
 	</div>
 </div>
 
-<button class="btn btn-default remove-favorites" ng-click="removeFavorites()">Remove Collection</button>
+<button class="btn btn-default remove-favorites" ng-click="removeCollection()">Remove Collection</button>

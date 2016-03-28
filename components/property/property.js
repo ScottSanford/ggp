@@ -129,11 +129,12 @@ angular.module('ggpApp')
 				    externalIdProp: '',
 				    smartButtonMaxItems: 3
 				};
+				
 				$scope.collectionsEvents = {
 					onItemSelect: function(item) {
 						var ls = localStorageService.get('collectionNames');
-						console.log('ls', ls);
 						var mall = $scope.mall;
+
 						var successMessage = mall.property_name + ' was added to "' + item.name + '" collection!';
 						var infoMessage    = mall.property_name + ' has already been added to "' + item.name + '" collection!';
 
@@ -162,6 +163,28 @@ angular.module('ggpApp')
 										obj.properties.push(mall);
 										// after adding property to array, add collections back to LS
 										localStorageService.set('collectionNames', ls);
+
+										// for current Collection view 'Collection'
+										var lsCollection = localStorageService.get('collectionTitle');
+										if (lsCollection.name === obj.name) {
+											
+											var lsShowCollection = localStorageService.get('showCollection');
+											mfly.search('@Banner').then(function(data){
+							
+												data.forEach(function(currentObj, index){
+													var airshipID = currentObj.statusLabel;
+													var mallID = mall.property_id;
+														if (airshipID === mallID) {
+															var thumb = currentObj.thumbnailUrl;
+															mall['thumb'] = thumb;
+														}
+												});
+												lsShowCollection.push(mall);
+												localStorageService.set('showCollection', lsShowCollection);
+											});
+
+										}
+
 										Flash.create('success', successMessage);
 									}
 
@@ -174,54 +197,9 @@ angular.module('ggpApp')
 
 						
 					}
-				};
-
-				$scope.addToSpecificCollection = function(collection, mall) {
-					var lsCNames = localStorageService.get('collectionNames');
-					var successMessage = mall.property_name + ' was added to "' + collection.name + '" collection!';
-					var infoMessage    = mall.property_name + ' has already been added to "' + collection.name + '" collection!';
-
-					// right at the beginning
-					if (!lsCNames) {
-						collections.forEach(function(obj, i){
-							obj.properties.push(mall);
-						});
-						localStorageService.set('collectionNames', collections);
-						Flash.create('success', successMessage);
-					} else {
-
-						lsCNames.forEach(function(obj, index){
-							if (obj.name === collection.name) {
-								var props = obj.properties;
-								if (props.length == 0) {
-									props.push(mall);
-									localStorageService.set('collectionNames', lsCNames);
-	        						Flash.create('success', successMessage);
-								} else {
-									// check to make sure property hasn't been added to collection list
-									var index = props.find(function(obj){
-										if (obj.property_name === mall.property_name) {
-											return obj;
-										}
-									});
-									if (index) {
-										Flash.create('danger', infoMessage);
-									} else {
-										obj.properties.push(mall);
-									// 		// after adding property to array, add collections back to LS
-										localStorageService.set('collectionNames', lsCNames);
-										Flash.create('success', successMessage);
-									}
-								}
-							}
-						});
-					}
-					
-
-
-				}
+				};			
 				
-			}
+			} // end of dialog controller
 		});
 
 	};

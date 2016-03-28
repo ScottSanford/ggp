@@ -27,10 +27,6 @@ angular.module('ggpApp')
 			controller: function($scope) {
 				$scope.chooseCollection = function(lsProps, title) {
 					
-					$scope.onCollectionSelect = function() {
-						
-					};
-
 					localStorageService.set('collectionTitle', title);
 					mfly.search('@Banner').then(function(data){
 							
@@ -46,6 +42,7 @@ angular.module('ggpApp')
 							});
 						});
 						localStorageService.set('showCollection', lsProps);
+						console.log(localStorageService.get('showCollection'));
 						$route.reload();
             			$scope.closeThisDialog();
 
@@ -68,8 +65,18 @@ angular.module('ggpApp')
 		console.log(localStorageService.get('collectionNames'));
 	}
 
-	$scope.removeFavorites = function() {
-		localStorageService.remove('favorites');
+	$scope.removeCollection = function() {
+		var ls = localStorageService.get('collectionNames');
+
+		ls.forEach(function(obj, index){
+			var collectionName = $scope.title.name;
+			if (collectionName === obj.name) {
+				ls.splice(index, 1);
+				localStorageService.set('collectionNames', ls);
+				localStorageService.remove('showCollection');
+				localStorageService.remove('collectionTitle');
+			}
+		});
 		$route.reload();
 	};
 
