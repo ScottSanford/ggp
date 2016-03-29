@@ -21,20 +21,7 @@
               <option value="special">Purple</option>
           </select>
         </div>
-      </div>
-
-      <!-- BEGIN: Select Properties -->
-      <div class="form-group">
-        <label for="properties" class="col-sm-3">Select Properties</label>
-        <div class="col-sm-8">
-          <div ng-dropdown-multiselect="" 
-            options="propertyList" 
-            selected-model="selectedProperties" 
-            ng-model="meeting.selectedProperties"
-            extra-settings="dropDownSettings">
-          </div>
-        </div>
-      </div>      
+      </div>  
 
       <!-- BEGIN: Select Properties -->
       <div class="form-group">
@@ -100,16 +87,6 @@
         </div>
 
       </div>
-
-
-      <!-- BEGIN: Notes -->
-      <div class="form-group">
-        <label for="notes" class="col-sm-3">Notes</label>
-        <div class="col-sm-8">
-          <textarea class="form-control col-sm-9" ng-model="meeting.notes" rows="3"></textarea>
-        </div>
-      </div>
-
 
 
       <button type="submit" class="btn btn-default" ng-click="addMeetingToCalendar(meeting)">Create Meeting</button>

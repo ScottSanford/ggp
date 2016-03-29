@@ -213,9 +213,8 @@ angular.module('ggpApp')
 				var currentCollections = [];
 				if (lsCNames !== null) {
 					lsCNames.forEach(function(obj, index){
-						console.log("Proprties arrays", obj.properties);
 						var properties = obj.properties;
-
+						// loop through properties array on each colleciton
 						properties.forEach(function(prop, i){
 							if (mall.property_name == prop.property_name) {
 								currentCollections.push(obj);
