@@ -103,10 +103,10 @@ angular.module('ggpApp')
 			className: 'ngdialog-theme-default', 
 			scope: $scope,
 			controller: function($scope) {
+				var mall = $scope.mall;
 				var lsCNames = localStorageService.get('collectionNames');
-
-				var collections = [];
-
+				var collections = lsCNames != null ? lsCNames : [];
+				
 				// BEGIN: ADD COLLECTION NAME AND EMPTY [] TO LS
 				$scope.addCollectionName = function() {
 					var obj = {
@@ -114,12 +114,24 @@ angular.module('ggpApp')
 						properties: []
 					};
 
-					collections.push(obj);
-					localStorageService.set('collectionNames', collections);
-					$scope.collections = localStorageService.get('collectionNames');
-					$scope.collectionName = '';
+					function isEmpty(str) {
+					    return (!str || 0 === str.length);
+					}
+
+					var errorMessage = 'Please type a collection name.'
+
+					if (isEmpty($scope.collectionName)) {
+						Flash.create('danger', errorMessage);
+					} else {
+						collections.push(obj);
+						localStorageService.set('collectionNames', collections);
+						$scope.collections = localStorageService.get('collectionNames');
+						$scope.collectionName = '';
+					}
+
 				}
 
+				// BEGIN: DROPDOWN LIST OF COLLECTIONS
 				$scope.collections = localStorageService.get('collectionNames');
 				$scope.collectionsOptions = lsCNames;
 				$scope.collectionsSelected = [];
@@ -129,7 +141,6 @@ angular.module('ggpApp')
 				    externalIdProp: '',
 				    smartButtonMaxItems: 3
 				};
-				
 				$scope.collectionsEvents = {
 					onItemSelect: function(item) {
 						var ls = localStorageService.get('collectionNames');
@@ -166,7 +177,7 @@ angular.module('ggpApp')
 
 										// for current Collection view 'Collection'
 										var lsCollection = localStorageService.get('collectionTitle');
-										if (lsCollection.name === obj.name) {
+										if (lsCollection !== null && lsCollection.name === obj.name) {
 											
 											var lsShowCollection = localStorageService.get('showCollection');
 											mfly.search('@Banner').then(function(data){
@@ -197,7 +208,22 @@ angular.module('ggpApp')
 
 						
 					}
-				};			
+				};
+
+				var currentCollections = [];
+				if (lsCNames !== null) {
+					lsCNames.forEach(function(obj, index){
+						console.log("Proprties arrays", obj.properties);
+						var properties = obj.properties;
+
+						properties.forEach(function(prop, i){
+							if (mall.property_name == prop.property_name) {
+								currentCollections.push(obj);
+								$scope.currents = currentCollections;
+							}
+						});
+					});
+				}
 				
 			} // end of dialog controller
 		});

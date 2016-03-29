@@ -19,6 +19,17 @@
               events="collectionsEvents">
           </div>
       </div>
+  </div>  
+
+  <div class="form-group">
+      <label for="type" class="col-sm-4">{{mall.property_name}} Collections</label>
+      <div class="col-sm-5">
+          <ul class="collections">
+            <li ng-repeat="current in currents">
+              {{ current.name }}
+            </li>
+          </ul>
+      </div>
   </div>
 
   <flash-message duration="5000"></flash-message>

@@ -42,7 +42,6 @@ angular.module('ggpApp')
 							});
 						});
 						localStorageService.set('showCollection', lsProps);
-						console.log(localStorageService.get('showCollection'));
 						$route.reload();
             			$scope.closeThisDialog();
 
@@ -62,7 +61,6 @@ angular.module('ggpApp')
 			}
 		});
 		localStorageService.set('collectionNames', collectionNames);
-		console.log(localStorageService.get('collectionNames'));
 	}
 
 	$scope.removeCollection = function() {
