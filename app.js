@@ -12,7 +12,8 @@ angular.module("ggpApp", [
         'angularjs-dropdown-multiselect', 
         'ngPinchZoom', 
         'chart.js', 
-        'ngFlash'
+        'ngFlash', 
+        'highcharts-ng'
         ])
 
         .config(function ($routeProvider, $compileProvider, LightboxProvider, ChartJsProvider) { 
@@ -76,6 +77,9 @@ angular.module("ggpApp", [
                     resolve: {
                         graphData: function(initGraphData) {
                             return initGraphData('a4ce3ae64bb34998bd28479d8b7f8201product236779');
+                        }, 
+                        demographics: function(initDemographicData) {
+                            return initDemographicData('a4ce3ae64bb34998bd28479d8b7f8201product237992');
                         }
                     }
                 })                  

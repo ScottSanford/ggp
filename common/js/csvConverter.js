@@ -143,6 +143,61 @@ angular.module('ggpApp')
                 }
                 // console.log("AFter filter :: ", result);
                 return result;
+        }, 
+
+        demographics: function(content) {
+                var lines=content.split('\n');
+                var result = [];
+                var start = 0;
+                var separator = ',';
+                var columnCount = lines[0].split(separator).length;
+
+                var headers = [];
+          
+                headers=lines[0].split(separator);
+                start = 1;
+                  
+
+                for (var i=start; i<lines.length; i++) {
+                    var obj = {};
+                    var currentline=lines[i].split(new RegExp(separator+'(?![^"]*"(?:(?:[^"]*"){2})*[^"]*$)'));
+                    if ( currentline.length === columnCount ) {
+                        
+                        obj = {
+                            storeName: currentline[0],
+                            race: {
+                                white: currentline[1],
+                                black: currentline[2],
+                                hispanic: currentline[3],
+                                asian: currentline[4],
+                                other: currentline[5]
+                            }, 
+                            numHousehold: {
+                                one: currentline[6], 
+                                two: currentline[7], 
+                                three: currentline[8], 
+                                four: currentline[9], 
+                                five: currentline[10]
+                            }, 
+                            age: {
+                                one: currentline[11], 
+                                two: currentline[12], 
+                                three: currentline[13], 
+                                four: currentline[14], 
+                                five: currentline[15], 
+                                six: currentline[16], 
+                                seven: currentline[17] 
+                            }, 
+                            homeStatus: {
+                                owns: currentline[18], 
+                                rents: currentline[19]
+                            }
+                        };
+                        result.push(obj);
+                    }
+                }
+                // console.log("AFter filter :: ", result);
+                return result;
         }
 
     }

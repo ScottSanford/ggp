@@ -42,6 +42,10 @@
 	</div>
 
 	<div class="row line-seperator padding-top-10">
+
+	<!--                                                                         -->
+	<!--                                  Step 1                                 -->
+	<!--                                                                         -->
 	
 	<!-- STEP 1 -->
 	<!-- BEGIN: Initial Dropdown -->
@@ -55,7 +59,28 @@
 		</div>
 	</div>
 
+	<!--                                                                         -->
+	<!--                                  Step 2                                 -->
+	<!--                                                                         -->
+
 	<!-- STEP 2 -->
+	<!-- BEGIN: Property to Property Dropdown #2 -->
+	<div class="col-sm-4" ng-show="propToProp">	
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="font-size-16">Properties</div>
+				<div ng-dropdown-multiselect="" 
+				options="propProperties" 
+				selected-model="propSelected" 
+				extra-settings="propSettings">
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<button class="btn btn-default margin-top-10" ng-click="getProperties()">Next</button>
+			</div>
+		</div>
+	</div>	
+
 	<!-- BEGIN: Property #2 -->
 	<div class="col-sm-3" ng-show="unitToUnit">	
 		<div class="row">
@@ -73,23 +98,28 @@
 			</div>
 		</div>
 	</div>
-	<!-- OR -->
-	<!-- BEGIN: Property to Property Dropdown #2 -->
-	<div class="col-sm-4" ng-show="propToProp">	
+	<!-- OR -->	
+	<!-- BEGIN: Property Dropdown for Demographics #2 -->
+	<div class="col-sm-4" ng-show="demoList">	
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="font-size-16">Properties</div>
 				<div ng-dropdown-multiselect="" 
-				options="propProperties" 
-				selected-model="propSelected" 
-				extra-settings="propSettings">
+				options="demoOptions" 
+				selected-model="demoSelected" 
+				extra-settings="demoSettings"
+				events="demoEvents">
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<button class="btn btn-default margin-top-10" ng-click="getProperties()">Submit</button>
+				<button class="btn btn-default margin-top-10" ng-click="getDemoCategories()">Submit</button>
 			</div>
 		</div>
 	</div>	
+
+	<!--                                                                         -->
+	<!--                                  Step 3                                 -->
+	<!--                                                                         -->
 
 	<!-- BEGIN: PROPERTY #3 -->
 	<div class="col-sm-3" ng-show="categoryUnits">
@@ -107,7 +137,28 @@
 				<button class="btn btn-default margin-top-10" ng-click="categoryOrUnit()">Next</button>
 			</div>
 		</div>
+	</div>		
+	<!-- BEGIN: NEILSEN TYPES #3 -->
+	<div class="col-sm-3" ng-show="neilsen">
+		<div class="row">
+			<div class="col-sm-7">	
+				<div class="font-size-16">Categories</div>
+				<div ng-dropdown-multiselect="" 
+					options="nielsenOptions" 
+					selected-model="neilsenSelected" 
+					extra-settings="neilsenSettings"
+					events="neilsenEvents">
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<button class="btn btn-default margin-top-10" ng-click="getNeilsenGraph()">Submit</button>
+			</div>
+		</div>
 	</div>	
+
+	<!--                                                                         -->
+	<!--                                  Step 4                                 -->
+	<!--                                                                         -->
 
 	<!-- BEGIN: PROPERTY #4 -->
 	<div class="col-sm-3" ng-show="categoryList">
@@ -128,7 +179,7 @@
 	</div>
 	<!-- OR -->
 	<!-- BEGIN: PROPERTY #4 -->
-	<div class="col-sm-3" ng-show="unitList">
+	<div class="col-sm-3" ng-show="tenant">
 		<div class="row">
 			<div class="col-sm-7">	
 				<div class="font-size-16">Tenants</div>
@@ -143,7 +194,11 @@
 				<button class="btn btn-default margin-top-10" ng-click="getUnitToUnits()">Submit</button>
 			</div>
 		</div>
-	</div>
+	</div>	
+
+<!--                                                                         -->
+<!--                                Graph                                    -->
+<!--                                                                         -->
 
 <div class="col-md-12">
 
@@ -156,6 +211,10 @@
   				chart-series="series"
   				chart-click="onClick">
 		</canvas> 
+	</div>
+	
+	<div ng-show="showNeilsenGraph">
+		<highchart id="chart1" config="chartConfig"></highchart>	
 	</div>
 
 </div>

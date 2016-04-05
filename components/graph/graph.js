@@ -1,22 +1,27 @@
 angular.module('ggpApp')
 
-.controller('GraphCtrl', function($scope, $window, graphData, localStorageService){
+.controller('GraphCtrl', function($scope, $window, graphData, demographics,localStorageService){
+
   //  ngShows
   $scope.chartOutputOne   = false;
   $scope.chartOutputTwo   = false;
   $scope.chartOutputThree = false;
-  $scope.propToProp    = false;
-  $scope.unitToUnit    = false; 
-  $scope.categoryUnits = false;
-  $scope.buttonOne     = false;
-
+  $scope.propToProp       = false;
+  $scope.unitToUnit       = false; 
+  $scope.categoryUnits    = false;
+  $scope.buttonOne        = false;
+  $scope.demoList         = false;
+  $scope.neilsen          = false;
+  $scope.demoChart        = false;
+  $scope.showNeilsenGraph = false;
   // Initial List      \/\/\/
   //                    \/\/
   //                     \/ 
 
   var dropDownOne = [
     {label: 'Property', id: 1},
-    {label: 'Property to Property', id: 2}
+    {label: 'Property to Property', id: 2}, 
+    {label: 'Demographics', id: 3}
   ];
 
   $scope.initDropDown = dropDownOne;
@@ -29,23 +34,24 @@ angular.module('ggpApp')
     };
   $scope.initDropDownEvents = {
     onItemSelect: function(item) {
-      if (item.id == 2) {
-        $scope.propToProp    = true;
-
-        $scope.unitToUnit    = false;
-
-        $scope.categoryUnits = false;
-        $scope.categoryList  = false;
-        $scope.unitList      = false;
-        $scope.chartOutputOne = false;
-        $scope.chartOutputTwo = false;
+        // hide any dropdowns that have already been shown 
+        $scope.categoryUnits    = false;
+        $scope.categoryList     = false;
+        $scope.tenants          = false; 
+        $scope.chartOutputOne   = false;
+        $scope.chartOutputTwo   = false;
         $scope.chartOutputThree = false;
+        $scope.propToProp       = false;
+        $scope.unitToUnit       = false;
+        $scope.demoList         = false;
+        $scope.neilsen          = false;
+        $scope.showNeilsenGraph = false;
+       if (item.id == 1)  {
+        $scope.propToProp       = true;
+      } else if (item.id == 2) {
+        $scope.unitToUnit       = true;
       } else {
-        $scope.unitToUnit = true;
-        $scope.propToProp = false;
-        $scope.chartOutputOne = false;
-        $scope.chartOutputTwo = false;
-        $scope.chartOutputThree = false;
+        $scope.demoList = true;
       }
     }
   };
@@ -68,14 +74,16 @@ angular.module('ggpApp')
     smartButtonMaxItems: 1
   };
   $scope.unitPropertiesEvents = {
-    onItemSelect: function () {
+    onItemSelect: function (item) {
+      console.log(item);
       $scope.buttonOne     = true;
       $scope.categoryUnits = false;
       $scope.categoryList  = false;
-      $scope.unitList      = false;
+      $scope.tenants      = false;
       $scope.chartOutputOne = false;
       $scope.chartOutputTwo = false;
       $scope.chartOutputThree = false;
+      $scope.showNeilsenGraph = false;
     }
   }
 
@@ -97,6 +105,7 @@ angular.module('ggpApp')
     $scope.chartOutputOne = true;
     $scope.chartOutputTwo = false;
     $scope.chartOutputThree = false;
+    $scope.showNeilsenGraph = false;
 
   };
 
@@ -115,14 +124,54 @@ angular.module('ggpApp')
     smartButtonMaxItems: 1
   };
 
+  $scope.unitPropertiesEvents = {
+    onItemSelect: function(item) {
+      var stores = demographics.map(function(obj){
+        var storeName = obj.storeName;
+        var trimName = storeName.trim();
+        return trimName;
+      });
+
+      stores.forEach(function(store){
+        if (item.key === store) {
+          console.log(store);
+        }
+      });
+
+    }
+  }
+
   $scope.getPropertyForUnits = function() {
-      
-      $scope.categoryUnits  = true;
-      $scope.chartOutputOne = false;
-      $scope.chartOutputTwo = false;
-      $scope.chartOutputThree = false;
+      if ($scope.neilsen) {
+
+        $scope.chartOutputOne = false;
+        $scope.chartOutputTwo = false;
+        $scope.chartOutputThree = false;
+        $scope.showNeilsenGraph = false;
+      } else {
+        $scope.categoryUnits  = true;
+        $scope.chartOutputOne = false;
+        $scope.chartOutputTwo = false;
+        $scope.chartOutputThree = false;
+        $scope.showNeilsenGraph = false;
+      }
   };
-    
+  //  Demographics Properties Stores     \/\/\/
+  //                                      \/\/
+  //                                       \/
+  $scope.demoOptions = demographics;
+  $scope.demoSelected = [];
+  $scope.demoSettings = {
+    displayProp: 'storeName', 
+    externalIdProp: '',
+    idProp: 'storeName',  
+    smartButtonMaxItems: 1
+  };
+
+  $scope.getDemoCategories = function() {
+      $scope.neilsen = true;
+  }
+
   //  Category/Units Dropdown   \/\/\/
   //                             \/\/
   //                              \/
@@ -142,7 +191,7 @@ angular.module('ggpApp')
   $scope.categoryUnitsEvents = {
     onItemSelect: function() {
       $scope.categoryList  = false;
-      $scope.unitList      = false;
+      $scope.tenants      = false;
     }
   }
 
@@ -167,7 +216,7 @@ angular.module('ggpApp')
       categories.pop();
 
       $scope.categoryList = true;
-      $scope.unitList     = false;
+      $scope.tenants     = false;
       $scope.categoryListOptions = categories;
 
     } 
@@ -185,9 +234,9 @@ angular.module('ggpApp')
       });
 
       units.pop();
-      $scope.unitList     = true;
+      $scope.tenants     = true;
       $scope.categoryList = false;
-      $scope.unitListOptions = units;
+      $scope.tenantsOptions = units;
     }
   }
 
@@ -230,14 +279,14 @@ angular.module('ggpApp')
   //              \/\/
   //               \/
 
-  $scope.unitListSelected = [];
-  $scope.unitListSettings = dropDownSettings('storeName');
+  $scope.tenantsSelected = [];
+  $scope.tenantsSettings = dropDownSettings('storeName');
 
   $scope.getUnitToUnits = function() {
     $scope.chartOutputThree = true;
     $scope.chartOutputOne = false;
     $scope.chartOutputTwo = false;
-    var properties = $scope.unitListSelected;
+    var properties = $scope.tenantsSelected;
 
     var seriesNames = [];
     var chartData   = [];
@@ -251,6 +300,103 @@ angular.module('ggpApp')
     }); 
   };
   
+  //  Nielsen Categories  \/\/\/
+  //                       \/\/
+  //                        \/
+  var nOptions = [
+    {label: 'Race', id: 1, demo: 'race'},
+    {label: 'Household', id: 2, demo: 'numHousehold'}, 
+    {label: 'Age', id: 3, demo: 'age'}, 
+    {label: 'Rent vs Own', id: 4, demo: 'homeStatus'} 
+  ];
+
+  $scope.nielsenOptions = nOptions;
+  $scope.neilsenSelected = {};
+  $scope.neilsenSettings = {
+      selectionLimit: 1, 
+      closeOnSelect: true, 
+      displayProp: 'label', 
+      externalIdProp: '',
+      smartButtonMaxItems: 1
+  };
+  $scope.neilsenEvents = {
+    onItemSelect: function(item) {
+
+    }
+  }
+
+  $scope.getNeilsenGraph = function() {
+      $scope.showNeilsenGraph = true;
+      var selectedProps = $scope.demoSelected;
+      var chartType = $scope.neilsenSelected; 
+     
+      var seriesData = [];
+      
+      for (var i = 0; i < selectedProps.length; i++) {
+        var seriesObj = {};
+        var store = selectedProps[i].storeName;
+        seriesObj['name'] = store;
+        if (chartType.demo == 'race') {
+          var seriesVals = _.values(selectedProps[i].race);
+        } else if (chartType.demo == 'age') {
+          var seriesVals = _.values(selectedProps[i].age);
+        } else if (chartType.demo === 'numHousehold') {
+          var seriesVals = _.values(selectedProps[i].numHousehold);
+        } 
+        
+        var seriesNumVals = seriesVals.map(function(num){
+          var toNumber = Number(num);
+          var subtract = toNumber - 100;
+          return subtract;
+        });
+
+        seriesObj['data'] = seriesNumVals;
+        seriesData.push(seriesObj);
+      };
+      var divisionNames;
+      var chartTitle;
+
+      if (chartType.demo === 'race') {
+        divisionNames = ['White', 'Black', 'Hispanic', 'Asian', 'Other'];
+        chartTitle = 'Mall Demographics - Race'
+      } else if (chartType.demo === 'age') {
+        divisionNames = ['18-24', '25-34', '35-44', '45-54', '55-64', '65-74', '75+'];
+        chartTitle = 'Mall Demographics - Age'
+      } else if (chartType.demo === 'numHousehold') {
+        divisionNames = ['1 Person', '2 Person', '3 Person', '4 Person', '5+ Person'];
+        chartTitle = 'Mall Demographics - Household Size'
+      } else {
+        console.log('Something went wrong!');
+      }
+
+
+      var hChartConfig = {
+        options: {
+            chart: {
+                type: 'column'
+            }
+        },
+        xAxis: {
+            categories: divisionNames
+        },
+        yAxis: {
+            title: {
+                text: 'Index'
+            }
+        },
+        title: {
+          text: chartTitle
+        },
+        series: seriesData,
+        loading: false
+      } 
+      $scope.chartConfig = hChartConfig;
+  }
+
+  //  Graph  \/\/\/
+  //          \/\/
+  //           \/
+
   
   $scope.labels = ["2012", "2013", "2014", "2015", "2016"];
 
@@ -431,5 +577,8 @@ angular.module('ggpApp')
 
   }; 
 
+  //  HighCharts  \/\/\/
+  //               \/\/
+  //                \/
 
 });

@@ -13,9 +13,14 @@
 		</div>
 		<button class="btn btn-default" type="submit" ng-click="addNotesToCollection(collectionNotes)">Save Notes</button>
 	</form>
-	<flash-message duration="5000"></flash-message>
 </div>
-<div class="row favorites-container-relative">
+<div class="row margin-top-10" ng-show="showSavedNotes">
+	<div class="col-sm-2 font-size-18 bold">Saved Notes</div>
+	<div class="col-sm-5"> 
+		{{ savedNotes }}
+	</div>
+</div>
+<div class="row favorites-container-relative margin-top-10">
 	<div ng-repeat="f in favorites">
 		<collection-item favorite="f" propid="{{f.property_id}}" collection="{{title.name}}"></collection-item>
 	</div>

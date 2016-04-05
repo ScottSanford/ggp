@@ -52,6 +52,7 @@ angular.module('ggpApp')
 		});
 	}
 
+	$scope.showSavedNotes = false;
 	$scope.addNotesToCollection = function(notes) {
 		var title = localStorageService.get('collectionTitle');
 
@@ -61,6 +62,9 @@ angular.module('ggpApp')
 			}
 		});
 		localStorageService.set('collectionNames', collectionNames);
+		$scope.collectionNotes = '';
+		$scope.showSavedNotes = true;
+		$scope.savedNotes = notes;
 	}
 
 	$scope.removeCollection = function() {
