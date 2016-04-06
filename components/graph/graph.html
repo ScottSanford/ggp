@@ -9,35 +9,35 @@
 	<div ng-show="chartOutputOne">
 		<div>
 			Property Analysis of: 
-			<b class="list-comma" ng-repeat="prop in propSelected">
+			<b class="list-comma" ng-repeat="prop in mutliPropsSelected">
 				{{prop.key}}
 			</b>
 		
 		</div>
 		<div>
-			<b class="list-comma" ng-repeat="tenant in unitListSelected" ng-show="unitToUnit">{{ tenant.storeName }}</b>
+			<b class="list-comma" ng-repeat="tenant in mutliPropsSelected" ng-show="showOneProp">{{ tenant.storeName }}</b>
 		</div>
 	</div>
 	<!-- CATEGORIES -->
 	<div ng-show="chartOutputTwo">
 		<div>
 			Property Analysis of: 
-			<b>{{unitSelected.key}}</b>
+			<b>{{onePropSelected.key}}</b>
 		</div>
 		<div>
-			{{ categoryUnitsSelected.label }} 
-			<b class="list-comma" ng-repeat="category in categoryListSelected" ng-show="unitToUnit">{{ category.category }}</b>
+			{{ onePropCategoriesSelected.label }} 
+			<b class="list-comma" ng-repeat="category in categoriesSelected" ng-show="showOneProp">{{ category.category }}</b>
 		</div>
 	</div>
 	<!-- TENANTS -->
 	<div ng-show="chartOutputThree">
 		<div>
 			Property Analysis of: 
-			<b>{{unitSelected.key}}</b>
+			<b>{{onePropSelected.key}}</b>
 		</div>
 		<div>
-			{{ categoryUnitsSelected.label }} 
-			<b class="list-comma" ng-repeat="tenant in unitListSelected" ng-show="unitToUnit">{{ tenant.storeName }}</b>
+			{{ onePropCategoriesSelected.label }} 
+			<b class="list-comma" ng-repeat="tenant in tenantsSelected" ng-show="showOneProp">{{ tenant.storeName }}</b>
 		</div>
 	</div>
 
@@ -52,10 +52,10 @@
 	<div class="col-sm-2">
 		<div class="font-size-16">Analysis Type</div>
 		<div ng-dropdown-multiselect="" 
-				options="initDropDown" 
-				selected-model="initDropDownSelected"
-				extra-settings="initDropDownSettings"
-				events="initDropDownEvents">
+				options="analysisType" 
+				selected-model="analysisTypeSelected"
+				extra-settings="analysisTypeSettings"
+				events="analysisTypeEvents">
 		</div>
 	</div>
 
@@ -64,15 +64,34 @@
 	<!--                                                                         -->
 
 	<!-- STEP 2 -->
+
+	<!-- BEGIN: Property #2 -->
+	<div class="col-sm-3" ng-show="showOneProp">	
+		<div class="row">
+			<div class="col-sm-7">
+				<div class="font-size-16">Property</div>
+				<div ng-dropdown-multiselect="" 
+					options="oneProp" 
+					selected-model="onePropSelected" 
+					extra-settings="onePropSettings"
+					events="onePropEvents">
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<button class="btn btn-default margin-top-10" ng-click="getPropertyForUnits()">Next</button>
+			</div>
+		</div>
+	</div>
+	<!-- OR -->	
 	<!-- BEGIN: Property to Property Dropdown #2 -->
-	<div class="col-sm-4" ng-show="propToProp">	
+	<div class="col-sm-4" ng-show="showMultiProp">	
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="font-size-16">Properties</div>
 				<div ng-dropdown-multiselect="" 
-				options="propProperties" 
-				selected-model="propSelected" 
-				extra-settings="propSettings">
+				options="mutliProps" 
+				selected-model="mutliPropsSelected" 
+				extra-settings="mutliPropsSettings">
 				</div>
 			</div>
 			<div class="col-sm-12">
@@ -81,38 +100,20 @@
 		</div>
 	</div>	
 
-	<!-- BEGIN: Property #2 -->
-	<div class="col-sm-3" ng-show="unitToUnit">	
-		<div class="row">
-			<div class="col-sm-7">
-				<div class="font-size-16">Property</div>
-				<div ng-dropdown-multiselect="" 
-					options="unitProperties" 
-					selected-model="unitSelected" 
-					extra-settings="unitSettings"
-					events="unitPropertiesEvents">
-				</div>
-			</div>
-			<div class="col-sm-12">
-				<button class="btn btn-default margin-top-10" ng-click="getPropertyForUnits()" ng-show="buttonOne">Next</button>
-			</div>
-		</div>
-	</div>
-	<!-- OR -->	
 	<!-- BEGIN: Property Dropdown for Demographics #2 -->
-	<div class="col-sm-4" ng-show="demoList">	
+	<div class="col-sm-4" ng-show="showDemographics">	
 		<div class="row">
 			<div class="col-sm-8">
 				<div class="font-size-16">Properties</div>
 				<div ng-dropdown-multiselect="" 
-				options="demoOptions" 
-				selected-model="demoSelected" 
-				extra-settings="demoSettings"
+				options="demographics" 
+				selected-model="demographicsSelected" 
+				extra-settings="demographicsSettings"
 				events="demoEvents">
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<button class="btn btn-default margin-top-10" ng-click="getDemoCategories()">Submit</button>
+				<button class="btn btn-default margin-top-10" ng-click="getDemoCategories()">Next</button>
 			</div>
 		</div>
 	</div>	
@@ -122,36 +123,35 @@
 	<!--                                                                         -->
 
 	<!-- BEGIN: PROPERTY #3 -->
-	<div class="col-sm-3" ng-show="categoryUnits">
+	<div class="col-sm-3" ng-show="showOnePropCategories">
 		<div class="row">
 			<div class="col-sm-7">	
 				<div class="font-size-16">Comparision</div>
 				<div ng-dropdown-multiselect="" 
-					options="categoryUnitsOptions" 
-					selected-model="categoryUnitsSelected" 
-					extra-settings="categoryUnitsSettings"
-					events="categoryUnitsEvents">
+					options="onePropCategoriesOptions" 
+					selected-model="onePropCategoriesSelected" 
+					extra-settings="onePropCategoriesSettings"
+					events="onePropCategoriesEvents">
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<button class="btn btn-default margin-top-10" ng-click="categoryOrUnit()">Next</button>
+				<button class="btn btn-default margin-top-10" ng-click="categoriesOrTenants()">Next</button>
 			</div>
 		</div>
 	</div>		
-	<!-- BEGIN: NEILSEN TYPES #3 -->
-	<div class="col-sm-3" ng-show="neilsen">
+	<!-- BEGIN: nielsen TYPES #3 -->
+	<div class="col-sm-3" ng-show="showNielsen">
 		<div class="row">
 			<div class="col-sm-7">	
 				<div class="font-size-16">Categories</div>
 				<div ng-dropdown-multiselect="" 
 					options="nielsenOptions" 
-					selected-model="neilsenSelected" 
-					extra-settings="neilsenSettings"
-					events="neilsenEvents">
+					selected-model="nielsenSelected" 
+					extra-settings="nielsenSettings">
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<button class="btn btn-default margin-top-10" ng-click="getNeilsenGraph()">Submit</button>
+				<button class="btn btn-default margin-top-10" ng-click="getNielsenGraph()">Submit</button>
 			</div>
 		</div>
 	</div>	
@@ -161,37 +161,35 @@
 	<!--                                                                         -->
 
 	<!-- BEGIN: PROPERTY #4 -->
-	<div class="col-sm-3" ng-show="categoryList">
+	<div class="col-sm-3" ng-show="showCategories">
 		<div class="row">
 			<div class="col-sm-7">	
 				<div class="font-size-16">Categories</div>
 				<div ng-dropdown-multiselect="" 
-					options="categoryListOptions" 
-					selected-model="categoryListSelected" 
-					extra-settings="categoryListSettings"
-					events="categoryListEvents">
+					options="categories" 
+					selected-model="categoriesSelected" 
+					extra-settings="categoriesSettings">
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<button class="btn btn-default margin-top-10" ng-click="getCategoryToCategory()">Submit</button>
+				<button class="btn btn-default margin-top-10" ng-click="getCategoriesGraph()">Submit</button>
 			</div>
 		</div>
 	</div>
 	<!-- OR -->
 	<!-- BEGIN: PROPERTY #4 -->
-	<div class="col-sm-3" ng-show="tenant">
+	<div class="col-sm-3" ng-show="showTenants">
 		<div class="row">
 			<div class="col-sm-7">	
 				<div class="font-size-16">Tenants</div>
 				<div ng-dropdown-multiselect="" 
-					options="unitListOptions" 
-					selected-model="unitListSelected" 
-					extra-settings="unitListSettings"
-					events="unitListEvents">
+					options="tenantsOptions" 
+					selected-model="tenantsSelected" 
+					extra-settings="tenantsSettings">
 				</div>
 			</div>
 			<div class="col-sm-12">
-				<button class="btn btn-default margin-top-10" ng-click="getUnitToUnits()">Submit</button>
+				<button class="btn btn-default margin-top-10" ng-click="getshowOneProps()">Submit</button>
 			</div>
 		</div>
 	</div>	
@@ -202,8 +200,11 @@
 
 <div class="col-md-12">
 
+	<div class="padding-top-20" ng-show="showNielsenGraph">
+		<highchart id="chart1" config="chartConfig"></highchart>	
+	</div>
 
-	<div class="padding-top-20">
+	<div class="padding-top-20" ng-show="showMainGraph">
 		<canvas id="line" class="chart chart-line" 
 				chart-data="data"
   				chart-labels="labels" 
@@ -213,9 +214,6 @@
 		</canvas> 
 	</div>
 	
-	<div ng-show="showNeilsenGraph">
-		<highchart id="chart1" config="chartConfig"></highchart>	
-	</div>
 
 </div>
 

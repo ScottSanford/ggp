@@ -3,20 +3,24 @@ angular.module('ggpApp')
 .controller('GraphCtrl', function($scope, $window, graphData, demographics,localStorageService){
 
   //  ngShows
-  $scope.chartOutputOne   = false;
-  $scope.chartOutputTwo   = false;
-  $scope.chartOutputThree = false;
-  $scope.propToProp       = false;
-  $scope.unitToUnit       = false; 
-  $scope.categoryUnits    = false;
-  $scope.buttonOne        = false;
-  $scope.demoList         = false;
-  $scope.neilsen          = false;
-  $scope.demoChart        = false;
-  $scope.showNeilsenGraph = false;
-  // Initial List      \/\/\/
-  //                    \/\/
-  //                     \/ 
+  $scope.chartOutputOne        = false;
+  $scope.chartOutputTwo        = false;
+  $scope.chartOutputThree      = false;
+
+  $scope.showMultiProp         = false;
+  $scope.showOneProp           = false; 
+  $scope.showDemographics      = false;
+
+  $scope.showOnePropCategories = false;
+  $scope.showNielsen           = false;
+
+  $scope.showCategories        = false;
+  $scope.showTenants           = false;
+
+  $scope.showNielsenGraph      = false;
+  // Analysis Type  \/\/\/
+  //                 \/\/
+  //                  \/ 
 
   var dropDownOne = [
     {label: 'Property', id: 1},
@@ -24,72 +28,65 @@ angular.module('ggpApp')
     {label: 'Demographics', id: 3}
   ];
 
-  $scope.initDropDown = dropDownOne;
-  $scope.initDropDownSelected = {};
-  $scope.initDropDownSettings = {
+
+
+  $scope.analysisType = dropDownOne;
+  $scope.analysisTypeSelected = {};
+  $scope.analysisTypeSettings = {
       selectionLimit: 1, 
       closeOnSelect: true, 
       externalIdProp: '', 
       smartButtonMaxItems: 1
-    };
-  $scope.initDropDownEvents = {
+  };
+  $scope.analysisTypeEvents = {
     onItemSelect: function(item) {
         // hide any dropdowns that have already been shown 
-        $scope.categoryUnits    = false;
-        $scope.categoryList     = false;
-        $scope.tenants          = false; 
-        $scope.chartOutputOne   = false;
-        $scope.chartOutputTwo   = false;
-        $scope.chartOutputThree = false;
-        $scope.propToProp       = false;
-        $scope.unitToUnit       = false;
-        $scope.demoList         = false;
-        $scope.neilsen          = false;
-        $scope.showNeilsenGraph = false;
+        $scope.chartOutputOne        = false;
+        $scope.chartOutputTwo        = false;
+        $scope.chartOutputThree      = false;
+
+        $scope.showMultiProp         = false;
+        $scope.showOneProp           = false; 
+        $scope.showDemographics      = false;
+
+        $scope.showOnePropCategories = false;
+        $scope.showNielsen           = false;
+
+        $scope.showCategories        = false;
+        $scope.showTenants           = false;
+
+        $scope.showNielsenGraph      = false;
        if (item.id == 1)  {
-        $scope.propToProp       = true;
+        $scope.showOneProp           = true;
       } else if (item.id == 2) {
-        $scope.unitToUnit       = true;
+        $scope.showMultiProp         = true;
       } else {
-        $scope.demoList = true;
+        $scope.showDemographics      = true;
       }
     }
   };
 
-  // Properties to Properties List   \/\/\/
-  //                                  \/\/
-  //                                   \/
+  // Multiple Properties  \/\/\/
+  //                       \/\/
+  //                        \/
   var uniques = _.map(_.groupBy(graphData,function(doc){
   return doc.id;
   }),function(grouped){
     return grouped[0];
   });
 
-  $scope.propProperties = uniques;
-  $scope.propSelected = [];
-  $scope.propSettings = {
+  $scope.mutliProps = uniques;
+  $scope.mutliPropsSelected = [];
+  $scope.mutliPropsSettings = {
     displayProp: 'key', 
     externalIdProp: '', 
     idProp: 'key', 
     smartButtonMaxItems: 1
   };
-  $scope.unitPropertiesEvents = {
-    onItemSelect: function (item) {
-      console.log(item);
-      $scope.buttonOne     = true;
-      $scope.categoryUnits = false;
-      $scope.categoryList  = false;
-      $scope.tenants      = false;
-      $scope.chartOutputOne = false;
-      $scope.chartOutputTwo = false;
-      $scope.chartOutputThree = false;
-      $scope.showNeilsenGraph = false;
-    }
-  }
 
   $scope.getProperties = function() {
-    
-    var properties = $scope.propSelected;
+    $scope.showMainGraph    = true;
+    var properties = $scope.mutliPropsSelected;
 
     var seriesNames = [];
     var chartData   = [];
@@ -105,18 +102,17 @@ angular.module('ggpApp')
     $scope.chartOutputOne = true;
     $scope.chartOutputTwo = false;
     $scope.chartOutputThree = false;
-    $scope.showNeilsenGraph = false;
+    $scope.showNielsenGraph = false;
 
   };
 
+  //  One Property   \/\/\/
+  //                  \/\/
+  //                   \/
 
-  //  Choose Property for Category/Units Dropdown   \/\/\/
-  //                                                 \/\/
-  //                                                  \/
-
-  $scope.unitProperties = uniques;
-  $scope.unitSelected   = {};
-  $scope.unitSettings   = {
+  $scope.oneProp = uniques;
+  $scope.onePropSelected   = {};
+  $scope.onePropSettings   = {
     displayProp: 'key', 
     externalIdProp: '', 
     idProp: 'key', 
@@ -124,8 +120,19 @@ angular.module('ggpApp')
     smartButtonMaxItems: 1
   };
 
-  $scope.unitPropertiesEvents = {
+  $scope.onePropEvents = {
     onItemSelect: function(item) {
+      $scope.chartOutputOne        = false;
+      $scope.chartOutputTwo        = false;
+      $scope.chartOutputThree      = false;
+
+      $scope.showCategories        = false;
+      $scope.showTenants           = false;
+      
+      $scope.showOnePropCategories = false;
+      $scope.showNielsen           = false;
+
+      $scope.showNielsenGraph      = false;
       var stores = demographics.map(function(obj){
         var storeName = obj.storeName;
         var trimName = storeName.trim();
@@ -142,37 +149,49 @@ angular.module('ggpApp')
   }
 
   $scope.getPropertyForUnits = function() {
-      if ($scope.neilsen) {
+      if ($scope.showNielsen) {  
+        $scope.chartOutputOne        = false;
+        $scope.chartOutputTwo        = false;
+        $scope.chartOutputThree      = false;
 
-        $scope.chartOutputOne = false;
-        $scope.chartOutputTwo = false;
-        $scope.chartOutputThree = false;
-        $scope.showNeilsenGraph = false;
+        $scope.showNielsenGraph      = false;
+        $scope.showTenants           = false;
+        $scope.showOnePropCategories = false;
       } else {
-        $scope.categoryUnits  = true;
-        $scope.chartOutputOne = false;
-        $scope.chartOutputTwo = false;
-        $scope.chartOutputThree = false;
-        $scope.showNeilsenGraph = false;
+        $scope.chartOutputOne        = false;
+        $scope.chartOutputTwo        = false;
+        $scope.chartOutputThree      = false;
+
+        $scope.showOnePropCategories = true;
+        $scope.showNielsenGraph      = false;
+        $scope.showTenants           = false;
       }
   };
   //  Demographics Properties Stores     \/\/\/
   //                                      \/\/
   //                                       \/
-  $scope.demoOptions = demographics;
-  $scope.demoSelected = [];
-  $scope.demoSettings = {
+  $scope.demographics = demographics;
+  $scope.demographicsSelected = [];
+  $scope.demographicsSettings = {
     displayProp: 'storeName', 
     externalIdProp: '',
     idProp: 'storeName',  
-    smartButtonMaxItems: 1
+    smartButtonMaxItems: 2
   };
-
-  $scope.getDemoCategories = function() {
-      $scope.neilsen = true;
+  $scope.demoEvents = {
+    onItemSelect: function() {
+      $scope.showNielsen = false;
+    }, 
+    onItemDeselect: function() {
+      $scope.showNielsen = false;
+    }
   }
 
-  //  Category/Units Dropdown   \/\/\/
+  $scope.getDemoCategories = function() {
+      $scope.showNielsen = true;
+  }
+
+  //  One Property Categories   \/\/\/
   //                             \/\/
   //                              \/
   var dropDownTwo = [
@@ -180,30 +199,30 @@ angular.module('ggpApp')
     {label: 'Tenant to Tenant', id: 2}
   ];
 
-  $scope.categoryUnitsOptions  = dropDownTwo;
-  $scope.categoryUnitsSelected = {};
-  $scope.categoryUnitsSettings = {
+  $scope.onePropCategoriesOptions  = dropDownTwo;
+  $scope.onePropCategoriesSelected = {};
+  $scope.onePropCategoriesSettings = {
     selectionLimit: 1, 
     closeOnSelect: true, 
     externalIdProp: '',
     smartButtonMaxItems: 1
   };
-  $scope.categoryUnitsEvents = {
+  $scope.onePropCategoriesEvents = {
     onItemSelect: function() {
-      $scope.categoryList  = false;
-      $scope.tenants      = false;
+      $scope.showCategories = false;
+      $scope.showTenants    = false;
     }
   }
 
-  $scope.categoryOrUnit = function() {
-    $scope.chartOutputOne = false;
-    $scope.chartOutputTwo = false;
+  $scope.categoriesOrTenants = function() {
+    $scope.chartOutputOne   = false;
+    $scope.chartOutputTwo   = false;
     $scope.chartOutputThree = false;
-    var selected = $scope.categoryUnitsSelected;
+    var selected = $scope.onePropCategoriesSelected;
     // category
     if (selected.id == 1) {
       
-      var unitSelected = $scope.unitSelected;
+      var unitSelected = $scope.onePropSelected;
       
       var categories =  _.map(_.groupBy(graphData,function(data){
           if (unitSelected.key === data.key) {
@@ -215,15 +234,15 @@ angular.module('ggpApp')
 
       categories.pop();
 
-      $scope.categoryList = true;
-      $scope.tenants     = false;
-      $scope.categoryListOptions = categories;
+      $scope.showCategories = true;
+      $scope.showTenants    = false;
+      $scope.categories     = categories;
 
     } 
     // unit
     else {
 
-      var unitSelected = $scope.unitSelected;
+      var unitSelected = $scope.onePropSelected;
 
       var units =  _.map(_.groupBy(graphData,function(data){
           if (unitSelected.key === data.key) {
@@ -234,8 +253,8 @@ angular.module('ggpApp')
       });
 
       units.pop();
-      $scope.tenants     = true;
-      $scope.categoryList = false;
+      $scope.showTenants    = true;
+      $scope.showCategories = false;
       $scope.tenantsOptions = units;
     }
   }
@@ -255,13 +274,16 @@ angular.module('ggpApp')
     }
   };
 
-  $scope.categoryListSelected = [];
-  $scope.categoryListSettings = dropDownSettings('category');
-  $scope.getCategoryToCategory = function() {
+  $scope.categoriesSelected = [];
+  $scope.categoriesSettings = dropDownSettings('category');
+
+  $scope.getCategoriesGraph = function() {
+    $scope.showMainGraph  = true;
     $scope.chartOutputTwo = true;
-    $scope.chartOutputOne = false;
+
+    $scope.chartOutputOne   = false;
     $scope.chartOutputThree = false;
-    var selected = $scope.categoryListSelected;
+    var selected = $scope.categoriesSelected;
 
     var seriesNames = [];
     var chartData   = [];
@@ -282,10 +304,12 @@ angular.module('ggpApp')
   $scope.tenantsSelected = [];
   $scope.tenantsSettings = dropDownSettings('storeName');
 
-  $scope.getUnitToUnits = function() {
+  $scope.getshowOneProps = function() {
+    $scope.showMainGraph    = true;
+
     $scope.chartOutputThree = true;
-    $scope.chartOutputOne = false;
-    $scope.chartOutputTwo = false;
+    $scope.chartOutputOne   = false;
+    $scope.chartOutputTwo   = false;
     var properties = $scope.tenantsSelected;
 
     var seriesNames = [];
@@ -306,29 +330,24 @@ angular.module('ggpApp')
   var nOptions = [
     {label: 'Race', id: 1, demo: 'race'},
     {label: 'Household', id: 2, demo: 'numHousehold'}, 
-    {label: 'Age', id: 3, demo: 'age'}, 
-    {label: 'Rent vs Own', id: 4, demo: 'homeStatus'} 
+    {label: 'Age', id: 3, demo: 'age'}
   ];
 
   $scope.nielsenOptions = nOptions;
-  $scope.neilsenSelected = {};
-  $scope.neilsenSettings = {
+  $scope.nielsenSelected = {};
+  $scope.nielsenSettings = {
       selectionLimit: 1, 
       closeOnSelect: true, 
       displayProp: 'label', 
       externalIdProp: '',
       smartButtonMaxItems: 1
   };
-  $scope.neilsenEvents = {
-    onItemSelect: function(item) {
 
-    }
-  }
-
-  $scope.getNeilsenGraph = function() {
-      $scope.showNeilsenGraph = true;
-      var selectedProps = $scope.demoSelected;
-      var chartType = $scope.neilsenSelected; 
+  $scope.getNielsenGraph = function() {
+      $scope.showMainGraph = false;
+      $scope.showNielsenGraph = true;
+      var selectedProps = $scope.demographicsSelected;
+      var chartType = $scope.nielsenSelected; 
      
       var seriesData = [];
       
@@ -373,7 +392,9 @@ angular.module('ggpApp')
       var hChartConfig = {
         options: {
             chart: {
-                type: 'column'
+                type: 'column', 
+                width: 700,
+                height:500
             }
         },
         xAxis: {
