@@ -120,6 +120,10 @@ ol {
 	margin-left:10px;
 }
 
+.margin-left-100 {
+	margin-left:100px;
+}
+
 .breadcrumb {
 	background-color: #fff;
 	margin-bottom:0px;
@@ -531,6 +535,10 @@ ul.nested-list {
 	border-top:1px solid #808080;
 }
 
+.shift-left {
+	margin-left: 100px;
+}
+
 /*===================================================
 
 				Mall/Space Styles
@@ -665,6 +673,10 @@ and (orientation : landscape) {
 	  -webkit-overflow-scrolling: touch;
 	}
 
+	.shift-left {
+		margin-left: 100px;
+	}
+
 }
 
 /* iPad Portrait */
@@ -750,6 +762,12 @@ and (orientation : portrait) {
 
 	.legends {
 		display: none;
+	}
+
+	/*graph*/
+
+	.shift-left {
+		margin-left:0px;
 	}
 
 }
